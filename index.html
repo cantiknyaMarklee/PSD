@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyek Sains Data</title>
+    <style>
+        :root {
+            --primary-color: #010510f9;
+            --secondary-color: #0d1d3f;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --sidebar-width: 260px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR STYLES */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: #0f172a;
+            color: #fff;
+            position: fixed;
+            height: 100vh;
+            padding: 25px 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-container {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0 auto 12px;
+            border: 2px solid #60a5fa;
+        }
+
+        .profile-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .profile-info {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 6px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px 15px;
+            color: #cbd5e1;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        /* CONTENT STYLES */
+        .content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px;
+            max-width: 1100px;
+        }
+
+        .page-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .page-header h1 {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            color: #0f172ab7;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            color: var(--secondary-color);
+            margin: 20px 0 10px;
+        }
+
+        p, li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* TABLE STYLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* MEDIA & BUTTONS */
+        .img-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-download:hover {
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGASI -->
+    <div class="sidebar">
+        <div class="profile-container">
+            <!-- Inisial Nama -->
+            <div class="profile-avatar">A</div>
+            <div class="profile-name">Alifah Sayyidaturrhohma</div>
+            <div class="profile-info">NIM: 240411100145</div>
+            <div class="profile-info">Proyek Sains Data (PSD)</div>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a class="nav-link active" onclick="switchTab('profil')">Profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="switchTab('business')">Business Understanding</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="switchTab('data')">Data Understanding</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="switchTab('visualisasi')">Visualisasi & Datasets</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- AREA KONTEN UTAMA -->
+    <div class="content">
+
+        <!-- TAB 1: PROFIL -->
+        <div id="profil" class="tab-content active">
+            <div class="page-header">
+                <h1>Profil Mahasiswa</h1>
+            </div>
+            <div class="card">
+                <h2>Identitas Mahasiswa</h2>
+                <table>
+                    <tr>
+                        <th width="30%">Nama Lengkap</th>
+                        <td>Alifah Sayyidaturrhohma</td>
+                    </tr>
+                    <tr>
+                        <th>NIM</th>
+                        <td>240411100145</td>
+                    </tr>
+                    <tr>
+                        <th>Mata Kuliah</th>
+                        <td>Proyek Sains Data (PSD)</td>
+                    </tr>
+                    <tr>
+                        <th>Wilayah Observasi</th>
+                        <td>Koordinat GeoJSON Lokal (Lat: -6.2000, Long: 113.8166)</td>
+                    </tr>
+                    <tr>
+                        <th>Sumber Data</th>
+                        <td>Open-Meteo Air Quality API</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 2: BUSINESS UNDERSTANDING -->
+        <div id="business" class="tab-content">
+            <div class="page-header">
+                <h1>Business Understanding</h1>
+            </div>
+            <div class="card">
+                <h2>Latar Belakang & Tujuan Proyek</h2>
+                <p>Kualitas udara merupakan salah satu faktor lingkungan yang berpengaruh langsung terhadap kesehatan masyarakat dan stabilitas ekosistem. Proyek ini dilakukan untuk mengekstraksi, memetakan, serta menganalisis pola time series parameter polutan di tingkat lokal.</p>
+                
+                <h3>Tujuan Utama:</h3>
+                <ul>
+                    <li>Mengidentifikasi tren konsentrasi polutan harian dan musiman selama periode 1 tahun (31 Agustus 2025 – 31 Agustus 2026).</li>
+                    <li>Menyediakan basis data historis yang valid untuk pemetaan tingkat risiko pencemaran udara wilayah lokal.</li>
+                </ul>
+
+                <h3>Manfaat Analisis:</h3>
+                <ul>
+                    <li><b>Preventif Kesehatan:</b> Memberikan gambaran pola fluktuasi polusi agar masyarakat dapat mengantisipasi paparan polutan berbahaya.</li>
+                    <li><b>Pengambilan Kebijakan:</b> Menyediakan data terstruktur yang berguna sebagai acuan evaluasi kebijakan emisi kendaraan dan industri lokal.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 3: DATA UNDERSTANDING -->
+        <div id="data" class="tab-content">
+            <div class="page-header">
+                <h1>Data Understanding</h1>
+            </div>
+            <div class="card">
+                <h2>Spesifikasi Dataset Polutan</h2>
+                <p>Data dikumpulkan melalui ekstrasi API berbasis koordinat wilayah GeoJSON dengan interval waktu per jam (*hourly*).</p>
+
+                <h3>Deskripsi Parameter Polutan</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Penjelasan Akademis</th>
+                            <th>Sumber Emisi Utama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>PM2.5</b></td>
+                            <td>Partikulat halus diameter &le; 2.5 µm. Berbahaya karena dapat menembus saluran pernapasan dalam.</td>
+                            <td>Emisi pembakaran kendaraan, aktivitas industri.</td>
+                        </tr>
+                        <tr>
+                            <td><b>PM10</b></td>
+                            <td>Partikulat kasar diameter &le; 10 µm. Mengiritasi saluran pernapasan bagian atas.</td>
+                            <td>Debu jalanan, aktivitas konstruksi/pembangunan.</td>
+                        </tr>
+                        <tr>
+                            <td><b>CO</b></td>
+                            <td>Karbon Monoksida. Gas beracun tak berbau pemicu penurunan kadar oksigen dalam darah.</td>
+                            <td>Pembakaran bahan bakar fosil tidak sempurna.</td>
+                        </tr>
+                        <tr>
+                            <td><b>NO2</b></td>
+                            <td>Nitrogen Dioksida. Gas reaktif penyebab iritasi paru-paru dan komponen hujan asam.</td>
+                            <td>Gas buang kendaraan bermotor, pembangkit listrik.</td>
+                        </tr>
+                        <tr>
+                            <td><b>SO2</b></td>
+                            <td>Sulfur Dioksida. Gas berbau menyengat yang memicu gangguan pernapasan akut.</td>
+                            <td>Pembakaran batu bara dan pemrosesan minyak bumi.</td>
+                        </tr>
+                        <tr>
+                            <td><b>O3</b></td>
+                            <td>Ozon Permukaan (Troposferik). Oksidator kuat pemicu masalah pernapasan.</td>
+                            <td>Reaksi fotokimia antara NOx dan VOC dengan bantuan sinar matahari.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Validasi & Kebersihan Data</h3>
+                <ul>
+                    <li><b>Pemeriksaan Nilai Anomali (Outliers):</b> Dilakukan pengecekan terhadap error pembacaan sensor seperti nilai negatif atau lonjakan yang tidak rasional.</li>
+                    <li><b>Kelengkapan Waktu (Missing Timestamp):</b> Memastikan tidak ada rekaman waktu yang terlewat dalam jangka waktu 1 tahun penuh.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 4: VISUALISASI & DATASET -->
+        <div id="visualisasi" class="tab-content">
+            <div class="page-header">
+                <h1>Visualisasi Time Series & Export Data</h1>
+            </div>
+            <div class="card">
+                <h2>Grafik Tren Polusi Udara</h2>
+                <p>Berikut adalah grafik time series tren konsentrasi polutan PM2.5 dan PM10 dari periode 31 Agustus 2025 hingga 31 Agustus 2026:</p>
+                
+                <div class="img-container">
+                    <img src="grafik_timeseries.png" alt="Grafik Time Series Kualitas Udara">
+                </div>
+
+                <h3 style="margin-top: 25px;">Unduh Dataset Mentah</h3>
+                <p>Dataset hasil *crawling* dalam format CSV dapat diunduh melalui tombol di bawah ini:</p>
+                <a href="Data_polutan-sumenep.csv" class="btn-download" download>📥 Download Dataset (data_polutan.csv)</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT TABS -->
+    <script>
+        function switchTab(tabId) {
+            // Sembunyikan semua konten tab
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Hapus status active pada nav-link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Tampilkan tab yang dipilih
+            document.getElementById(tabId).classList.add('active');
+
+            // Set nav link yang diklik menjadi active
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
