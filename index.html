@@ -1,400 +1,1681 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyek Sains Data</title>
+
+    <title>PSD - Kualitas Udara Sumenep</title>
+
+
     <style>
-        :root {
-            --primary-color: #010510f9;
-            --secondary-color: #0d1d3f;
-            --bg-color: #f8fafc;
-            --text-color: #1e293b;
-            --sidebar-width: 260px;
-        }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            display: flex;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #eeeeee;
+            color: #222;
         }
 
-        /* SIDEBAR STYLES */
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
         .sidebar {
-            width: var(--sidebar-width);
-            background-color: #0f172a;
-            color: #fff;
-            position: fixed;
+            width: 220px;
             height: 100vh;
-            padding: 25px 15px;
-            display: flex;
-            flex-direction: column;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            background-color: #111;
+            color: white;
+
+            padding: 20px;
         }
 
-        .profile-container {
+        .sidebar h2 {
             text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #334155;
+            margin-bottom: 5px;
+        }
+
+        .sidebar p {
+            text-align: center;
+            font-size: 13px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+
+            color: white;
+            text-decoration: none;
+
+            padding: 11px;
+
+            margin-bottom: 7px;
+
+            border-radius: 4px;
+        }
+
+        .sidebar a:hover {
+            background-color: #333;
+        }
+
+
+        /* =========================
+           KONTEN
+        ========================= */
+
+        .content {
+            margin-left: 220px;
+            padding: 25px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            background-color: white;
+
+            padding: 30px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+
             margin-bottom: 20px;
         }
 
-        .profile-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--secondary-color);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: bold;
-            margin: 0 auto 12px;
-            border: 2px solid #60a5fa;
+        .header h1 {
+            margin-top: 0;
+
+            font-size: 32px;
         }
 
-        .profile-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #f8fafc;
+        .header p {
+            line-height: 1.7;
         }
 
-        .profile-info {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-top: 4px;
-        }
 
-        .nav-menu {
-            list-style: none;
-        }
+        /* =========================
+           BAGIAN
+        ========================= */
 
-        .nav-item {
-            margin-bottom: 6px;
-        }
+        .bagian {
+            background-color: white;
 
-        .nav-link {
-            display: block;
-            padding: 12px 15px;
-            color: #cbd5e1;
-            text-decoration: none;
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid #ccc;
+
             border-radius: 6px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
         }
 
-        .nav-link:hover, .nav-link.active {
-            background-color: var(--secondary-color);
-            color: #ffffff;
-            font-weight: 500;
+        .bagian h2 {
+            margin-top: 0;
+
+            border-bottom: 2px solid #222;
+
+            padding-bottom: 10px;
         }
 
-        /* CONTENT STYLES */
-        .content {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 40px;
-            max-width: 1100px;
+        .bagian h3 {
+            margin-top: 25px;
         }
 
-        .page-header {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e2e8f0;
-        }
 
-        .page-header h1 {
-            color: var(--primary-color);
-            font-size: 1.75rem;
+        /* =========================
+           RINGKASAN DATA
+        ========================= */
+
+        .data-ringkas {
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
         }
 
         .card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
+            background-color: #f5f5f5;
+
+            border: 1px solid #ccc;
+
+            padding: 15px;
+
+            width: 180px;
+
+            text-align: center;
+
+            border-radius: 5px;
         }
 
-        .tab-content {
-            display: none;
+        .card h3 {
+            margin: 5px 0;
+
+            font-size: 23px;
         }
 
-        .tab-content.active {
-            display: block;
+
+        /* =========================
+           DUA KOLOM
+        ========================= */
+
+        .dua-kolom {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
         }
 
-        h2 {
-            font-size: 1.25rem;
-            color: #0f172ab7;
-            margin-bottom: 15px;
+
+        /* =========================
+           KOTAK
+        ========================= */
+
+        .kotak {
+            background-color: #f2f2f2;
+
+            border-left: 4px solid #222;
+
+            padding: 15px;
+
+            margin-top: 15px;
         }
 
-        h3 {
-            font-size: 1.05rem;
-            color: var(--secondary-color);
-            margin: 20px 0 10px;
+
+        /* =========================
+           POLUTAN
+        ========================= */
+
+        .polutan {
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
         }
 
-        p, li {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #334155;
+        .polutan-box {
+            flex: 1;
+
+            min-width: 200px;
+
+            border: 1px solid #ccc;
+
+            padding: 15px;
+
+            background-color: #fafafa;
+
+            border-radius: 5px;
         }
 
-        ul, ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
+        .polutan-box h3 {
+            margin-top: 0;
         }
 
-        /* TABLE STYLES */
+
+        /* =========================
+           TABEL
+        ========================= */
+
         table {
             width: 100%;
+
             border-collapse: collapse;
+
             margin-top: 15px;
-            font-size: 0.9rem;
         }
 
-        th, td {
-            padding: 12px 15px;
+        th,
+        td {
+            border: 1px solid #bbb;
+
+            padding: 10px;
+
             text-align: left;
-            border: 1px solid #e2e8f0;
         }
 
         th {
-            background-color: #f1f5f9;
-            color: #0f172a;
-            font-weight: 600;
+            background-color: #222;
+
+            color: white;
         }
 
         tr:nth-child(even) {
-            background-color: #f8fafc;
+            background-color: #f5f5f5;
         }
 
-        /* MEDIA & BUTTONS */
-        .img-container {
-            margin-top: 15px;
+
+        /* =========================
+           GRAFIK
+        ========================= */
+
+        .grafik {
+            margin-top: 20px;
+
             text-align: center;
         }
 
-        .img-container img {
-            max-width: 100%;
+        .grafik img {
+            width: 100%;
+
+            max-width: 1100px;
+
             height: auto;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
+
+            border: 1px solid #aaa;
         }
 
-        .btn-download {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
+
+        .keterangan {
+            background-color: #f2f2f2;
+
+            padding: 15px;
+
             margin-top: 15px;
-            transition: background-color 0.2s;
+
+            border-left: 4px solid #222;
+
+            text-align: left;
         }
 
-        .btn-download:hover {
-            background-color: var(--primary-color);
+
+        /* =========================
+           PETA
+        ========================= */
+
+        .peta {
+            text-align: center;
+
+            border: 1px solid #ccc;
+
+            padding: 20px;
+
+            background-color: #f7f7f7;
         }
+
+        .peta img {
+            width: 100%;
+
+            max-width: 900px;
+
+            height: auto;
+
+            border: 1px solid #aaa;
+        }
+
+
+        /* =========================
+           DOWNLOAD
+        ========================= */
+
+        .download {
+            margin-top: 20px;
+        }
+
+        .download a {
+            display: inline-block;
+
+            background-color: #222;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 10px 15px;
+
+            margin-right: 5px;
+
+            border-radius: 4px;
+        }
+
+        .download a:hover {
+            background-color: #444;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background-color: #111;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media screen and (max-width: 700px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+
+                height: auto;
+            }
+
+            .sidebar a {
+                display: inline-block;
+
+                padding: 8px;
+            }
+
+            .content {
+                margin-left: 0;
+
+                padding: 15px;
+            }
+
+            .dua-kolom {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .polutan-box {
+                min-width: 100%;
+            }
+
+        }
+
     </style>
+
 </head>
+
+
 <body>
 
-    <!-- SIDEBAR NAVIGASI -->
-    <div class="sidebar">
-        <div class="profile-container">
-            <!-- Inisial Nama -->
-            <div class="profile-avatar">A</div>
-            <div class="profile-name">Alifah Sayyidaturrhohma</div>
-            <div class="profile-info">NIM: 240411100145</div>
-            <div class="profile-info">Proyek Sains Data (PSD)</div>
-        </div>
 
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a class="nav-link active" onclick="switchTab('profil')">Profil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" onclick="switchTab('business')">Business Understanding</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" onclick="switchTab('data')">Data Understanding</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" onclick="switchTab('visualisasi')">Visualisasi & Datasets</a>
-            </li>
-        </ul>
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <div class="sidebar">
+
+        <h2>PSD</h2>
+
+        <p>
+            Kualitas Udara<br>
+            Kabupaten Sumenep
+        </p>
+
+
+        <a href="#beranda">
+            Beranda
+        </a>
+
+        <a href="#bisnis">
+            Business Understanding
+        </a>
+
+        <a href="#data">
+            Data Understanding
+        </a>
+
+        <a href="#wilayah">
+            Wilayah
+        </a>
+
+        <a href="#eksplorasi">
+            Eksplorasi Data
+        </a>
+
+        <a href="#grafik">
+            Time Series
+        </a>
+
+        <a href="#kesimpulan">
+            Kesimpulan
+        </a>
+
     </div>
 
-    <!-- AREA KONTEN UTAMA -->
+
+
+    <!-- =========================
+         KONTEN
+    ========================= -->
+
     <div class="content">
 
-        <!-- TAB 1: PROFIL -->
-        <div id="profil" class="tab-content active">
-            <div class="page-header">
-                <h1>Profil Mahasiswa</h1>
-            </div>
-            <div class="card">
-                <h2>Identitas Mahasiswa</h2>
-                <table>
-                    <tr>
-                        <th width="30%">Nama Lengkap</th>
-                        <td>Alifah Sayyidaturrhohma</td>
-                    </tr>
-                    <tr>
-                        <th>NIM</th>
-                        <td>240411100145</td>
-                    </tr>
-                    <tr>
-                        <th>Mata Kuliah</th>
-                        <td>Proyek Sains Data (PSD)</td>
-                    </tr>
-                    <tr>
-                        <th>Wilayah Observasi</th>
-                        <td>Koordinat GeoJSON Lokal (Lat: -6.2000, Long: 113.8166)</td>
-                    </tr>
-                    <tr>
-                        <th>Sumber Data</th>
-                        <td>Open-Meteo Air Quality API</td>
-                    </tr>
-                </table>
-            </div>
+
+        <!-- =========================
+             BERANDA
+        ========================= -->
+
+        <div class="header" id="beranda">
+
+            <h1>
+                Analisis Kualitas Udara
+                Kabupaten Sumenep
+            </h1>
+
+            <p>
+                Website ini dibuat untuk memenuhi tugas
+                mata kuliah PSD mengenai pengumpulan,
+                pemahaman, dan eksplorasi data kualitas
+                udara.
+            </p>
+
+            <p>
+                Data yang digunakan merupakan data polutan
+                pada wilayah Kabupaten Sumenep dengan
+                interval pengamatan setiap satu jam.
+            </p>
+
+            <p>
+                <b>Periode:</b>
+                1 September 2025 - 31 Agustus 2026
+            </p>
+
         </div>
 
-        <!-- TAB 2: BUSINESS UNDERSTANDING -->
-        <div id="business" class="tab-content">
-            <div class="page-header">
-                <h1>Business Understanding</h1>
-            </div>
-            <div class="card">
-                <h2>Latar Belakang & Tujuan Proyek</h2>
-                <p>Kualitas udara merupakan salah satu faktor lingkungan yang berpengaruh langsung terhadap kesehatan masyarakat dan stabilitas ekosistem. Proyek ini dilakukan untuk mengekstraksi, memetakan, serta menganalisis pola time series parameter polutan di tingkat lokal.</p>
-                
-                <h3>Tujuan Utama:</h3>
-                <ul>
-                    <li>Mengidentifikasi tren konsentrasi polutan harian dan musiman selama periode 1 tahun (31 Agustus 2025 – 31 Agustus 2026).</li>
-                    <li>Menyediakan basis data historis yang valid untuk pemetaan tingkat risiko pencemaran udara wilayah lokal.</li>
-                </ul>
 
-                <h3>Manfaat Analisis:</h3>
-                <ul>
-                    <li><b>Preventif Kesehatan:</b> Memberikan gambaran pola fluktuasi polusi agar masyarakat dapat mengantisipasi paparan polutan berbahaya.</li>
-                    <li><b>Pengambilan Kebijakan:</b> Menyediakan data terstruktur yang berguna sebagai acuan evaluasi kebijakan emisi kendaraan dan industri lokal.</li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- TAB 3: DATA UNDERSTANDING -->
-        <div id="data" class="tab-content">
-            <div class="page-header">
-                <h1>Data Understanding</h1>
-            </div>
-            <div class="card">
-                <h2>Spesifikasi Dataset Polutan</h2>
-                <p>Data dikumpulkan melalui ekstrasi API berbasis koordinat wilayah GeoJSON dengan interval waktu per jam (*hourly*).</p>
+        <!-- =========================
+             RINGKASAN
+        ========================= -->
 
-                <h3>Deskripsi Parameter Polutan</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Penjelasan Akademis</th>
-                            <th>Sumber Emisi Utama</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>PM2.5</b></td>
-                            <td>Partikulat halus diameter &le; 2.5 µm. Berbahaya karena dapat menembus saluran pernapasan dalam.</td>
-                            <td>Emisi pembakaran kendaraan, aktivitas industri.</td>
-                        </tr>
-                        <tr>
-                            <td><b>PM10</b></td>
-                            <td>Partikulat kasar diameter &le; 10 µm. Mengiritasi saluran pernapasan bagian atas.</td>
-                            <td>Debu jalanan, aktivitas konstruksi/pembangunan.</td>
-                        </tr>
-                        <tr>
-                            <td><b>CO</b></td>
-                            <td>Karbon Monoksida. Gas beracun tak berbau pemicu penurunan kadar oksigen dalam darah.</td>
-                            <td>Pembakaran bahan bakar fosil tidak sempurna.</td>
-                        </tr>
-                        <tr>
-                            <td><b>NO2</b></td>
-                            <td>Nitrogen Dioksida. Gas reaktif penyebab iritasi paru-paru dan komponen hujan asam.</td>
-                            <td>Gas buang kendaraan bermotor, pembangkit listrik.</td>
-                        </tr>
-                        <tr>
-                            <td><b>SO2</b></td>
-                            <td>Sulfur Dioksida. Gas berbau menyengat yang memicu gangguan pernapasan akut.</td>
-                            <td>Pembakaran batu bara dan pemrosesan minyak bumi.</td>
-                        </tr>
-                        <tr>
-                            <td><b>O3</b></td>
-                            <td>Ozon Permukaan (Troposferik). Oksidator kuat pemicu masalah pernapasan.</td>
-                            <td>Reaksi fotokimia antara NOx dan VOC dengan bantuan sinar matahari.</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="bagian">
 
-                <h3>Validasi & Kebersihan Data</h3>
-                <ul>
-                    <li><b>Pemeriksaan Nilai Anomali (Outliers):</b> Dilakukan pengecekan terhadap error pembacaan sensor seperti nilai negatif atau lonjakan yang tidak rasional.</li>
-                    <li><b>Kelengkapan Waktu (Missing Timestamp):</b> Memastikan tidak ada rekaman waktu yang terlewat dalam jangka waktu 1 tahun penuh.</li>
-                </ul>
-            </div>
-        </div>
+            <h2>
+                Ringkasan Data
+            </h2>
 
-        <!-- TAB 4: VISUALISASI & DATASET -->
-        <div id="visualisasi" class="tab-content">
-            <div class="page-header">
-                <h1>Visualisasi Time Series & Export Data</h1>
-            </div>
-            <div class="card">
-                <h2>Grafik Tren Polusi Udara</h2>
-                <p>Berikut adalah grafik time series tren konsentrasi polutan PM2.5 dan PM10 dari periode 31 Agustus 2025 hingga 31 Agustus 2026:</p>
-                
-                <div class="img-container">
-                    <img src="grafik_timeseries.png" alt="Grafik Time Series Kualitas Udara">
+            <div class="data-ringkas">
+
+                <div class="card">
+
+                    <h3>
+                        8.760
+                    </h3>
+
+                    <p>
+                        Jumlah data
+                    </p>
+
                 </div>
 
-                <h3 style="margin-top: 25px;">Unduh Dataset Mentah</h3>
-                <p>Dataset hasil *crawling* dalam format CSV dapat diunduh melalui tombol di bawah ini:</p>
-                <a href="Data_polutan-sumenep.csv" class="btn-download" download>📥 Download Dataset (data_polutan.csv)</a>
+
+                <div class="card">
+
+                    <h3>
+                        365
+                    </h3>
+
+                    <p>
+                        Hari
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        4
+                    </h3>
+
+                    <p>
+                        Parameter polutan
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        1 Jam
+                    </h3>
+
+                    <p>
+                        Interval data
+                    </p>
+
+                </div>
+
             </div>
+
         </div>
+
+
+
+        <!-- =========================
+             BUSINESS UNDERSTANDING
+        ========================= -->
+
+        <div class="bagian" id="bisnis">
+
+            <h2>
+                1. Business Understanding
+            </h2>
+
+
+            <h3>
+                Tujuan
+            </h3>
+
+            <p>
+                Tujuan dari tugas ini adalah untuk mengetahui
+                kondisi kualitas udara di Kabupaten Sumenep
+                berdasarkan data beberapa polutan selama
+                satu tahun.
+            </p>
+
+
+            <h3>
+                Permasalahan
+            </h3>
+
+            <p>
+                Kualitas udara dapat mengalami perubahan
+                dari waktu ke waktu. Oleh karena itu,
+                diperlukan data untuk melihat bagaimana
+                perubahan konsentrasi polutan selama
+                periode pengamatan.
+            </p>
+
+
+            <h3>
+                Pertanyaan yang Ingin Dijawab
+            </h3>
+
+            <ul>
+
+                <li>
+                    Bagaimana perubahan konsentrasi polutan
+                    dari waktu ke waktu?
+                </li>
+
+                <li>
+                    Kapan terjadi nilai polutan yang tinggi?
+                </li>
+
+                <li>
+                    Apakah terdapat nilai yang terlihat
+                    tidak biasa?
+                </li>
+
+                <li>
+                    Bagaimana pola polutan selama satu tahun?
+                </li>
+
+            </ul>
+
+
+            <h3>
+                Manfaat
+            </h3>
+
+            <div class="dua-kolom">
+
+                <div>
+
+                    <p>
+                        <b>1. Manfaat untuk informasi</b>
+                    </p>
+
+                    <p>
+                        Hasil analisis dapat memberikan
+                        gambaran sederhana mengenai kondisi
+                        kualitas udara di wilayah Sumenep.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <p>
+                        <b>2. Manfaat untuk analisis</b>
+                    </p>
+
+                    <p>
+                        Data dapat digunakan untuk melihat
+                        pola perubahan konsentrasi polutan
+                        berdasarkan waktu.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <p>
+                        <b>3. Manfaat untuk pengamatan</b>
+                    </p>
+
+                    <p>
+                        Hasilnya dapat menjadi informasi awal
+                        untuk pengamatan kualitas udara
+                        lebih lanjut.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <p>
+                        <b>4. Manfaat pembelajaran</b>
+                    </p>
+
+                    <p>
+                        Tugas ini melatih proses pengolahan
+                        data mulai dari crawling, penyimpanan,
+                        pemahaman, eksplorasi sampai
+                        visualisasi.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="kotak">
+
+                <b>
+                    Kesimpulan Business Understanding
+                </b>
+
+                <p>
+                    Data kualitas udara digunakan untuk
+                    mengetahui perubahan konsentrasi polutan
+                    di Kabupaten Sumenep selama satu tahun.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             DATA UNDERSTANDING
+        ========================= -->
+
+        <div class="bagian" id="data">
+
+            <h2>
+                2. Data Understanding
+            </h2>
+
+
+            <h3>
+                Sumber Data
+            </h3>
+
+            <p>
+                Data kualitas udara diperoleh dari
+                <b>Open-Meteo</b>.
+            </p>
+
+            <p>
+                Data dicatat setiap satu jam pada satu
+                titik koordinat di wilayah Kabupaten
+                Sumenep.
+            </p>
+
+
+            <h3>
+                Periode Data
+            </h3>
+
+            <p>
+                Data yang digunakan mencakup periode:
+            </p>
+
+            <div class="kotak">
+
+                <b>
+                    1 September 2025 -
+                    31 Agustus 2026
+                </b>
+
+                <p>
+                    Total terdapat 365 hari atau
+                    8.760 pengamatan per jam.
+                </p>
+
+            </div>
+
+
+            <h3>
+                Koordinat Data
+            </h3>
+
+            <p>
+                Titik koordinat yang digunakan adalah:
+            </p>
+
+            <p>
+                <b>
+                    Latitude:
+                </b>
+                -7.000000
+            </p>
+
+            <p>
+                <b>
+                    Longitude:
+                </b>
+                113.899994
+            </p>
+
+
+            <h3>
+                Parameter Polutan
+            </h3>
+
+
+            <div class="polutan">
+
+
+                <div class="polutan-box">
+
+                    <h3>
+                        PM2.5
+                    </h3>
+
+                    <p>
+                        PM2.5 merupakan partikel udara
+                        yang memiliki ukuran sangat kecil,
+                        sekitar 2,5 mikrometer atau lebih kecil.
+                    </p>
+
+                    <p>
+                        Sumbernya dapat berasal dari kendaraan,
+                        pembakaran, debu, dan aktivitas industri.
+                    </p>
+
+                    <p>
+                        <b>Satuan:</b> μg/m³
+                    </p>
+
+                </div>
+
+
+
+                <div class="polutan-box">
+
+                    <h3>
+                        PM10
+                    </h3>
+
+                    <p>
+                        PM10 merupakan partikulat udara
+                        dengan ukuran sekitar 10 mikrometer
+                        atau lebih kecil.
+                    </p>
+
+                    <p>
+                        Sumbernya dapat berasal dari debu,
+                        tanah, jalan, konstruksi, dan pembakaran.
+                    </p>
+
+                    <p>
+                        <b>Satuan:</b> μg/m³
+                    </p>
+
+                </div>
+
+
+
+                <div class="polutan-box">
+
+                    <h3>
+                        CO₂
+                    </h3>
+
+                    <p>
+                        CO₂ atau karbon dioksida merupakan
+                        gas yang terdapat di atmosfer.
+                    </p>
+
+                    <p>
+                        Salah satu sumber CO₂ dari aktivitas
+                        manusia adalah pembakaran bahan bakar.
+                    </p>
+
+                    <p>
+                        <b>Satuan:</b> ppm
+                    </p>
+
+                </div>
+
+
+
+                <div class="polutan-box">
+
+                    <h3>
+                        NO₂
+                    </h3>
+
+                    <p>
+                        NO₂ atau nitrogen dioksida merupakan
+                        gas yang dapat dihasilkan dari proses
+                        pembakaran.
+                    </p>
+
+                    <p>
+                        Sumbernya dapat berasal dari kendaraan
+                        bermotor dan aktivitas industri.
+                    </p>
+
+                    <p>
+                        <b>Satuan:</b> μg/m³
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <h3>
+                Deskripsi Fitur
+            </h3>
+
+
+            <table>
+
+                <tr>
+
+                    <th>
+                        Fitur
+                    </th>
+
+                    <th>
+                        Tipe Data
+                    </th>
+
+                    <th>
+                        Penjelasan
+                    </th>
+
+                    <th>
+                        Satuan
+                    </th>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        time
+                    </td>
+
+                    <td>
+                        Datetime
+                    </td>
+
+                    <td>
+                        Menunjukkan waktu ketika
+                        data dicatat.
+                    </td>
+
+                    <td>
+                        -
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        pm10
+                    </td>
+
+                    <td>
+                        Numerik
+                    </td>
+
+                    <td>
+                        Konsentrasi PM10.
+                    </td>
+
+                    <td>
+                        μg/m³
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        pm2_5
+                    </td>
+
+                    <td>
+                        Numerik
+                    </td>
+
+                    <td>
+                        Konsentrasi PM2.5.
+                    </td>
+
+                    <td>
+                        μg/m³
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        co2
+                    </td>
+
+                    <td>
+                        Numerik
+                    </td>
+
+                    <td>
+                        Konsentrasi karbon dioksida.
+                    </td>
+
+                    <td>
+                        ppm
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        no2
+                    </td>
+
+                    <td>
+                        Numerik
+                    </td>
+
+                    <td>
+                        Konsentrasi nitrogen dioksida.
+                    </td>
+
+                    <td>
+                        μg/m³
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- =========================
+             EKSPLORASI DATA
+        ========================= -->
+
+        <div class="bagian" id="eksplorasi">
+
+            <h2>
+                3. Eksplorasi Data
+            </h2>
+
+
+            <p>
+                Eksplorasi dilakukan untuk mengetahui
+                kondisi awal dataset sebelum digunakan
+                untuk analisis lebih lanjut.
+            </p>
+
+
+            <h3>
+                Pemeriksaan Data
+            </h3>
+
+
+            <table>
+
+                <tr>
+
+                    <th>
+                        Pemeriksaan
+                    </th>
+
+                    <th>
+                        Hasil
+                    </th>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Jumlah observasi
+                    </td>
+
+                    <td>
+                        8.760
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Periode
+                    </td>
+
+                    <td>
+                        1 September 2025 -
+                        31 Agustus 2026
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Missing value
+                    </td>
+
+                    <td>
+                        0
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Data duplikat waktu
+                    </td>
+
+                    <td>
+                        0
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Nilai negatif
+                    </td>
+
+                    <td>
+                        0
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <h3>
+                Statistik Sederhana
+            </h3>
+
+
+            <table>
+
+                <tr>
+
+                    <th>
+                        Parameter
+                    </th>
+
+                    <th>
+                        Minimum
+                    </th>
+
+                    <th>
+                        Rata-rata
+                    </th>
+
+                    <th>
+                        Maksimum
+                    </th>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        PM2.5
+                    </td>
+
+                    <td>
+                        0.10
+                    </td>
+
+                    <td>
+                        12.84
+                    </td>
+
+                    <td>
+                        53.20
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        PM10
+                    </td>
+
+                    <td>
+                        0.10
+                    </td>
+
+                    <td>
+                        14.64
+                    </td>
+
+                    <td>
+                        54.90
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        CO₂
+                    </td>
+
+                    <td>
+                        429.00
+                    </td>
+
+                    <td>
+                        443.07
+                    </td>
+
+                    <td>
+                        497.00
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        NO₂
+                    </td>
+
+                    <td>
+                        0.20
+                    </td>
+
+                    <td>
+                        2.64
+                    </td>
+
+                    <td>
+                        18.50
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <h3>
+                Apakah Ada Data Aneh?
+            </h3>
+
+
+            <p>
+                Pada dataset terdapat beberapa nilai yang
+                secara statistik terlihat cukup tinggi
+                dibandingkan dengan sebagian besar data.
+            </p>
+
+
+            <p>
+                Nilai tersebut belum tentu merupakan
+                kesalahan. Pada data lingkungan, perubahan
+                nilai dapat terjadi karena perubahan kondisi
+                lingkungan maupun aktivitas manusia.
+            </p>
+
+
+            <p>
+                Oleh karena itu, nilai yang tinggi perlu
+                diperiksa lebih lanjut berdasarkan waktu
+                terjadinya dan kondisi wilayah.
+            </p>
+
+
+            <h3>
+                Deteksi Outlier dengan IQR
+            </h3>
+
+
+            <table>
+
+                <tr>
+
+                    <th>
+                        Parameter
+                    </th>
+
+                    <th>
+                        Jumlah Outlier
+                    </th>
+
+                    <th>
+                        Nilai Maksimum
+                    </th>
+
+                    <th>
+                        Waktu Maksimum
+                    </th>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        PM2.5
+                    </td>
+
+                    <td>
+                        529
+                    </td>
+
+                    <td>
+                        53.20
+                    </td>
+
+                    <td>
+                        02 Maret 2026 14:00
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        PM10
+                    </td>
+
+                    <td>
+                        409
+                    </td>
+
+                    <td>
+                        54.90
+                    </td>
+
+                    <td>
+                        02 Maret 2026 14:00
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        CO₂
+                    </td>
+
+                    <td>
+                        742
+                    </td>
+
+                    <td>
+                        497.00
+                    </td>
+
+                    <td>
+                        10 November 2025 03:00
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        NO₂
+                    </td>
+
+                    <td>
+                        939
+                    </td>
+
+                    <td>
+                        18.50
+                    </td>
+
+                    <td>
+                        19 Desember 2025 23:00
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <div class="kotak">
+
+                <b>
+                    Catatan:
+                </b>
+
+                <p>
+                    Outlier berdasarkan metode IQR tidak
+                    langsung berarti data salah. Data tersebut
+                    hanya menunjukkan nilai yang berbeda cukup
+                    jauh dari sebagian besar data.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             WILAYAH
+        ========================= -->
+
+        <div class="bagian" id="wilayah">
+
+            <h2>
+                4. Wilayah Pengambilan Data
+            </h2>
+
+
+            <p>
+                Dalam pengambilan data, wilayah penelitian
+                dibatasi menggunakan file <b>GeoJSON</b>.
+            </p>
+
+
+            <p>
+                GeoJSON digunakan untuk menentukan batas
+                wilayah Kabupaten Sumenep yang menjadi
+                fokus penelitian.
+            </p>
+
+
+            <h3>
+                Titik Koordinat
+            </h3>
+
+            <p>
+                Latitude:
+                <b>-7.000000</b>
+            </p>
+
+            <p>
+                Longitude:
+                <b>113.899994</b>
+            </p>
+
+
+            <h3>
+                Peta Wilayah
+            </h3>
+
+
+            <div class="peta">
+
+                <img
+                    src="gambar daerah.png"
+                    alt="Peta wilayah Kabupaten Sumenep"
+                >
+
+                <p>
+                    Gambar menunjukkan wilayah yang
+                    digunakan dalam penelitian berdasarkan
+                    GeoJSON.
+                </p>
+
+            </div>
+
+
+            <div class="download">
+
+                <a
+                    href="daerah sumenep fix .geojson"
+                    download
+                >
+                    Download GeoJSON
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             TIME SERIES
+        ========================= -->
+
+        <div class="bagian" id="grafik">
+
+            <h2>
+                5. Time Series
+            </h2>
+
+
+            <p>
+                Time series digunakan untuk melihat
+                perubahan nilai polutan berdasarkan waktu.
+            </p>
+
+
+            <p>
+                Data yang digunakan memiliki interval
+                setiap satu jam selama satu tahun.
+            </p>
+
+
+            <div class="grafik">
+
+                <img
+                    src="grafik_timeseries.png"
+                    alt="Grafik Time Series Kualitas Udara Sumenep"
+                >
+
+            </div>
+
+
+            <div class="keterangan">
+
+                <b>
+                    Cara membaca grafik
+                </b>
+
+                <p>
+                    Sumbu horizontal menunjukkan waktu
+                    pengamatan, sedangkan sumbu vertikal
+                    menunjukkan nilai konsentrasi polutan.
+                </p>
+
+                <p>
+                    Dari grafik dapat dilihat bahwa nilai
+                    polutan mengalami perubahan selama
+                    periode pengamatan.
+                </p>
+
+                <p>
+                    Beberapa waktu menunjukkan adanya
+                    kenaikan nilai yang cukup tinggi.
+                    Kondisi tersebut dapat diperiksa kembali
+                    menggunakan data asli.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             KESIMPULAN
+        ========================= -->
+
+        <div class="bagian" id="kesimpulan">
+
+            <h2>
+                6. Kesimpulan
+            </h2>
+
+
+            <ol>
+
+                <li>
+                    Dataset memiliki sebanyak
+                    <b>8.760 observasi</b> dengan interval
+                    waktu setiap satu jam.
+                </li>
+
+                <li>
+                    Data mencakup periode
+                    <b>1 September 2025 sampai
+                    31 Agustus 2026</b>.
+                </li>
+
+                <li>
+                    Terdapat empat parameter yang dianalisis,
+                    yaitu PM2.5, PM10, CO₂, dan NO₂.
+                </li>
+
+                <li>
+                    Hasil pemeriksaan awal tidak menemukan
+                    missing value, duplikasi waktu, dan
+                    nilai negatif.
+                </li>
+
+                <li>
+                    Terdapat beberapa nilai yang termasuk
+                    outlier berdasarkan metode IQR.
+                </li>
+
+                <li>
+                    Nilai outlier tidak langsung dianggap
+                    sebagai kesalahan karena dapat terjadi
+                    akibat perubahan kondisi lingkungan.
+                </li>
+
+                <li>
+                    Grafik time series digunakan untuk melihat
+                    perubahan konsentrasi polutan dari waktu
+                    ke waktu.
+                </li>
+
+            </ol>
+
+
+            <h3>
+                File Dataset
+            </h3>
+
+            <p>
+                File yang digunakan dalam tugas ini dapat
+                diakses melalui tombol berikut.
+            </p>
+
+
+            <div class="download">
+
+                <a
+                    href="open-meteo-7.00s113.90e8m.csv"
+                    download
+                >
+                    Download CSV
+                </a>
+
+
+                <a
+                    href="daerah sumenep fix .geojson"
+                    download
+                >
+                    Download GeoJSON
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================= -->
+
+        <footer>
+
+            <p>
+                Project PSD
+            </p>
+
+            <p>
+                Analisis Kualitas Udara Kabupaten Sumenep
+            </p>
+
+            <p>
+                2026
+            </p>
+
+        </footer>
+
 
     </div>
 
-    <!-- SCRIPT TABS -->
-    <script>
-        function switchTab(tabId) {
-            // Sembunyikan semua konten tab
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            // Hapus status active pada nav-link
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-
-            // Tampilkan tab yang dipilih
-            document.getElementById(tabId).classList.add('active');
-
-            // Set nav link yang diklik menjadi active
-            event.currentTarget.classList.add('active');
-        }
-    </script>
 </body>
+
 </html>
