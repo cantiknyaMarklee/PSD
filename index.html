@@ -299,6 +299,30 @@
             text-align: left;
         }
 
+        /* =========================
+           ALUR AIVEN DAN KNIME
+        ========================= */
+
+        .alur {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .alur img {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            border: 1px solid #aaa;
+        }
+
+        .langkah {
+            margin-top: 20px;
+        }
+
+        .langkah ol {
+            line-height: 1.8;
+        }
+
 
         /* =========================
            PETA
@@ -509,6 +533,10 @@
 
     <a href="#eksplorasi">
         Eksplorasi Data
+    </a>
+
+    <a href="#analisis">
+        Eksplorasi dan Analisis Data
     </a>
 
     <a href="#grafik">
@@ -1553,6 +1581,306 @@
 
         </div>
 
+
+
+
+        <!-- =========================
+             EKSPLORASI DAN ANALISIS DATA
+        ========================= -->
+
+        <div class="bagian" id="analisis">
+
+            <h2>
+                Eksplorasi dan Analisis Data
+            </h2>
+
+            <p>
+                Setelah data kualitas udara dikumpulkan dan dilakukan
+                eksplorasi awal, data selanjutnya disimpan ke dalam
+                database PostgreSQL menggunakan Aiven. Tahap ini
+                dilakukan agar data yang sudah dikumpulkan dapat
+                disimpan secara terstruktur dan dapat diakses kembali
+                menggunakan aplikasi pengolahan data.
+            </p>
+
+            <h3>Alur Pengolahan Data</h3>
+
+            <p>
+                Proses pengolahan data pada tugas ini dilakukan melalui
+                beberapa tahap, mulai dari dataset CSV sampai data
+                dianalisis menggunakan KNIME. Secara umum alurnya adalah:
+            </p>
+
+            <div class="kotak">
+                <b>
+                    Dataset CSV → PostgreSQL Aiven → PostgreSQL Connector
+                    → DB Table Selector → DB Reader → Statistics
+                </b>
+            </div>
+
+            <p>
+                Alur tersebut menunjukkan bahwa data tidak langsung
+                dianalisis di KNIME, tetapi terlebih dahulu disimpan
+                dalam database PostgreSQL pada Aiven. KNIME kemudian
+                digunakan untuk mengambil data dari database dan
+                melakukan analisis statistik.
+            </p>
+
+            <h3>1. Penyimpanan Data pada PostgreSQL Aiven</h3>
+
+            <p>
+                Dataset kualitas udara yang sebelumnya telah disiapkan
+                dalam bentuk CSV dimasukkan ke dalam database PostgreSQL
+                yang disediakan oleh Aiven. Database digunakan sebagai
+                tempat penyimpanan data agar data dapat dikelola dan
+                diakses melalui koneksi database.
+            </p>
+
+            <p>
+                Pada database tersebut dibuat tabel dengan nama
+                <b>air_quality</b>. Tabel ini berisi data waktu
+                pengamatan dan empat parameter kualitas udara, yaitu
+                PM10, PM2.5, karbon dioksida (CO₂), dan nitrogen dioksida
+                (NO₂).
+            </p>
+
+            <p>
+                Data yang dimasukkan berjumlah <b>8.760 baris</b>.
+                Jumlah tersebut berasal dari pengamatan setiap satu jam
+                selama 365 hari, sehingga 365 × 24 menghasilkan 8.760
+                pengamatan.
+            </p>
+
+            <div class="kotak">
+                <b>Struktur tabel air_quality:</b>
+                <ul>
+                    <li><b>time</b> → waktu pengamatan</li>
+                    <li><b>pm10</b> → konsentrasi PM10</li>
+                    <li><b>pm2_5</b> → konsentrasi PM2.5</li>
+                    <li><b>carbon_dioxide</b> → konsentrasi CO₂</li>
+                    <li><b>nitrogen_dioxide</b> → konsentrasi NO₂</li>
+                </ul>
+            </div>
+
+            <div class="alur">
+                <img src="ss-aiven.png" alt="Screenshot database PostgreSQL Aiven">
+                <p><b>Gambar:</b> Penyimpanan data kualitas udara pada PostgreSQL Aiven.</p>
+            </div>
+
+            <h3>2. Menghubungkan Aiven dengan KNIME</h3>
+
+            <p>
+                Setelah data berhasil disimpan pada PostgreSQL Aiven,
+                langkah berikutnya adalah menghubungkan database tersebut
+                dengan KNIME Analytics Platform. KNIME digunakan untuk
+                membaca data dari database dan melakukan analisis
+                terhadap data yang sudah tersimpan.
+            </p>
+
+            <p>
+                Koneksi dilakukan menggunakan node
+                <b>PostgreSQL Connector</b>. Node ini berfungsi sebagai
+                penghubung antara KNIME dengan database PostgreSQL yang
+                berada pada Aiven. Informasi koneksi yang digunakan
+                meliputi hostname, port, nama database, username, dan
+                password.
+            </p>
+
+            <p>
+                Karena database PostgreSQL pada Aiven menggunakan koneksi
+                yang aman, parameter <b>sslmode=require</b> digunakan
+                pada pengaturan JDBC agar KNIME dapat melakukan koneksi
+                ke database.
+            </p>
+
+            <h3>3. Memilih Tabel dengan DB Table Selector</h3>
+
+            <p>
+                Setelah koneksi berhasil, node <b>DB Table Selector</b>
+                digunakan untuk menentukan tabel yang akan digunakan
+                dari database. Pada tahap ini tabel <b>air_quality</b>
+                dipilih dari schema <b>public</b>.
+            </p>
+
+            <p>
+                Pemilihan tabel dilakukan agar KNIME hanya mengambil data
+                yang diperlukan untuk tugas analisis kualitas udara.
+            </p>
+
+            <h3>4. Membaca Data dengan DB Reader</h3>
+
+            <p>
+                Setelah tabel dipilih, node <b>DB Reader</b> digunakan
+                untuk membaca isi tabel tersebut. Data dari PostgreSQL
+                kemudian diteruskan ke proses berikutnya di dalam
+                workflow KNIME.
+            </p>
+
+            <p>
+                Pada tahap ini data yang dibaca terdiri dari 8.760
+                pengamatan dengan lima kolom, yaitu <b>time</b>,
+                <b>pm10</b>, <b>pm2_5</b>, <b>carbon_dioxide</b>, dan
+                <b>nitrogen_dioxide</b>.
+            </p>
+
+            <h3>5. Analisis Menggunakan Statistics</h3>
+
+            <p>
+                Setelah data berhasil dibaca oleh KNIME, node
+                <b>Statistics</b> digunakan untuk melihat ringkasan
+                statistik dari data. Analisis ini membantu mengetahui
+                karakteristik dasar dari setiap parameter polutan
+                sebelum melihat pola perubahan data melalui grafik
+                time series.
+            </p>
+
+            <p>
+                Statistik yang ditampilkan oleh node Statistics dapat
+                digunakan untuk melihat ukuran pemusatan, penyebaran,
+                serta nilai terendah dan tertinggi dari data. Contohnya
+                adalah jumlah data, nilai minimum, maksimum, rata-rata,
+                median, standar deviasi, dan statistik lain yang tersedia
+                pada output node.
+            </p>
+
+            <div class="alur">
+                <img src="alur-knime.png" alt="Alur pengolahan data pada KNIME">
+                <p><b>Gambar:</b> Workflow pengolahan data dari PostgreSQL Aiven sampai Statistics pada KNIME.</p>
+            </div>
+
+            <h3>6. Hasil Statistics</h3>
+
+            <p>
+                Hasil dari node Statistics kemudian digunakan sebagai
+                dasar untuk memahami kondisi data kualitas udara secara
+                numerik. Nilai statistik dari masing-masing parameter
+                dibandingkan untuk melihat karakteristik data selama
+                periode pengamatan.
+            </p>
+
+            <p>
+                Tabel berikut disiapkan untuk menampilkan hasil yang
+                diperoleh dari node Statistics pada KNIME. Nilai di
+                dalam tabel harus disesuaikan dengan output Statistics
+                yang diperoleh pada workflow.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Statistik</th>
+                    <th>PM10</th>
+                    <th>PM2.5</th>
+                    <th>CO₂</th>
+                    <th>NO₂</th>
+                </tr>
+                <tr>
+                    <td>Count</td>
+                    <td>8.760</td>
+                    <td>8.760</td>
+                    <td>8.760</td>
+                    <td>8.760</td>
+                </tr>
+                <tr>
+                    <td>Mean</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                </tr>
+                <tr>
+                    <td>Median</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                </tr>
+                <tr>
+                    <td>Minimum</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                </tr>
+                <tr>
+                    <td>Maximum</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                </tr>
+                <tr>
+                    <td>Standard Deviation</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                    <td>Isi dari KNIME</td>
+                </tr>
+            </table>
+
+            <h3>Penjelasan Statistik</h3>
+
+            <div class="langkah">
+                <ol>
+                    <li>
+                        <b>Count</b> menunjukkan jumlah data yang
+                        berhasil dianalisis. Pada dataset ini terdapat
+                        8.760 pengamatan untuk setiap parameter.
+                    </li>
+                    <li>
+                        <b>Mean</b> merupakan nilai rata-rata dari seluruh
+                        data. Mean digunakan untuk mengetahui nilai
+                        konsentrasi rata-rata suatu polutan selama
+                        periode pengamatan.
+                    </li>
+                    <li>
+                        <b>Median</b> merupakan nilai tengah setelah data
+                        diurutkan. Median dapat digunakan untuk melihat
+                        nilai tengah data dan membantu membandingkannya
+                        dengan nilai rata-rata.
+                    </li>
+                    <li>
+                        <b>Minimum</b> menunjukkan nilai paling rendah
+                        yang ditemukan pada masing-masing parameter
+                        selama periode pengamatan.
+                    </li>
+                    <li>
+                        <b>Maximum</b> menunjukkan nilai paling tinggi
+                        yang ditemukan pada masing-masing parameter
+                        selama periode pengamatan.
+                    </li>
+                    <li>
+                        <b>Standard Deviation</b> menunjukkan seberapa
+                        besar penyebaran nilai data terhadap nilai
+                        rata-ratanya. Semakin besar nilai standar deviasi,
+                        semakin besar variasi data terhadap rata-ratanya.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="kotak">
+                <b>Kesimpulan dari Tahap Pengolahan Data</b>
+
+                <p>
+                    Pada tahap ini, data kualitas udara yang sebelumnya
+                    tersedia dalam bentuk dataset CSV disimpan terlebih
+                    dahulu pada PostgreSQL Aiven. Database tersebut
+                    kemudian dihubungkan dengan KNIME menggunakan
+                    PostgreSQL Connector. Tabel <b>air_quality</b>
+                    dipilih menggunakan DB Table Selector dan datanya
+                    dibaca menggunakan DB Reader.
+                </p>
+
+                <p>
+                    Setelah data berhasil dibaca, node Statistics
+                    digunakan untuk memperoleh ringkasan statistik dari
+                    parameter PM10, PM2.5, CO₂, dan NO₂. Hasil statistik
+                    tersebut digunakan untuk memahami karakteristik data
+                    secara numerik sebelum data dianalisis lebih lanjut
+                    menggunakan visualisasi time series.
+                </p>
+            </div>
+
+        </div>
 
 
         <!-- =========================
