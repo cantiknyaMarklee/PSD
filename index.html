@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PSD - Kualitas Udara Sumenep</title>
-
-
+    <title>PSD - Analisis Data NO₂ Kota Sumenep</title>
     <style>
 
         * {
@@ -478,1586 +472,602 @@
     margin: 20px 0;
 }
     </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     SIDEBAR
-========================= -->
-
 <div class="sidebar">
 
-    <!-- PROFIL MAHASISWA -->
     <div class="profil-sidebar">
-
-        <img
-            src="foto-profile.jpeg"
-            alt="Foto Profil"
-        >
-
-        <h3>
-            Alifah Sayyidaturrhohma
-        </h3>
-
-        <p>
-            NIM: 240411100145
-        </p>
-
+        <img src="foto-profile.jpeg" alt="Foto Profil">
+        <h3>Alifah Sayyidaturrhohma</h3>
+        <p>NIM: 240411100145</p>
     </div>
-
 
     <hr>
 
-
-    <!-- MENU -->
-
-    <a href="#beranda">
-        Beranda
-    </a>
-
-    <a href="#bisnis">
-        Business Understanding
-    </a>
-
-    <a href="#data">
-        Data Understanding
-    </a>
-
-    <a href="#wilayah">
-        Wilayah
-    </a>
-
-    <a href="#eksplorasi">
-        Eksplorasi Data
-    </a>
-
-    <a href="#analisis">
-        Eksplorasi dan Analisis Data
-    </a>
-
-    <a href="#grafik">
-        Time Series
-    </a>
-
-    <a href="#kesimpulan">
-        Kesimpulan
-    </a>
+    <a href="#beranda">Beranda</a>
+    <a href="#bisnis">Business Understanding</a>
+    <a href="#data">Data Understanding</a>
+    <a href="#wilayah">Wilayah</a>
+    <a href="#eksplorasi">Eksplorasi Data</a>
+    <a href="#analisis">Pengolahan & Analisis</a>
+    <a href="#grafik">Time Series</a>
+    <a href="#kesimpulan">Kesimpulan</a>
 
 </div>
-    <!-- =========================
-         KONTEN
-    ========================= -->
 
-    <div class="content">
+<div class="content">
 
+    <div class="header" id="beranda">
+        <h1>Analisis Data NO₂ Kecamatan Kota Sumenep</h1>
 
-        <!-- =========================
-             BERANDA
-        ========================= -->
+        <p>
+            Website ini dibuat untuk memenuhi tugas mata kuliah PSD mengenai
+            pengumpulan, pemahaman, eksplorasi, pembersihan, dan pengolahan
+            data kualitas udara.
+        </p>
 
-        <div class="header" id="beranda">
+        <p>
+            Data yang dianalisis adalah <b>NO₂ (Nitrogen Dioksida)</b>
+            pada wilayah <b>Kecamatan Kota Sumenep, Kabupaten Sumenep,
+            Jawa Timur</b>.
+        </p>
 
-            <h1>
-                Analisis Kualitas Udara
-                Kabupaten Sumenep
-            </h1>
+        <p>
+            Pengambilan wilayah dibatasi menggunakan <b>GeoJSON</b>.
+            Data NO₂ diperoleh dari data Sentinel-5P melalui
+            <b>Copernicus Data Space/openEO</b>, kemudian dilakukan
+            agregasi harian pada wilayah penelitian.
+        </p>
 
-            <p>
-                Website ini dibuat untuk memenuhi tugas
-                mata kuliah PSD mengenai pengumpulan,
-                pemahaman, dan eksplorasi data kualitas
-                udara.
-            </p>
+        <p>
+            <b>Periode:</b> 31 Agustus 2025 - 31 Agustus 2026
+        </p>
+    </div>
 
-            <p>
-                Data yang digunakan merupakan data polutan
-                pada wilayah Kabupaten Sumenep dengan
-                interval pengamatan setiap satu jam.
-            </p>
+    <div class="bagian">
+        <h2>Ringkasan Data</h2>
 
-            <p>
-                <b>Periode:</b>
-                1 September 2025 - 31 Agustus 2026
-            </p>
+        <div class="data-ringkas">
 
-        </div>
+            <div class="card">
+                <h3>366</h3>
+                <p>Observasi Harian</p>
+            </div>
 
+            <div class="card">
+                <h3>1</h3>
+                <p>Parameter Polutan</p>
+            </div>
 
+            <div class="card">
+                <h3>NO₂</h3>
+                <p>Polutan</p>
+            </div>
 
-        <!-- =========================
-             RINGKASAN
-        ========================= -->
-
-        <div class="bagian">
-
-            <h2>
-                Ringkasan Data
-            </h2>
-
-            <div class="data-ringkas">
-
-                <div class="card">
-
-                    <h3>
-                        8.760
-                    </h3>
-
-                    <p>
-                        Jumlah data
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>
-                        365
-                    </h3>
-
-                    <p>
-                        Hari
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>
-                        4
-                    </h3>
-
-                    <p>
-                        Parameter polutan
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>
-                        1 Jam
-                    </h3>
-
-                    <p>
-                        Interval data
-                    </p>
-
-                </div>
-
+            <div class="card">
+                <h3>68</h3>
+                <p>Fitur TSFEL</p>
             </div>
 
         </div>
+    </div>
 
+    <div class="bagian" id="bisnis">
+        <h2>1. Business Understanding</h2>
 
+        <h3>Tujuan</h3>
+        <p>
+            Tujuan dari tugas ini adalah mengetahui kondisi dan pola data
+            konsentrasi NO₂ di Kecamatan Kota Sumenep selama periode
+            pengamatan 31 Agustus 2025 sampai 31 Agustus 2026.
+        </p>
 
-        <!-- =========================
-             BUSINESS UNDERSTANDING
-        ========================= -->
+        <h3>Permasalahan</h3>
+        <p>
+            Konsentrasi NO₂ dapat berubah dari waktu ke waktu. Oleh karena
+            itu diperlukan proses pengumpulan dan pengolahan data untuk
+            mengetahui pola perubahan, menemukan nilai yang tidak biasa,
+            menangani missing value, dan menghasilkan fitur yang dapat
+            digunakan untuk analisis lebih lanjut.
+        </p>
 
-        <div class="bagian" id="bisnis">
+        <h3>Pertanyaan yang Ingin Dijawab</h3>
+        <ul>
+            <li>Bagaimana perubahan nilai NO₂ selama periode pengamatan?</li>
+            <li>Apakah terdapat nilai NO₂ yang terdeteksi sebagai outlier?</li>
+            <li>Bagaimana kondisi data setelah proses pembersihan dan imputasi?</li>
+            <li>Fitur apa saja yang dihasilkan dari ekstraksi TSFEL?</li>
+        </ul>
 
-            <h2>
-                1. Business Understanding
-            </h2>
+        <h3>Manfaat</h3>
 
-
-            <h3>
-                Tujuan
-            </h3>
-
-            <p>
-                Tujuan dari tugas ini adalah untuk mengetahui
-                kondisi kualitas udara di Kabupaten Sumenep
-                berdasarkan data beberapa polutan selama
-                satu tahun.
-            </p>
-
-
-            <h3>
-                Permasalahan
-            </h3>
-
-            <p>
-                Kualitas udara dapat mengalami perubahan
-                dari waktu ke waktu. Oleh karena itu,
-                diperlukan data untuk melihat bagaimana
-                perubahan konsentrasi polutan selama
-                periode pengamatan.
-            </p>
-
-
-            <h3>
-                Pertanyaan yang Ingin Dijawab
-            </h3>
-
-            <ul>
-
-                <li>
-                    Bagaimana perubahan konsentrasi polutan
-                    dari waktu ke waktu?
-                </li>
-
-                <li>
-                    Kapan terjadi nilai polutan yang tinggi?
-                </li>
-
-                <li>
-                    Apakah terdapat nilai yang terlihat
-                    tidak biasa?
-                </li>
-
-                <li>
-                    Bagaimana pola polutan selama satu tahun?
-                </li>
-
-            </ul>
-
-
-            <h3>
-                Manfaat
-            </h3>
-
-            <div class="dua-kolom">
-
-                <div>
-
-                    <p>
-                        <b>1. Manfaat untuk informasi</b>
-                    </p>
-
-                    <p>
-                        Hasil analisis dapat memberikan
-                        gambaran sederhana mengenai kondisi
-                        kualitas udara di wilayah Sumenep.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <p>
-                        <b>2. Manfaat untuk analisis</b>
-                    </p>
-
-                    <p>
-                        Data dapat digunakan untuk melihat
-                        pola perubahan konsentrasi polutan
-                        berdasarkan waktu.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <p>
-                        <b>3. Manfaat untuk pengamatan</b>
-                    </p>
-
-                    <p>
-                        Hasilnya dapat menjadi informasi awal
-                        untuk pengamatan kualitas udara
-                        lebih lanjut.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <p>
-                        <b>4. Manfaat pembelajaran</b>
-                    </p>
-
-                    <p>
-                        Tugas ini melatih proses pengolahan
-                        data mulai dari crawling, penyimpanan,
-                        pemahaman, eksplorasi sampai
-                        visualisasi.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="kotak">
-
-                <b>
-                    Kesimpulan Business Understanding
-                </b>
-
+        <div class="dua-kolom">
+            <div>
+                <p><b>1. Informasi</b></p>
                 <p>
-                    Data kualitas udara digunakan untuk
-                    mengetahui perubahan konsentrasi polutan
-                    di Kabupaten Sumenep selama satu tahun.
+                    Memberikan gambaran mengenai data NO₂ pada Kecamatan
+                    Kota Sumenep selama satu tahun.
                 </p>
-
             </div>
 
+            <div>
+                <p><b>2. Analisis</b></p>
+                <p>
+                    Membantu melihat pola perubahan NO₂ berdasarkan waktu
+                    dan karakteristik statistik data.
+                </p>
+            </div>
+
+            <div>
+                <p><b>3. Pengolahan Data</b></p>
+                <p>
+                    Menunjukkan proses pengolahan mulai dari pengambilan
+                    data, deteksi outlier, imputasi, hingga ekstraksi fitur.
+                </p>
+            </div>
+
+            <div>
+                <p><b>4. Pembelajaran</b></p>
+                <p>
+                    Melatih penerapan proses data science pada data
+                    lingkungan dengan wilayah penelitian yang spesifik.
+                </p>
+            </div>
         </div>
 
-
-
-        <!-- =========================
-             DATA UNDERSTANDING
-        ========================= -->
-
-        <div class="bagian" id="data">
-
-            <h2>
-                2. Data Understanding
-            </h2>
-
-
-            <h3>
-                Sumber Data
-            </h3>
-
+        <div class="kotak">
+            <b>Kesimpulan Business Understanding</b>
             <p>
-                Data kualitas udara diperoleh dari
-                <b>Open-Meteo</b>.
+                Data NO₂ digunakan untuk memahami perubahan konsentrasi
+                nitrogen dioksida pada Kecamatan Kota Sumenep dan menjadi
+                dasar untuk proses eksplorasi serta ekstraksi fitur.
             </p>
-
-            <p>
-                Data dicatat setiap satu jam pada satu
-                titik koordinat di wilayah Kabupaten
-                Sumenep.
-            </p>
-
-
-            <h3>
-                Periode Data
-            </h3>
-
-            <p>
-                Data yang digunakan mencakup periode:
-            </p>
-
-            <div class="kotak">
-
-                <b>
-                    1 September 2025 -
-                    31 Agustus 2026
-                </b>
-
-                <p>
-                    Total terdapat 365 hari atau
-                    8.760 pengamatan per jam.
-                </p>
-
-            </div>
-
-
-            <h3>
-                Koordinat Data
-            </h3>
-
-            <p>
-                Titik koordinat yang digunakan adalah:
-            </p>
-
-            <p>
-                <b>
-                    Latitude:
-                </b>
-                -7.000000
-            </p>
-
-            <p>
-                <b>
-                    Longitude:
-                </b>
-                113.899994
-            </p>
-
-
-            <h3>
-                Parameter Polutan
-            </h3>
-
-
-            <div class="polutan">
-
-
-                <div class="polutan-box">
-
-                    <h3>
-                        PM2.5
-                    </h3>
-
-                    <p>
-                        PM2.5 merupakan partikel udara
-                        yang memiliki ukuran sangat kecil,
-                        sekitar 2,5 mikrometer atau lebih kecil.
-                    </p>
-
-                    <p>
-                        Sumbernya dapat berasal dari kendaraan,
-                        pembakaran, debu, dan aktivitas industri.
-                    </p>
-
-                    <p>
-                        <b>Satuan:</b> μg/m³
-                    </p>
-
-                </div>
-
-
-
-                <div class="polutan-box">
-
-                    <h3>
-                        PM10
-                    </h3>
-
-                    <p>
-                        PM10 merupakan partikulat udara
-                        dengan ukuran sekitar 10 mikrometer
-                        atau lebih kecil.
-                    </p>
-
-                    <p>
-                        Sumbernya dapat berasal dari debu,
-                        tanah, jalan, konstruksi, dan pembakaran.
-                    </p>
-
-                    <p>
-                        <b>Satuan:</b> μg/m³
-                    </p>
-
-                </div>
-
-
-
-                <div class="polutan-box">
-
-                    <h3>
-                        CO₂
-                    </h3>
-
-                    <p>
-                        CO₂ atau karbon dioksida merupakan
-                        gas yang terdapat di atmosfer.
-                    </p>
-
-                    <p>
-                        Salah satu sumber CO₂ dari aktivitas
-                        manusia adalah pembakaran bahan bakar.
-                    </p>
-
-                    <p>
-                        <b>Satuan:</b> ppm
-                    </p>
-
-                </div>
-
-
-
-                <div class="polutan-box">
-
-                    <h3>
-                        NO₂
-                    </h3>
-
-                    <p>
-                        NO₂ atau nitrogen dioksida merupakan
-                        gas yang dapat dihasilkan dari proses
-                        pembakaran.
-                    </p>
-
-                    <p>
-                        Sumbernya dapat berasal dari kendaraan
-                        bermotor dan aktivitas industri.
-                    </p>
-
-                    <p>
-                        <b>Satuan:</b> μg/m³
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-            <h3>
-                Deskripsi Fitur
-            </h3>
-
-
-            <table>
-
-                <tr>
-
-                    <th>
-                        Fitur
-                    </th>
-
-                    <th>
-                        Tipe Data
-                    </th>
-
-                    <th>
-                        Penjelasan
-                    </th>
-
-                    <th>
-                        Satuan
-                    </th>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        time
-                    </td>
-
-                    <td>
-                        Datetime
-                    </td>
-
-                    <td>
-                        Menunjukkan waktu ketika
-                        data dicatat.
-                    </td>
-
-                    <td>
-                        -
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        pm10
-                    </td>
-
-                    <td>
-                        Numerik
-                    </td>
-
-                    <td>
-                        Konsentrasi PM10.
-                    </td>
-
-                    <td>
-                        μg/m³
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        pm2_5
-                    </td>
-
-                    <td>
-                        Numerik
-                    </td>
-
-                    <td>
-                        Konsentrasi PM2.5.
-                    </td>
-
-                    <td>
-                        μg/m³
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        co2
-                    </td>
-
-                    <td>
-                        Numerik
-                    </td>
-
-                    <td>
-                        Konsentrasi karbon dioksida.
-                    </td>
-
-                    <td>
-                        ppm
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        no2
-                    </td>
-
-                    <td>
-                        Numerik
-                    </td>
-
-                    <td>
-                        Konsentrasi nitrogen dioksida.
-                    </td>
-
-                    <td>
-                        μg/m³
-                    </td>
-
-                </tr>
-
-            </table>
-
+        </div>
+    </div>
+
+    <div class="bagian" id="data">
+        <h2>2. Data Understanding</h2>
+
+        <h3>Sumber Data</h3>
+        <p>
+            Data NO₂ diperoleh dari <b>Sentinel-5P</b> melalui
+            <b>Copernicus Data Space/openEO</b>.
+        </p>
+
+        <p>
+            Wilayah pengambilan data dibatasi menggunakan polygon
+            <b>GeoJSON Kecamatan Kota Sumenep</b>.
+        </p>
+
+        <h3>Wilayah dan Periode Data</h3>
+        <div class="kotak">
+            <p><b>Wilayah:</b> Kecamatan Kota Sumenep, Kabupaten Sumenep, Jawa Timur</p>
+            <p><b>Periode:</b> 31 Agustus 2025 - 31 Agustus 2026</p>
+            <p><b>Jumlah observasi:</b> 366 data harian</p>
+            <p><b>Parameter:</b> NO₂</p>
         </div>
 
-
-
-        <!-- =========================
-             EKSPLORASI DATA
-        ========================= -->
-
-        <div class="bagian" id="eksplorasi">
-
-            <h2>
-                3. Eksplorasi Data
-            </h2>
-
-
-            <p>
-                Eksplorasi dilakukan untuk mengetahui
-                kondisi awal dataset sebelum digunakan
-                untuk analisis lebih lanjut.
-            </p>
-
-
-            <h3>
-                Pemeriksaan Data
-            </h3>
-
-
-            <table>
-
-                <tr>
-
-                    <th>
-                        Pemeriksaan
-                    </th>
-
-                    <th>
-                        Hasil
-                    </th>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Jumlah observasi
-                    </td>
-
-                    <td>
-                        8.760
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Periode
-                    </td>
-
-                    <td>
-                        1 September 2025 -
-                        31 Agustus 2026
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Missing value
-                    </td>
-
-                    <td>
-                        0
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Data duplikat waktu
-                    </td>
-
-                    <td>
-                        0
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        Nilai negatif
-                    </td>
-
-                    <td>
-                        0
-                    </td>
-
-                </tr>
-
-            </table>
-
-
-            <h3>
-                Statistik Sederhana
-            </h3>
-
-
-            <table>
-
-                <tr>
-
-                    <th>
-                        Parameter
-                    </th>
-
-                    <th>
-                        Minimum
-                    </th>
-
-                    <th>
-                        Rata-rata
-                    </th>
-
-                    <th>
-                        Maksimum
-                    </th>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        PM2.5
-                    </td>
-
-                    <td>
-                        0.10
-                    </td>
-
-                    <td>
-                        12.84
-                    </td>
-
-                    <td>
-                        53.20
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        PM10
-                    </td>
-
-                    <td>
-                        0.10
-                    </td>
-
-                    <td>
-                        14.64
-                    </td>
-
-                    <td>
-                        54.90
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        CO₂
-                    </td>
-
-                    <td>
-                        429.00
-                    </td>
-
-                    <td>
-                        443.07
-                    </td>
-
-                    <td>
-                        497.00
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        NO₂
-                    </td>
-
-                    <td>
-                        0.20
-                    </td>
-
-                    <td>
-                        2.64
-                    </td>
-
-                    <td>
-                        18.50
-                    </td>
-
-                </tr>
-
-            </table>
-
-
-            <h3>
-                Apakah Ada Data Aneh?
-            </h3>
-
-
-            <p>
-                Pada dataset terdapat beberapa nilai yang
-                secara statistik terlihat cukup tinggi
-                dibandingkan dengan sebagian besar data.
-            </p>
-
-
-            <p>
-                Nilai tersebut belum tentu merupakan
-                kesalahan. Pada data lingkungan, perubahan
-                nilai dapat terjadi karena perubahan kondisi
-                lingkungan maupun aktivitas manusia.
-            </p>
-
-
-            <p>
-                Oleh karena itu, nilai yang tinggi perlu
-                diperiksa lebih lanjut berdasarkan waktu
-                terjadinya dan kondisi wilayah.
-            </p>
-
-
-            <h3>
-                Deteksi Outlier dengan IQR
-            </h3>
-
-
-            <table>
-
-                <tr>
-
-                    <th>
-                        Parameter
-                    </th>
-
-                    <th>
-                        Jumlah Outlier
-                    </th>
-
-                    <th>
-                        Nilai Maksimum
-                    </th>
-
-                    <th>
-                        Waktu Maksimum
-                    </th>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        PM2.5
-                    </td>
-
-                    <td>
-                        529
-                    </td>
-
-                    <td>
-                        53.20
-                    </td>
-
-                    <td>
-                        02 Maret 2026 14:00
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        PM10
-                    </td>
-
-                    <td>
-                        409
-                    </td>
-
-                    <td>
-                        54.90
-                    </td>
-
-                    <td>
-                        02 Maret 2026 14:00
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        CO₂
-                    </td>
-
-                    <td>
-                        742
-                    </td>
-
-                    <td>
-                        497.00
-                    </td>
-
-                    <td>
-                        10 November 2025 03:00
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        NO₂
-                    </td>
-
-                    <td>
-                        939
-                    </td>
-
-                    <td>
-                        18.50
-                    </td>
-
-                    <td>
-                        19 Desember 2025 23:00
-                    </td>
-
-                </tr>
-
-            </table>
-
-
-            <div class="kotak">
-
-                <b>
-                    Catatan:
-                </b>
-
+        <h3>Parameter Polutan</h3>
+
+        <div class="polutan">
+            <div class="polutan-box">
+                <h3>NO₂</h3>
                 <p>
-                    Outlier berdasarkan metode IQR tidak
-                    langsung berarti data salah. Data tersebut
-                    hanya menunjukkan nilai yang berbeda cukup
-                    jauh dari sebagian besar data.
+                    NO₂ atau nitrogen dioksida merupakan gas yang berkaitan
+                    dengan proses pembakaran dan aktivitas manusia.
                 </p>
-
+                <p>
+                    Sumber NO₂ dapat berasal antara lain dari kendaraan
+                    bermotor, pembakaran bahan bakar, dan aktivitas industri.
+                </p>
+                <p><b>Parameter yang digunakan dalam tugas: NO₂ saja.</b></p>
             </div>
-
         </div>
 
+        <h3>Deskripsi Data</h3>
 
+        <table>
+            <tr>
+                <th>Kolom</th>
+                <th>Tipe Data</th>
+                <th>Penjelasan</th>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td>Datetime</td>
+                <td>Tanggal pengamatan data NO₂.</td>
+            </tr>
+            <tr>
+                <td>NO2</td>
+                <td>Numerik</td>
+                <td>Nilai konsentrasi/hasil pengukuran NO₂ dari data Sentinel-5P yang telah diagregasi pada wilayah penelitian.</td>
+            </tr>
+        </table>
+    </div>
 
-        <!-- =========================
-             WILAYAH
-        ========================= -->
+    <div class="bagian" id="eksplorasi">
+        <h2>3. Eksplorasi Data</h2>
 
-        <div class="bagian" id="wilayah">
+        <p>
+            Eksplorasi dilakukan untuk memahami kondisi awal data NO₂
+            sebelum proses pembersihan dan ekstraksi fitur.
+        </p>
 
-            <h2>
-                4. Wilayah Pengambilan Data
-            </h2>
+        <h3>Pemeriksaan Data</h3>
 
+        <table>
+            <tr>
+                <th>Pemeriksaan</th>
+                <th>Hasil</th>
+            </tr>
+            <tr>
+                <td>Jumlah observasi pada periode tugas</td>
+                <td>366</td>
+            </tr>
+            <tr>
+                <td>Periode</td>
+                <td>31 Agustus 2025 - 31 Agustus 2026</td>
+            </tr>
+            <tr>
+                <td>Parameter</td>
+                <td>NO₂</td>
+            </tr>
+            <tr>
+                <td>Missing value setelah imputasi</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Outlier berdasarkan IQR</td>
+                <td>4</td>
+            </tr>
+        </table>
 
-            <p>
-                Dalam pengambilan data, wilayah penelitian
-                dibatasi menggunakan file <b>GeoJSON</b>.
-            </p>
+        <h3>Deteksi Outlier dengan IQR</h3>
 
+        <p>
+            Deteksi outlier dilakukan menggunakan metode
+            <b>Interquartile Range (IQR)</b>. Nilai yang berada di luar
+            batas bawah dan batas atas IQR ditandai sebagai outlier.
+        </p>
 
-            <p>
-                GeoJSON digunakan untuk menentukan batas
-                wilayah Kabupaten Sumenep yang menjadi
-                fokus penelitian.
-            </p>
-
-
-            <h3>
-                Titik Koordinat
-            </h3>
-
-            <p>
-                Latitude:
-                <b>-7.000000</b>
-            </p>
-
-            <p>
-                Longitude:
-                <b>113.899994</b>
-            </p>
-
-
-            <h3>
-                Peta Wilayah
-            </h3>
-
-
-            <div class="peta">
-
-                <img
-                    src="gambar daerah.png"
-                    alt="Peta wilayah Kabupaten Sumenep"
-                >
-
-                <p>
-                    Gambar menunjukkan wilayah yang
-                    digunakan dalam penelitian berdasarkan
-                    GeoJSON.
-                </p>
-
-            </div>
-
-
-            <div class="download">
-
-                <a
-                    href="daerah sumenep fix .geojson"
-                    download
-                >
-                    Download GeoJSON
-                </a>
-
-            </div>
-
+        <div class="kotak">
+            <p><b>Q1:</b> 0.00000698966</p>
+            <p><b>Q3:</b> 0.00001807015</p>
+            <p><b>IQR:</b> 0.00001108049</p>
+            <p><b>Batas bawah:</b> -0.00000963108</p>
+            <p><b>Batas atas:</b> 0.00003469089</p>
+            <p><b>Jumlah outlier:</b> 4</p>
         </div>
 
+        <h3>Nilai yang Terdeteksi sebagai Outlier</h3>
 
+        <table>
+            <tr>
+                <th>Tanggal</th>
+                <th>Nilai NO₂</th>
+            </tr>
+            <tr>
+                <td>01 September 2025</td>
+                <td>-0.000010</td>
+            </tr>
+            <tr>
+                <td>06 September 2025</td>
+                <td>-0.000017</td>
+            </tr>
+            <tr>
+                <td>14 Maret 2026</td>
+                <td>0.000038</td>
+            </tr>
+            <tr>
+                <td>30 Juni 2026</td>
+                <td>0.000037</td>
+            </tr>
+        </table>
 
+        <h3>Penanganan Missing Value dan Outlier</h3>
 
-        <!-- =========================
-             EKSPLORASI DAN ANALISIS DATA
-        ========================= -->
+        <p>
+            Nilai outlier ditandai sebagai nilai yang perlu ditangani,
+            kemudian proses imputasi dilakukan menggunakan interpolasi
+            berdasarkan waktu. Setelah interpolasi, proses
+            <b>forward fill</b> dan <b>backward fill</b> digunakan untuk
+            memastikan tidak terdapat missing value yang tersisa.
+        </p>
 
-        <div class="bagian" id="analisis">
-
-            <h2>
-                Eksplorasi dan Analisis Data
-            </h2>
-
+        <div class="kotak">
+            <b>Hasil Preprocessing</b>
             <p>
-                Setelah data kualitas udara dikumpulkan dan dilakukan
-                eksplorasi awal, data selanjutnya disimpan ke dalam
-                database PostgreSQL menggunakan Aiven. Tahap ini
-                dilakukan agar data yang sudah dikumpulkan dapat
-                disimpan secara terstruktur dan dapat diakses kembali
-                menggunakan aplikasi pengolahan data.
+                Setelah proses pembersihan dan imputasi, dataset memiliki
+                <b>366 observasi</b> dan <b>0 missing value</b>.
             </p>
+        </div>
+    </div>
 
-            <h3>Alur Pengolahan Data</h3>
+    <div class="bagian" id="wilayah">
+        <h2>4. Wilayah Pengambilan Data</h2>
 
-            <p>
-                Proses pengolahan data pada tugas ini dilakukan melalui
-                beberapa tahap, mulai dari dataset CSV sampai data
-                dianalisis menggunakan KNIME. Secara umum alurnya adalah:
-            </p>
+        <p>
+            Pengambilan data dibatasi pada wilayah
+            <b>Kecamatan Kota Sumenep</b> menggunakan file GeoJSON.
+            Polygon wilayah digunakan sebagai area of interest (AOI)
+            dalam proses pengambilan data Sentinel-5P.
+        </p>
 
-            <div class="kotak">
-                <b>
-                    Dataset CSV → PostgreSQL Aiven → PostgreSQL Connector
-                    → DB Table Selector → DB Reader → Statistics
-                </b>
-            </div>
+        <h3>Wilayah Penelitian</h3>
 
-            <p>
-                Alur tersebut menunjukkan bahwa data tidak langsung
-                dianalisis di KNIME, tetapi terlebih dahulu disimpan
-                dalam database PostgreSQL pada Aiven. KNIME kemudian
-                digunakan untuk mengambil data dari database dan
-                melakukan analisis statistik.
-            </p>
-
-            <h3>1. Penyimpanan Data pada PostgreSQL Aiven</h3>
-
-            <p>
-                Dataset kualitas udara yang sebelumnya telah disiapkan
-                dalam bentuk CSV dimasukkan ke dalam database PostgreSQL
-                yang disediakan oleh Aiven. Database digunakan sebagai
-                tempat penyimpanan data agar data dapat dikelola dan
-                diakses melalui koneksi database.
-            </p>
-
-            <p>
-                Pada database tersebut dibuat tabel dengan nama
-                <b>air_quality</b>. Tabel ini berisi data waktu
-                pengamatan dan empat parameter kualitas udara, yaitu
-                PM10, PM2.5, karbon dioksida (CO₂), dan nitrogen dioksida
-                (NO₂).
-            </p>
-
-            <p>
-                Data yang dimasukkan berjumlah <b>8.760 baris</b>.
-                Jumlah tersebut berasal dari pengamatan setiap satu jam
-                selama 365 hari, sehingga 365 × 24 menghasilkan 8.760
-                pengamatan.
-            </p>
-
-            <div class="kotak">
-                <b>Struktur tabel air_quality:</b>
-                <ul>
-                    <li><b>time</b> → waktu pengamatan</li>
-                    <li><b>pm10</b> → konsentrasi PM10</li>
-                    <li><b>pm2_5</b> → konsentrasi PM2.5</li>
-                    <li><b>carbon_dioxide</b> → konsentrasi CO₂</li>
-                    <li><b>nitrogen_dioxide</b> → konsentrasi NO₂</li>
-                </ul>
-            </div>
-
-            <div class="alur">
-                <img src="aiven-dataBase.png" alt="Screenshot database PostgreSQL Aiven">
-                <p><b>Gambar:</b> Penyimpanan data kualitas udara pada PostgreSQL Aiven.</p>
-            </div>
-
-            <h3>2. Menghubungkan Aiven dengan KNIME</h3>
-
-            <p>
-                Setelah data berhasil disimpan pada PostgreSQL Aiven,
-                langkah berikutnya adalah menghubungkan database tersebut
-                dengan KNIME Analytics Platform. KNIME digunakan untuk
-                membaca data dari database dan melakukan analisis
-                terhadap data yang sudah tersimpan.
-            </p>
-
-            <p>
-                Koneksi dilakukan menggunakan node
-                <b>PostgreSQL Connector</b>. Node ini berfungsi sebagai
-                penghubung antara KNIME dengan database PostgreSQL yang
-                berada pada Aiven. Informasi koneksi yang digunakan
-                meliputi hostname, port, nama database, username, dan
-                password.
-            </p>
-
-            <p>
-                Karena database PostgreSQL pada Aiven menggunakan koneksi
-                yang aman, parameter <b>sslmode=require</b> digunakan
-                pada pengaturan JDBC agar KNIME dapat melakukan koneksi
-                ke database.
-            </p>
-
-            <h3>3. Memilih Tabel dengan DB Table Selector</h3>
-
-            <p>
-                Setelah koneksi berhasil, node <b>DB Table Selector</b>
-                digunakan untuk menentukan tabel yang akan digunakan
-                dari database. Pada tahap ini tabel <b>air_quality</b>
-                dipilih dari schema <b>public</b>.
-            </p>
-
-            <p>
-                Pemilihan tabel dilakukan agar KNIME hanya mengambil data
-                yang diperlukan untuk tugas analisis kualitas udara.
-            </p>
-
-            <h3>4. Membaca Data dengan DB Reader</h3>
-
-            <p>
-                Setelah tabel dipilih, node <b>DB Reader</b> digunakan
-                untuk membaca isi tabel tersebut. Data dari PostgreSQL
-                kemudian diteruskan ke proses berikutnya di dalam
-                workflow KNIME.
-            </p>
-
-            <p>
-                Pada tahap ini data yang dibaca terdiri dari 8.760
-                pengamatan dengan lima kolom, yaitu <b>time</b>,
-                <b>pm10</b>, <b>pm2_5</b>, <b>carbon_dioxide</b>, dan
-                <b>nitrogen_dioxide</b>.
-            </p>
-
-            <h3>5. Analisis Menggunakan Statistics</h3>
-
-            <p>
-                Setelah data berhasil dibaca oleh KNIME, node
-                <b>Statistics</b> digunakan untuk melihat ringkasan
-                statistik dari data. Analisis ini membantu mengetahui
-                karakteristik dasar dari setiap parameter polutan
-                sebelum melihat pola perubahan data melalui grafik
-                time series.
-            </p>
-
-            <p>
-                Statistik yang ditampilkan oleh node Statistics dapat
-                digunakan untuk melihat ukuran pemusatan, penyebaran,
-                serta nilai terendah dan tertinggi dari data. Contohnya
-                adalah jumlah data, nilai minimum, maksimum, rata-rata,
-                median, standar deviasi, dan statistik lain yang tersedia
-                pada output node.
-            </p>
-
-            <div class="alur">
-                <img src="knime-alur.png" alt="Alur pengolahan data pada KNIME">
-                <p><b>Gambar:</b> Workflow pengolahan data dari PostgreSQL Aiven sampai Statistics pada KNIME.</p>
-            </div>
-
-            <h3>6. Hasil Statistics</h3>
-
-            <p>
-                Hasil dari node Statistics kemudian digunakan sebagai
-                dasar untuk memahami kondisi data kualitas udara secara
-                numerik. Nilai statistik dari masing-masing parameter
-                dibandingkan untuk melihat karakteristik data selama
-                periode pengamatan.
-            </p>
-
-            <p>
-                Tabel berikut disiapkan untuk menampilkan hasil yang
-                diperoleh dari node Statistics pada KNIME. Nilai di
-                dalam tabel harus disesuaikan dengan output Statistics
-                yang diperoleh pada workflow.
-            </p>
-
-            <table>
-                <tr>
-                    <th>Statistik</th>
-                    <th>PM10</th>
-                    <th>PM2.5</th>
-                    <th>CO₂</th>
-                    <th>NO₂</th>
-                </tr>
-                <tr>
-                    <td>Count</td>
-                    <td>8.760</td>
-                    <td>8.760</td>
-                    <td>8.760</td>
-                    <td>8.760</td>
-                </tr>
-                <tr>
-                    <td>Mean</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                </tr>
-                <tr>
-                    <td>Median</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                </tr>
-                <tr>
-                    <td>Minimum</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                </tr>
-                <tr>
-                    <td>Maximum</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                </tr>
-                <tr>
-                    <td>Standard Deviation</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                    <td>Isi dari KNIME</td>
-                </tr>
-            </table>
-
-            <h3>Penjelasan Statistik</h3>
-
-            <div class="langkah">
-                <ol>
-                    <li>
-                        <b>Count</b> menunjukkan jumlah data yang
-                        berhasil dianalisis. Pada dataset ini terdapat
-                        8.760 pengamatan untuk setiap parameter.
-                    </li>
-                    <li>
-                        <b>Mean</b> merupakan nilai rata-rata dari seluruh
-                        data. Mean digunakan untuk mengetahui nilai
-                        konsentrasi rata-rata suatu polutan selama
-                        periode pengamatan.
-                    </li>
-                    <li>
-                        <b>Median</b> merupakan nilai tengah setelah data
-                        diurutkan. Median dapat digunakan untuk melihat
-                        nilai tengah data dan membantu membandingkannya
-                        dengan nilai rata-rata.
-                    </li>
-                    <li>
-                        <b>Minimum</b> menunjukkan nilai paling rendah
-                        yang ditemukan pada masing-masing parameter
-                        selama periode pengamatan.
-                    </li>
-                    <li>
-                        <b>Maximum</b> menunjukkan nilai paling tinggi
-                        yang ditemukan pada masing-masing parameter
-                        selama periode pengamatan.
-                    </li>
-                    <li>
-                        <b>Standard Deviation</b> menunjukkan seberapa
-                        besar penyebaran nilai data terhadap nilai
-                        rata-ratanya. Semakin besar nilai standar deviasi,
-                        semakin besar variasi data terhadap rata-ratanya.
-                    </li>
-                </ol>
-            </div>
-
-            <div class="kotak">
-                <b>Kesimpulan dari Tahap Pengolahan Data</b>
-
-                <p>
-                    Pada tahap ini, data kualitas udara yang sebelumnya
-                    tersedia dalam bentuk dataset CSV disimpan terlebih
-                    dahulu pada PostgreSQL Aiven. Database tersebut
-                    kemudian dihubungkan dengan KNIME menggunakan
-                    PostgreSQL Connector. Tabel <b>air_quality</b>
-                    dipilih menggunakan DB Table Selector dan datanya
-                    dibaca menggunakan DB Reader.
-                </p>
-
-                <p>
-                    Setelah data berhasil dibaca, node Statistics
-                    digunakan untuk memperoleh ringkasan statistik dari
-                    parameter PM10, PM2.5, CO₂, dan NO₂. Hasil statistik
-                    tersebut digunakan untuk memahami karakteristik data
-                    secara numerik sebelum data dianalisis lebih lanjut
-                    menggunakan visualisasi time series.
-                </p>
-            </div>
-
+        <div class="kotak">
+            <p><b>Kecamatan:</b> Kota Sumenep</p>
+            <p><b>Kabupaten:</b> Sumenep</p>
+            <p><b>Provinsi:</b> Jawa Timur</p>
+            <p><b>Kode Kecamatan:</b> 35.29.01</p>
         </div>
 
+        <h3>Peta Wilayah</h3>
 
-        <!-- =========================
-             TIME SERIES
-        ========================= -->
-
-        <div class="bagian" id="grafik">
-
-            <h2>
-                5. Time Series
-            </h2>
-
-
+        <div class="peta">
+            <img src="gambar daerah.png" alt="Peta wilayah Kecamatan Kota Sumenep">
             <p>
-                Time series digunakan untuk melihat
-                perubahan nilai polutan berdasarkan waktu.
+                Peta wilayah penelitian yang digunakan sebagai batas
+                pengambilan data berdasarkan GeoJSON Kecamatan Kota Sumenep.
             </p>
-
-
-            <p>
-                Data yang digunakan memiliki interval
-                setiap satu jam selama satu tahun.
-            </p>
-
-
-            <div class="grafik">
-
-                <img
-                    src="grafik_timeseries.png"
-                    alt="Grafik Time Series Kualitas Udara Sumenep"
-                >
-
-            </div>
-
-
-            <div class="keterangan">
-
-                <b>
-                    Cara membaca grafik
-                </b>
-
-                <p>
-                    Sumbu horizontal menunjukkan waktu
-                    pengamatan, sedangkan sumbu vertikal
-                    menunjukkan nilai konsentrasi polutan.
-                </p>
-
-                <p>
-                    Dari grafik dapat dilihat bahwa nilai
-                    polutan mengalami perubahan selama
-                    periode pengamatan.
-                </p>
-
-                <p>
-                    Beberapa waktu menunjukkan adanya
-                    kenaikan nilai yang cukup tinggi.
-                    Kondisi tersebut dapat diperiksa kembali
-                    menggunakan data asli.
-                </p>
-
-            </div>
-
         </div>
 
+        <div class="download">
+            <a href="Kota_Sumenep.geojson" download>Download GeoJSON</a>
+        </div>
+    </div>
 
+    <div class="bagian" id="analisis">
+        <h2>5. Pengolahan dan Analisis Data</h2>
 
-        <!-- =========================
-             KESIMPULAN
-        ========================= -->
+        <h3>Alur Pengolahan Data</h3>
 
-        <div class="bagian" id="kesimpulan">
+        <p>
+            Data NO₂ terlebih dahulu diproses untuk memperoleh data pada
+            wilayah Kecamatan Kota Sumenep. Setelah preprocessing dan
+            ekstraksi fitur TSFEL selesai, hasil akhir disimpan dalam
+            PostgreSQL pada Aiven dan dibaca kembali menggunakan KNIME.
+        </p>
 
-            <h2>
-                6. Kesimpulan
-            </h2>
-
-
-            <ol>
-
-                <li>
-                    Dataset memiliki sebanyak
-                    <b>8.760 observasi</b> dengan interval
-                    waktu setiap satu jam.
-                </li>
-
-                <li>
-                    Data mencakup periode
-                    <b>1 September 2025 sampai
-                    31 Agustus 2026</b>.
-                </li>
-
-                <li>
-                    Terdapat empat parameter yang dianalisis,
-                    yaitu PM2.5, PM10, CO₂, dan NO₂.
-                </li>
-
-                <li>
-                    Hasil pemeriksaan awal tidak menemukan
-                    missing value, duplikasi waktu, dan
-                    nilai negatif.
-                </li>
-
-                <li>
-                    Terdapat beberapa nilai yang termasuk
-                    outlier berdasarkan metode IQR.
-                </li>
-
-                <li>
-                    Nilai outlier tidak langsung dianggap
-                    sebagai kesalahan karena dapat terjadi
-                    akibat perubahan kondisi lingkungan.
-                </li>
-
-                <li>
-                    Grafik time series digunakan untuk melihat
-                    perubahan konsentrasi polutan dari waktu
-                    ke waktu.
-                </li>
-
-            </ol>
-
-
-            <h3>
-                File Dataset
-            </h3>
-
-            <p>
-                File yang digunakan dalam tugas ini dapat
-                diakses melalui tombol berikut.
-            </p>
-
-
-            <div class="download">
-
-                <a
-                    href="open-meteo-7.00s113.90e8m.csv"
-                    download
-                >
-                    Download CSV
-                </a>
-
-
-                <a
-                    href="daerah sumenep fix .geojson"
-                    download
-                >
-                    Download GeoJSON
-                </a>
-
-            </div>
-
+        <div class="kotak">
+            <b>
+                Sentinel-5P → GeoJSON AOI → NO₂ Harian →
+                Deteksi Outlier IQR → Imputasi →
+                TSFEL 68 Fitur → PostgreSQL Aiven → KNIME → Statistics
+            </b>
         </div>
 
+        <h3>1. Preprocessing Data NO₂</h3>
 
+        <p>
+            Data NO₂ dibatasi pada periode 31 Agustus 2025 sampai
+            31 Agustus 2026 dan wilayah Kecamatan Kota Sumenep.
+            Data kemudian diperiksa untuk missing value dan outlier.
+        </p>
 
-        <!-- =========================
-             FOOTER
-        ========================= -->
+        <p>
+            Outlier dideteksi menggunakan metode IQR dan nilai yang
+            terdeteksi ditangani sebelum proses ekstraksi fitur.
+            Missing value kemudian diimputasi menggunakan interpolasi
+            berbasis waktu serta forward fill dan backward fill.
+        </p>
 
-        <footer>
+        <h3>2. Ekstraksi Fitur TSFEL</h3>
 
-            <p>
-                Project PSD
-            </p>
+        <p>
+            Data NO₂ yang telah diproses digunakan sebagai input untuk
+            ekstraksi fitur menggunakan <b>TSFEL (Time Series Feature
+            Extraction Library)</b>.
+        </p>
 
-            <p>
-                Analisis Kualitas Udara Kabupaten Sumenep
-            </p>
+        <p>
+            Hasil ekstraksi menghasilkan tepat <b>68 fitur</b>.
+            File hasil ekstraksi digunakan sebagai hasil akhir dan
+            tidak dilakukan perubahan terhadap file CSV hasil kode.
+        </p>
 
-            <p>
-                2026
-            </p>
+        <div class="kotak">
+            <b>Hasil Ekstraksi:</b>
+            <p><b>Jumlah baris:</b> 1</p>
+            <p><b>Jumlah fitur:</b> 68</p>
+            <p><b>Missing value:</b> 0</p>
+            <p><b>Nama tabel Aiven:</b> tsfel_no2_kota_sumenep</p>
+        </div>
 
-        </footer>
+        <h3>3. Penyimpanan Data pada PostgreSQL Aiven</h3>
 
+        <p>
+            File hasil TSFEL 68 fitur disimpan pada PostgreSQL yang
+            digunakan dalam tugas melalui layanan Aiven.
+        </p>
+
+        <p>
+            Hasil akhir disimpan pada tabel
+            <b>tsfel_no2_kota_sumenep</b>. Tabel tersebut memiliki
+            <b>68 kolom fitur</b> dan <b>1 baris hasil ekstraksi</b>.
+        </p>
+
+        <div class="alur">
+            <img src="aiven-dataBase.png" alt="Database PostgreSQL Aiven">
+            <p><b>Gambar:</b> Penyimpanan data pada PostgreSQL Aiven.</p>
+        </div>
+
+        <h3>4. Menghubungkan Aiven dengan KNIME</h3>
+
+        <p>
+            PostgreSQL pada Aiven kemudian dihubungkan dengan KNIME
+            Analytics Platform menggunakan node
+            <b>PostgreSQL Connector</b>.
+        </p>
+
+        <p>
+            Workflow yang digunakan adalah:
+        </p>
+
+        <div class="kotak">
+            <b>
+                PostgreSQL Connector → DB Table Selector →
+                DB Reader → Statistics
+            </b>
+        </div>
+
+        <h3>5. DB Table Selector</h3>
+
+        <p>
+            Node <b>DB Table Selector</b> digunakan untuk memilih tabel
+            <b>tsfel_no2_kota_sumenep</b> pada schema public.
+        </p>
+
+        <h3>6. DB Reader</h3>
+
+        <p>
+            Node <b>DB Reader</b> digunakan untuk membaca data hasil
+            ekstraksi fitur dari tabel PostgreSQL.
+        </p>
+
+        <div class="kotak">
+            <p><b>Rows:</b> 1</p>
+            <p><b>Columns:</b> 68</p>
+        </div>
+
+        <h3>7. Statistics</h3>
+
+        <p>
+            Node <b>Statistics</b> digunakan untuk melihat ringkasan
+            statistik dari 68 fitur yang dihasilkan TSFEL.
+        </p>
+
+        <p>
+            Karena hasil ekstraksi terdiri dari satu baris, beberapa
+            ukuran statistik penyebaran seperti standard deviation,
+            variance, skewness, dan kurtosis tidak dapat digunakan untuk
+            menggambarkan variasi antar-observasi. Hal tersebut terjadi
+            karena setiap fitur hanya memiliki satu nilai pada hasil
+            akhir ekstraksi.
+        </p>
+
+        <div class="alur">
+            <img src="knime-alur.png" alt="Workflow KNIME">
+            <p><b>Gambar:</b> Workflow pengolahan data pada KNIME.</p>
+        </div>
 
     </div>
+
+    <div class="bagian" id="grafik">
+        <h2>6. Time Series</h2>
+
+        <p>
+            Grafik time series digunakan untuk melihat perubahan nilai
+            NO₂ berdasarkan waktu selama periode pengamatan.
+        </p>
+
+        <p>
+            Data yang divisualisasikan merupakan data NO₂ harian
+            Kecamatan Kota Sumenep setelah proses pengolahan data.
+        </p>
+
+        <div class="grafik">
+            <img
+                src="grafik_timeseries.png"
+                alt="Grafik Time Series NO₂ Kecamatan Kota Sumenep"
+            >
+        </div>
+
+        <div class="keterangan">
+            <b>Cara membaca grafik</b>
+
+            <p>
+                Sumbu horizontal menunjukkan waktu pengamatan, sedangkan
+                sumbu vertikal menunjukkan nilai NO₂.
+            </p>
+
+            <p>
+                Perubahan nilai pada grafik dapat digunakan untuk melihat
+                pola naik-turun data NO₂ selama periode pengamatan.
+            </p>
+
+            <p>
+                Nilai yang terdeteksi sebagai outlier telah ditangani pada
+                tahap preprocessing sebelum digunakan untuk proses
+                pengolahan selanjutnya.
+            </p>
+        </div>
+    </div>
+
+    <div class="bagian" id="kesimpulan">
+        <h2>7. Kesimpulan</h2>
+
+        <ol>
+            <li>
+                Data yang digunakan merupakan data <b>NO₂</b> pada
+                <b>Kecamatan Kota Sumenep, Kabupaten Sumenep, Jawa Timur</b>.
+            </li>
+
+            <li>
+                Periode data yang digunakan adalah
+                <b>31 Agustus 2025 sampai 31 Agustus 2026</b>.
+            </li>
+
+            <li>
+                Dataset periode tersebut terdiri dari
+                <b>366 observasi harian</b>.
+            </li>
+
+            <li>
+                Deteksi outlier menggunakan metode IQR menghasilkan
+                <b>4 nilai outlier</b>.
+            </li>
+
+            <li>
+                Missing value ditangani menggunakan interpolasi berbasis
+                waktu serta forward fill dan backward fill sehingga hasil
+                preprocessing memiliki <b>0 missing value</b>.
+            </li>
+
+            <li>
+                Data NO₂ kemudian digunakan untuk ekstraksi fitur TSFEL
+                dan menghasilkan tepat <b>68 fitur</b>.
+            </li>
+
+            <li>
+                Hasil TSFEL disimpan pada PostgreSQL Aiven dengan nama tabel
+                <b>tsfel_no2_kota_sumenep</b>.
+            </li>
+
+            <li>
+                Data berhasil dibaca pada KNIME menggunakan alur
+                PostgreSQL Connector, DB Table Selector, DB Reader,
+                dan Statistics dengan hasil <b>1 baris dan 68 kolom</b>.
+            </li>
+        </ol>
+
+        <h3>File Dataset</h3>
+
+        <p>
+            File berikut merupakan hasil ekstraksi TSFEL 68 fitur.
+            File CSV hasil kode digunakan tanpa mengubah isi hasilnya.
+        </p>
+
+        <div class="download">
+            <a href="NO2-Kota-Sumenep-TSFEL-68-Fitur.csv" download>
+                Download CSV TSFEL 68 Fitur
+            </a>
+
+            <a href="Kota_Sumenep.geojson" download>
+                Download GeoJSON Kota Sumenep
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Project PSD</p>
+        <p>Analisis Data NO₂ Kecamatan Kota Sumenep</p>
+        <p>2026</p>
+    </footer>
+
+</div>
 
 </body>
 
