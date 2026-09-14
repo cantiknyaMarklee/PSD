@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSD - Analisis Data NO₂ Kota Sumenep</title>
+
     <style>
 
         * {
@@ -21,7 +22,6 @@
             color: #222;
         }
 
-
         /* =========================
            SIDEBAR
         ========================= */
@@ -29,15 +29,13 @@
         .sidebar {
             width: 220px;
             height: 100vh;
-
             position: fixed;
             left: 0;
             top: 0;
-
             background-color: #111;
             color: white;
-
             padding: 20px;
+            overflow-y: auto;
         }
 
         .sidebar h2 {
@@ -54,21 +52,16 @@
 
         .sidebar a {
             display: block;
-
             color: white;
             text-decoration: none;
-
             padding: 11px;
-
             margin-bottom: 7px;
-
             border-radius: 4px;
         }
 
         .sidebar a:hover {
             background-color: #333;
         }
-
 
         /* =========================
            KONTEN
@@ -79,26 +72,20 @@
             padding: 25px;
         }
 
-
         /* =========================
            HEADER
         ========================= */
 
         .header {
             background-color: white;
-
             padding: 30px;
-
             border: 1px solid #ccc;
-
             border-radius: 6px;
-
             margin-bottom: 20px;
         }
 
         .header h1 {
             margin-top: 0;
-
             font-size: 32px;
         }
 
@@ -106,28 +93,21 @@
             line-height: 1.7;
         }
 
-
         /* =========================
            BAGIAN
         ========================= */
 
         .bagian {
             background-color: white;
-
             padding: 25px;
-
             margin-bottom: 20px;
-
             border: 1px solid #ccc;
-
             border-radius: 6px;
         }
 
         .bagian h2 {
             margin-top: 0;
-
             border-bottom: 2px solid #222;
-
             padding-bottom: 10px;
         }
 
@@ -135,39 +115,29 @@
             margin-top: 25px;
         }
 
-
         /* =========================
            RINGKASAN DATA
         ========================= */
 
         .data-ringkas {
             display: flex;
-
             gap: 15px;
-
             flex-wrap: wrap;
         }
 
         .card {
             background-color: #f5f5f5;
-
             border: 1px solid #ccc;
-
             padding: 15px;
-
             width: 180px;
-
             text-align: center;
-
             border-radius: 5px;
         }
 
         .card h3 {
             margin: 5px 0;
-
             font-size: 23px;
         }
-
 
         /* =========================
            DUA KOLOM
@@ -175,12 +145,9 @@
 
         .dua-kolom {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
             gap: 25px;
         }
-
 
         /* =========================
            KOTAK
@@ -188,14 +155,10 @@
 
         .kotak {
             background-color: #f2f2f2;
-
             border-left: 4px solid #222;
-
             padding: 15px;
-
             margin-top: 15px;
         }
-
 
         /* =========================
            POLUTAN
@@ -203,23 +166,16 @@
 
         .polutan {
             display: flex;
-
             gap: 15px;
-
             flex-wrap: wrap;
         }
 
         .polutan-box {
             flex: 1;
-
             min-width: 200px;
-
             border: 1px solid #ccc;
-
             padding: 15px;
-
             background-color: #fafafa;
-
             border-radius: 5px;
         }
 
@@ -227,31 +183,25 @@
             margin-top: 0;
         }
 
-
         /* =========================
            TABEL
         ========================= */
 
         table {
             width: 100%;
-
             border-collapse: collapse;
-
             margin-top: 15px;
         }
 
         th,
         td {
             border: 1px solid #bbb;
-
             padding: 10px;
-
             text-align: left;
         }
 
         th {
             background-color: #222;
-
             color: white;
         }
 
@@ -259,6 +209,37 @@
             background-color: #f5f5f5;
         }
 
+        /* =========================
+           TABEL TSFEL
+        ========================= */
+
+        .tabel-tsfel {
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            margin-top: 15px;
+        }
+
+        .tabel-tsfel table {
+            margin-top: 0;
+        }
+
+        .tabel-tsfel th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .tabel-tsfel td:first-child,
+        .tabel-tsfel th:first-child {
+            width: 60px;
+            text-align: center;
+        }
+
+        .tabel-tsfel td:nth-child(2) {
+            font-weight: bold;
+        }
 
         /* =========================
            GRAFIK
@@ -266,30 +247,21 @@
 
         .grafik {
             margin-top: 20px;
-
             text-align: center;
         }
 
         .grafik img {
             width: 100%;
-
             max-width: 1100px;
-
             height: auto;
-
             border: 1px solid #aaa;
         }
 
-
         .keterangan {
             background-color: #f2f2f2;
-
             padding: 15px;
-
             margin-top: 15px;
-
             border-left: 4px solid #222;
-
             text-align: left;
         }
 
@@ -317,31 +289,23 @@
             line-height: 1.8;
         }
 
-
         /* =========================
            PETA
         ========================= */
 
         .peta {
             text-align: center;
-
             border: 1px solid #ccc;
-
             padding: 20px;
-
             background-color: #f7f7f7;
         }
 
         .peta img {
             width: 100%;
-
             max-width: 900px;
-
             height: auto;
-
             border: 1px solid #aaa;
         }
-
 
         /* =========================
            DOWNLOAD
@@ -353,17 +317,11 @@
 
         .download a {
             display: inline-block;
-
             background-color: #222;
-
             color: white;
-
             text-decoration: none;
-
             padding: 10px 15px;
-
             margin-right: 5px;
-
             border-radius: 4px;
         }
 
@@ -371,23 +329,17 @@
             background-color: #444;
         }
 
-
         /* =========================
            FOOTER
         ========================= */
 
         footer {
             background-color: #111;
-
             color: white;
-
             text-align: center;
-
             padding: 20px;
-
             margin-top: 20px;
         }
-
 
         /* =========================
            RESPONSIVE
@@ -397,21 +349,17 @@
 
             .sidebar {
                 position: relative;
-
                 width: 100%;
-
                 height: auto;
             }
 
             .sidebar a {
                 display: inline-block;
-
                 padding: 8px;
             }
 
             .content {
                 margin-left: 0;
-
                 padding: 15px;
             }
 
@@ -428,53 +376,50 @@
             }
 
         }
-/* =========================
-   PROFIL DI SIDEBAR
-========================= */
 
-.profil-sidebar {
-    text-align: center;
-    margin-bottom: 15px;
-}
+        /* =========================
+           PROFIL DI SIDEBAR
+        ========================= */
 
-.profil-sidebar img {
-    width: 100px;
-    height: 120px;
+        .profil-sidebar {
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-    object-fit: cover;
+        .profil-sidebar img {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            border: 2px solid white;
+            margin-bottom: 10px;
+        }
 
-    border: 2px solid white;
+        .profil-sidebar h3 {
+            font-size: 15px;
+            margin: 5px 0;
+            color: white;
+        }
 
-    margin-bottom: 10px;
-}
+        .profil-sidebar p {
+            font-size: 13px;
+            margin: 5px 0;
+            color: #cccccc;
+        }
 
-.profil-sidebar h3 {
-    font-size: 15px;
+        .sidebar hr {
+            border: 0;
+            border-top: 1px solid #555;
+            margin: 20px 0;
+        }
 
-    margin: 5px 0;
-
-    color: white;
-}
-
-.profil-sidebar p {
-    font-size: 13px;
-
-    margin: 5px 0;
-
-    color: #cccccc;
-}
-
-.sidebar hr {
-    border: 0;
-
-    border-top: 1px solid #555;
-
-    margin: 20px 0;
-}
     </style>
 </head>
 
 <body>
+
+<!-- =========================
+     SIDEBAR
+========================= -->
 
 <div class="sidebar">
 
@@ -497,9 +442,19 @@
 
 </div>
 
+
+<!-- =========================
+     KONTEN
+========================= -->
+
 <div class="content">
 
+    <!-- =========================
+         BERANDA
+    ========================= -->
+
     <div class="header" id="beranda">
+
         <h1>Analisis Data NO₂ Kecamatan Kota Sumenep</h1>
 
         <p>
@@ -524,9 +479,16 @@
         <p>
             <b>Periode:</b> 31 Agustus 2025 - 31 Agustus 2026
         </p>
+
     </div>
 
+
+    <!-- =========================
+         RINGKASAN DATA
+    ========================= -->
+
     <div class="bagian">
+
         <h2>Ringkasan Data</h2>
 
         <div class="data-ringkas">
@@ -552,12 +514,20 @@
             </div>
 
         </div>
+
     </div>
 
+
+    <!-- =========================
+         BUSINESS UNDERSTANDING
+    ========================= -->
+
     <div class="bagian" id="bisnis">
+
         <h2>1. Business Understanding</h2>
 
         <h3>Tujuan</h3>
+
         <p>
             Tujuan dari tugas ini adalah mengetahui kondisi dan pola data
             konsentrasi NO₂ di Kecamatan Kota Sumenep selama periode
@@ -565,6 +535,7 @@
         </p>
 
         <h3>Permasalahan</h3>
+
         <p>
             Konsentrasi NO₂ dapat berubah dari waktu ke waktu. Oleh karena
             itu diperlukan proses pengumpulan dan pengolahan data untuk
@@ -574,6 +545,7 @@
         </p>
 
         <h3>Pertanyaan yang Ingin Dijawab</h3>
+
         <ul>
             <li>Bagaimana perubahan nilai NO₂ selama periode pengamatan?</li>
             <li>Apakah terdapat nilai NO₂ yang terdeteksi sebagai outlier?</li>
@@ -584,6 +556,7 @@
         <h3>Manfaat</h3>
 
         <div class="dua-kolom">
+
             <div>
                 <p><b>1. Informasi</b></p>
                 <p>
@@ -615,22 +588,34 @@
                     lingkungan dengan wilayah penelitian yang spesifik.
                 </p>
             </div>
+
         </div>
 
         <div class="kotak">
+
             <b>Kesimpulan Business Understanding</b>
+
             <p>
                 Data NO₂ digunakan untuk memahami perubahan konsentrasi
                 nitrogen dioksida pada Kecamatan Kota Sumenep dan menjadi
                 dasar untuk proses eksplorasi serta ekstraksi fitur.
             </p>
+
         </div>
+
     </div>
 
+
+    <!-- =========================
+         DATA UNDERSTANDING
+    ========================= -->
+
     <div class="bagian" id="data">
+
         <h2>2. Data Understanding</h2>
 
         <h3>Sumber Data</h3>
+
         <p>
             Data NO₂ diperoleh dari <b>Sentinel-5P</b> melalui
             <b>Copernicus Data Space/openEO</b>.
@@ -642,52 +627,90 @@
         </p>
 
         <h3>Wilayah dan Periode Data</h3>
+
         <div class="kotak">
-            <p><b>Wilayah:</b> Kecamatan Kota Sumenep, Kabupaten Sumenep, Jawa Timur</p>
-            <p><b>Periode:</b> 31 Agustus 2025 - 31 Agustus 2026</p>
-            <p><b>Jumlah observasi:</b> 366 data harian</p>
-            <p><b>Parameter:</b> NO₂</p>
+
+            <p>
+                <b>Wilayah:</b> Kecamatan Kota Sumenep,
+                Kabupaten Sumenep, Jawa Timur
+            </p>
+
+            <p>
+                <b>Periode:</b> 31 Agustus 2025 - 31 Agustus 2026
+            </p>
+
+            <p>
+                <b>Jumlah observasi:</b> 366 data harian
+            </p>
+
+            <p>
+                <b>Parameter:</b> NO₂
+            </p>
+
         </div>
 
         <h3>Parameter Polutan</h3>
 
         <div class="polutan">
+
             <div class="polutan-box">
+
                 <h3>NO₂</h3>
+
                 <p>
                     NO₂ atau nitrogen dioksida merupakan gas yang berkaitan
                     dengan proses pembakaran dan aktivitas manusia.
                 </p>
+
                 <p>
                     Sumber NO₂ dapat berasal antara lain dari kendaraan
                     bermotor, pembakaran bahan bakar, dan aktivitas industri.
                 </p>
-                <p><b>Parameter yang digunakan dalam tugas: NO₂ saja.</b></p>
+
+                <p>
+                    <b>Parameter yang digunakan dalam tugas: NO₂ saja.</b>
+                </p>
+
             </div>
+
         </div>
 
         <h3>Deskripsi Data</h3>
 
         <table>
+
             <tr>
                 <th>Kolom</th>
                 <th>Tipe Data</th>
                 <th>Penjelasan</th>
             </tr>
+
             <tr>
                 <td>date</td>
                 <td>Datetime</td>
                 <td>Tanggal pengamatan data NO₂.</td>
             </tr>
+
             <tr>
                 <td>NO2</td>
                 <td>Numerik</td>
-                <td>Nilai konsentrasi/hasil pengukuran NO₂ dari data Sentinel-5P yang telah diagregasi pada wilayah penelitian.</td>
+                <td>
+                    Nilai konsentrasi/hasil pengukuran NO₂ dari data
+                    Sentinel-5P yang telah diagregasi pada wilayah penelitian.
+                </td>
             </tr>
+
         </table>
+
     </div>
 
+
+    <!-- =========================
+         EKSPLORASI DATA
+    ========================= -->
+
     <div class="bagian" id="eksplorasi">
+
         <h2>3. Eksplorasi Data</h2>
 
         <p>
@@ -698,30 +721,37 @@
         <h3>Pemeriksaan Data</h3>
 
         <table>
+
             <tr>
                 <th>Pemeriksaan</th>
                 <th>Hasil</th>
             </tr>
+
             <tr>
                 <td>Jumlah observasi pada periode tugas</td>
                 <td>366</td>
             </tr>
+
             <tr>
                 <td>Periode</td>
                 <td>31 Agustus 2025 - 31 Agustus 2026</td>
             </tr>
+
             <tr>
                 <td>Parameter</td>
                 <td>NO₂</td>
             </tr>
+
             <tr>
                 <td>Missing value setelah imputasi</td>
                 <td>0</td>
             </tr>
+
             <tr>
                 <td>Outlier berdasarkan IQR</td>
                 <td>4</td>
             </tr>
+
         </table>
 
         <h3>Deteksi Outlier dengan IQR</h3>
@@ -733,37 +763,45 @@
         </p>
 
         <div class="kotak">
+
             <p><b>Q1:</b> 0.00000698966</p>
             <p><b>Q3:</b> 0.00001807015</p>
             <p><b>IQR:</b> 0.00001108049</p>
             <p><b>Batas bawah:</b> -0.00000963108</p>
             <p><b>Batas atas:</b> 0.00003469089</p>
             <p><b>Jumlah outlier:</b> 4</p>
+
         </div>
 
         <h3>Nilai yang Terdeteksi sebagai Outlier</h3>
 
         <table>
+
             <tr>
                 <th>Tanggal</th>
                 <th>Nilai NO₂</th>
             </tr>
+
             <tr>
                 <td>01 September 2025</td>
                 <td>-0.000010</td>
             </tr>
+
             <tr>
                 <td>06 September 2025</td>
                 <td>-0.000017</td>
             </tr>
+
             <tr>
                 <td>14 Maret 2026</td>
                 <td>0.000038</td>
             </tr>
+
             <tr>
                 <td>30 Juni 2026</td>
                 <td>0.000037</td>
             </tr>
+
         </table>
 
         <h3>Penanganan Missing Value dan Outlier</h3>
@@ -777,15 +815,25 @@
         </p>
 
         <div class="kotak">
+
             <b>Hasil Preprocessing</b>
+
             <p>
                 Setelah proses pembersihan dan imputasi, dataset memiliki
                 <b>366 observasi</b> dan <b>0 missing value</b>.
             </p>
+
         </div>
+
     </div>
 
+
+    <!-- =========================
+         WILAYAH
+    ========================= -->
+
     <div class="bagian" id="wilayah">
+
         <h2>4. Wilayah Pengambilan Data</h2>
 
         <p>
@@ -798,28 +846,47 @@
         <h3>Wilayah Penelitian</h3>
 
         <div class="kotak">
+
             <p><b>Kecamatan:</b> Kota Sumenep</p>
             <p><b>Kabupaten:</b> Sumenep</p>
             <p><b>Provinsi:</b> Jawa Timur</p>
             <p><b>Kode Kecamatan:</b> 35.29.01</p>
+
         </div>
 
         <h3>Peta Wilayah</h3>
 
         <div class="peta">
-            <img src="gambar daerah.png" alt="Peta wilayah Kecamatan Kota Sumenep">
+
+            <img
+                src="gambar daerah.png"
+                alt="Peta wilayah Kecamatan Kota Sumenep"
+            >
+
             <p>
                 Peta wilayah penelitian yang digunakan sebagai batas
                 pengambilan data berdasarkan GeoJSON Kecamatan Kota Sumenep.
             </p>
+
         </div>
 
         <div class="download">
-            <a href="Kota_Sumenep.geojson" download>Download GeoJSON</a>
+
+            <a href="Kota_Sumenep.geojson" download>
+                Download GeoJSON
+            </a>
+
         </div>
+
     </div>
 
+
+    <!-- =========================
+         PENGOLAHAN DAN ANALISIS
+    ========================= -->
+
     <div class="bagian" id="analisis">
+
         <h2>5. Pengolahan dan Analisis Data</h2>
 
         <h3>Alur Pengolahan Data</h3>
@@ -832,12 +899,15 @@
         </p>
 
         <div class="kotak">
+
             <b>
                 Sentinel-5P → GeoJSON AOI → NO₂ Harian →
                 Deteksi Outlier IQR → Imputasi →
                 TSFEL 68 Fitur → PostgreSQL Aiven → KNIME → Statistics
             </b>
+
         </div>
+
 
         <h3>1. Preprocessing Data NO₂</h3>
 
@@ -854,6 +924,7 @@
             berbasis waktu serta forward fill dan backward fill.
         </p>
 
+
         <h3>2. Ekstraksi Fitur TSFEL</h3>
 
         <p>
@@ -869,12 +940,76 @@
         </p>
 
         <div class="kotak">
+
             <b>Hasil Ekstraksi:</b>
+
             <p><b>Jumlah baris:</b> 1</p>
             <p><b>Jumlah fitur:</b> 68</p>
             <p><b>Missing value:</b> 0</p>
             <p><b>Nama tabel Aiven:</b> tsfel_no2_kota_sumenep</p>
+
         </div>
+
+
+        <!-- =========================
+             TABEL HASIL TSFEL
+        ========================= -->
+
+        <h3>Hasil 68 Fitur TSFEL</h3>
+
+        <p>
+            Berikut merupakan hasil ekstraksi fitur TSFEL dari data NO₂
+            Kecamatan Kota Sumenep. Setiap fitur memiliki satu nilai hasil
+            perhitungan yang menggambarkan karakteristik data time series.
+        </p>
+
+        <div class="tabel-tsfel">
+
+            <table id="tabel-tsfel">
+
+                <thead>
+
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Fitur</th>
+                        <th>Nilai</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="isi-tsfel">
+
+                    <tr>
+                        <td colspan="3">
+                            Memuat hasil ekstraksi fitur...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="keterangan">
+
+            <b>Cara membaca tabel:</b>
+
+            <p>
+                Kolom <b>Nama Fitur</b> menunjukkan nama fitur yang
+                dihasilkan oleh TSFEL, sedangkan kolom <b>Nilai</b>
+                menunjukkan hasil perhitungan fitur tersebut berdasarkan
+                data NO₂ yang digunakan.
+            </p>
+
+            <p>
+                Karena hasil ekstraksi terdiri dari satu baris, setiap
+                fitur memiliki satu nilai hasil ekstraksi.
+            </p>
+
+        </div>
+
 
         <h3>3. Penyimpanan Data pada PostgreSQL Aiven</h3>
 
@@ -890,9 +1025,18 @@
         </p>
 
         <div class="alur">
-            <img src="aiven-dataBase.png" alt="Database PostgreSQL Aiven">
-            <p><b>Gambar:</b> Penyimpanan data pada PostgreSQL Aiven.</p>
+
+            <img
+                src="aiven-dataBase.png"
+                alt="Database PostgreSQL Aiven"
+            >
+
+            <p>
+                <b>Gambar:</b> Penyimpanan data pada PostgreSQL Aiven.
+            </p>
+
         </div>
+
 
         <h3>4. Menghubungkan Aiven dengan KNIME</h3>
 
@@ -907,11 +1051,14 @@
         </p>
 
         <div class="kotak">
+
             <b>
                 PostgreSQL Connector → DB Table Selector →
                 DB Reader → Statistics
             </b>
+
         </div>
+
 
         <h3>5. DB Table Selector</h3>
 
@@ -919,6 +1066,7 @@
             Node <b>DB Table Selector</b> digunakan untuk memilih tabel
             <b>tsfel_no2_kota_sumenep</b> pada schema public.
         </p>
+
 
         <h3>6. DB Reader</h3>
 
@@ -928,9 +1076,12 @@
         </p>
 
         <div class="kotak">
+
             <p><b>Rows:</b> 1</p>
             <p><b>Columns:</b> 68</p>
+
         </div>
+
 
         <h3>7. Statistics</h3>
 
@@ -949,13 +1100,27 @@
         </p>
 
         <div class="alur">
-            <img src="knime-alur.png" alt="Workflow KNIME">
-            <p><b>Gambar:</b> Workflow pengolahan data pada KNIME.</p>
+
+            <img
+                src="knime-alur.png"
+                alt="Workflow KNIME"
+            >
+
+            <p>
+                <b>Gambar:</b> Workflow pengolahan data pada KNIME.
+            </p>
+
         </div>
 
     </div>
 
+
+    <!-- =========================
+         TIME SERIES
+    ========================= -->
+
     <div class="bagian" id="grafik">
+
         <h2>6. Time Series</h2>
 
         <p>
@@ -969,13 +1134,16 @@
         </p>
 
         <div class="grafik">
+
             <img
                 src="grafik_timeseries.png"
                 alt="Grafik Time Series NO₂ Kecamatan Kota Sumenep"
             >
+
         </div>
 
         <div class="keterangan">
+
             <b>Cara membaca grafik</b>
 
             <p>
@@ -993,13 +1161,22 @@
                 tahap preprocessing sebelum digunakan untuk proses
                 pengolahan selanjutnya.
             </p>
+
         </div>
+
     </div>
 
+
+    <!-- =========================
+         KESIMPULAN
+    ========================= -->
+
     <div class="bagian" id="kesimpulan">
+
         <h2>7. Kesimpulan</h2>
 
         <ol>
+
             <li>
                 Data yang digunakan merupakan data <b>NO₂</b> pada
                 <b>Kecamatan Kota Sumenep, Kabupaten Sumenep, Jawa Timur</b>.
@@ -1041,7 +1218,9 @@
                 PostgreSQL Connector, DB Table Selector, DB Reader,
                 dan Statistics dengan hasil <b>1 baris dan 68 kolom</b>.
             </li>
+
         </ol>
+
 
         <h3>File Dataset</h3>
 
@@ -1051,6 +1230,7 @@
         </p>
 
         <div class="download">
+
             <a href="NO2-Kota-Sumenep-TSFEL-68-Fitur.csv" download>
                 Download CSV TSFEL 68 Fitur
             </a>
@@ -1058,17 +1238,94 @@
             <a href="Kota_Sumenep.geojson" download>
                 Download GeoJSON Kota Sumenep
             </a>
+
         </div>
+
     </div>
 
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
     <footer>
+
         <p>Project PSD</p>
         <p>Analisis Data NO₂ Kecamatan Kota Sumenep</p>
         <p>2026</p>
+
     </footer>
 
 </div>
 
-</body>
 
+<!-- =========================
+     JAVASCRIPT UNTUK CSV TSFEL
+========================= -->
+
+<script>
+
+    fetch("NO2-Kota-Sumenep-TSFEL-68-Fitur.csv")
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("File CSV tidak ditemukan");
+            }
+
+            return response.text();
+
+        })
+
+        .then(data => {
+
+            /*
+             * Membaca CSV.
+             * Baris pertama = nama 68 fitur
+             * Baris kedua = nilai dari masing-masing fitur
+             */
+
+            const baris = data.trim().split(/\r?\n/);
+
+            const namaFitur = baris[0].split(",");
+            const nilaiFitur = baris[1].split(",");
+
+            const tabel = document.getElementById("isi-tsfel");
+
+            tabel.innerHTML = "";
+
+            for (let i = 0; i < namaFitur.length; i++) {
+
+                const barisTabel = document.createElement("tr");
+
+                const nomor = document.createElement("td");
+                nomor.textContent = i + 1;
+
+                const nama = document.createElement("td");
+                nama.textContent = namaFitur[i];
+
+                const nilai = document.createElement("td");
+                nilai.textContent = nilaiFitur[i];
+
+                barisTabel.appendChild(nomor);
+                barisTabel.appendChild(nama);
+                barisTabel.appendChild(nilai);
+
+                tabel.appendChild(barisTabel);
+            }
+
+        })
+
+        .catch(error => {
+
+            document.getElementById("isi-tsfel").innerHTML =
+                '<tr><td colspan="3">Data CSV tidak dapat dibaca.</td></tr>';
+
+            console.log(error);
+
+        });
+
+</script>
+
+</body>
 </html>
