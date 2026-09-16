@@ -1,5 +1,13 @@
 format: jb-book
 root: intro
-chapters:
-  - file: business_understanding
-  - file: data_preparation
+parts:
+  - caption: Polutan di Kota Sumenep
+    numbered: true
+    chapters:
+      - file: business_understanding
+      - file: data_understanding
+      - file: data_preparation
+      - file: time_series
+      - file: pipeline_cloud
+      - file: ekstraksi_fitur
+      - file: clustering

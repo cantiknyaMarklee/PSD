@@ -1,10 +1,10 @@
-# 2. Data Preparation
+# Data Preparation
 
 Tahap **Data Preparation** bertujuan untuk membersihkan, mentransformasikan, dan menstrukturkan data mentah deret waktu konsentrasi gas $NO_2$ hasil ekstraksi satelit (Sentinel-5P / Google Earth Engine) sebelum dilakukan ekstraksi fitur sinyal (*TSFEL*) dan analisis lanjutan.
 
 ---
 
-## 2.1 Pembersihan Data (*Data Cleaning*)
+##  Pembersihan Data (*Data Cleaning*)
 
 Data penginderaan jauh (*remote sensing*) sering kali memiliki *gap* atau nilai kosong (*missing values*) akibat tutupan awan (*cloud masking*) tebal atau ketidaktersediaan citra satelit pada hari tertentu.
 
