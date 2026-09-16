@@ -1,9 +1,6 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
-root: intro
+root: intro                          # Mengarah ke file intro.md sebagai halaman utama
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+  - file: tugas_1                    # Mengarah ke file tugas_1.md atau tugas_1.ipynb
+  - file: tugas_2
+  - file: materi_timeseries

@@ -1,11 +1,10 @@
-# Welcome to your Jupyter Book
+# Selamat Datang di Praktikum PSD
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+Repositori dan buku digital ini berisi dokumentasi tugas serta catatan praktikum mata kuliah **Pengolahan Sinyal Digital**.
 
-Check out the content pages bundled with this sample book to see more.
+### Data Penulis:
+* **Nama**: Alifah
+* **NIM**: 240411100145
+* **Kelas**: PSD - 5A
 
-```{tableofcontents}
-```
+Silakan pilih menu di samping untuk melihat hasil analisis dan modul yang tersedia.
