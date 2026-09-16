@@ -21,3 +21,10 @@ df = df.set_index('date').asfreq('D') # Memastikan frekuensi data harian
 
 # Mengisi missing value dengan interpolasi linear
 df['NO2_column_number_density'] = df['NO2_column_number_density'].interpolate(method='linear')
+
+@("data_understanding", "time_series", "pipeline_cloud", "ekstraksi_fitur", "clustering") | ForEach-Object { 
+    $path = "materi\$_.md"
+    if (!(Test-Path $path)) { 
+        "# $($_.Replace('_', ' ').ToUpper())`n`nHalaman ini sedang dalam penyusunan." | Out-File -FilePath $path -Encoding utf8 
+    } 
+}

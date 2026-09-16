@@ -419,6 +419,14 @@
 <li><p><strong>Masyarakat</strong>: Meningkatkan kesadaran publik terkait kondisi kualitas udara harian di sekitar lingkungan tempat tinggal.</p></li>
 <li><p><strong>Akademisi &amp; Peneliti</strong>: Menjadi modul studi empiris penerapan pemrosesan sinyal digital (PSD) dan sains data pada domain pemantauan lingkungan.</p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">@</span><span class="p">(</span><span class="s2">&quot;data_understanding&quot;</span><span class="p">,</span> <span class="s2">&quot;time_series&quot;</span><span class="p">,</span> <span class="s2">&quot;pipeline_cloud&quot;</span><span class="p">,</span> <span class="s2">&quot;ekstraksi_fitur&quot;</span><span class="p">,</span> <span class="s2">&quot;clustering&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="n">ForEach</span><span class="o">-</span><span class="n">Object</span> <span class="p">{</span> 
+    <span class="err">$</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;materi\$_.md&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="err">!</span><span class="p">(</span><span class="n">Test</span><span class="o">-</span><span class="n">Path</span> <span class="err">$</span><span class="n">path</span><span class="p">))</span> <span class="p">{</span> 
+        <span class="s2">&quot;# $($_.Replace(&#39;_&#39;, &#39; &#39;).ToUpper())`n`nHalaman ini sedang dalam penyusunan.&quot;</span> <span class="o">|</span> <span class="n">Out</span><span class="o">-</span><span class="n">File</span> <span class="o">-</span><span class="n">FilePath</span> <span class="err">$</span><span class="n">path</span> <span class="o">-</span><span class="n">Encoding</span> <span class="n">utf8</span> 
+    <span class="p">}</span> 
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 
