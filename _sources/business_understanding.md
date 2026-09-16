@@ -1,4 +1,5 @@
-# Business Understanding
+# Data Understanding
+Halaman ini berisi pemahaman data polutan NO2 di wilayah Kota Sumenep.
 
 ## Latar Belakang
 Kualitas udara merupakan salah satu indikator vital bagi kesehatan lingkungan dan masyarakat. Gas Nitrogen Dioksida ($NO_2$) merupakan salah satu polutan udara utama yang dihasilkan dari proses pembakaran bahan bakar fosil pada kendaraan bermotor, aktivitas industri, dan pembakaran biomassa.
