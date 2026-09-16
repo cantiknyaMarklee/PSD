@@ -26,11 +26,3 @@ Paparan $NO_2$ dalam konsentrasi tinggi dapat memicu masalah pernapasan serius, 
 * **Pemerintah Daerah & Dinas Lingkungan Hidup**: Menjadi bahan rujukan data-driven dalam merumuskan kebijakan tata ruang, pengawasan emisi kendaraan, dan mitigasi dampak lingkungan.
 * **Masyarakat**: Meningkatkan kesadaran publik terkait kondisi kualitas udara harian di sekitar lingkungan tempat tinggal.
 * **Akademisi & Peneliti**: Menjadi modul studi empiris penerapan pemrosesan sinyal digital (PSD) dan sains data pada domain pemantauan lingkungan.
-
-```python
-@("data_understanding", "time_series", "pipeline_cloud", "ekstraksi_fitur", "clustering") | ForEach-Object { 
-    $path = "materi\$_.md"
-    if (!(Test-Path $path)) { 
-        "# $($_.Replace('_', ' ').ToUpper())`n`nHalaman ini sedang dalam penyusunan." | Out-File -FilePath $path -Encoding utf8 
-    } 
-}
