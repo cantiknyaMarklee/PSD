@@ -1,6 +1,6 @@
 format: jb-book
-root: intro                          # Mengarah ke file intro.md sebagai halaman utama
+root: intro
 chapters:
-  - file: tugas_1                    # Mengarah ke file tugas_1.md atau tugas_1.ipynb
-  - file: tugas_2
-  - file: materi_timeseries
+  - file: markdown
+  - file: notebooks
+  - file: markdown-notebooks
