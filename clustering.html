@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Proyek Sains Data</title>
+    <title>7. Reduksi Dimensi dan K-Means Clustering &#8212; Proyek Sains Data</title>
   
   
   
@@ -64,7 +64,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="ekstraksi_fitur.html" />
+    <link rel="prev" title="6. Ekstraksi Fitur TSFEL" href="ekstraksi_fitur.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -152,10 +152,6 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
 </div>
 
     </header>
@@ -219,11 +215,14 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Data Understanding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_preparation.html">2. Data Preparation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Time_series.html">3. Analisis Time Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline_cloud.html">4. Pipeline Cloud &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preparation.html">3. Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Time_series.html">4. Analisis Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_cloud.html">5. Pipeline Cloud &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ekstraksi_fitur.html">6. Ekstraksi Fitur TSFEL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Reduksi Dimensi dan K-Means Clustering</a></li>
 </ul>
 
     </div>
@@ -346,9 +345,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -359,19 +356,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Reduksi Dimensi dan K-Means Clustering</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple pst-show_toc_level nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -381,7 +370,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="reduksi-dimensi-dan-k-means-clustering">
+<h1><span class="section-number">7. </span>Reduksi Dimensi dan K-Means Clustering<a class="headerlink" href="#reduksi-dimensi-dan-k-means-clustering" title="Link to this heading">#</a></h1>
+<p>Bab ini memaparkan reduksi dimensi PCA menjadi 37 komponen serta penentuan kluster optimal K-Means menggunakan Elbow Method dan Silhouette Analysis.</p>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -418,7 +411,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Ekstraksi Fitur TSFEL</p>
       </div>
     </a>
 </div>
@@ -427,23 +420,6 @@
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="simple pst-show_toc_level nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
