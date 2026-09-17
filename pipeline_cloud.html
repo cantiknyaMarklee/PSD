@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Proyek Sains Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Pipeline Cloud &amp; KNIME &#8212; Proyek Sains Data</title>
   
   
   
@@ -58,18 +60,20 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pipeline_cloud';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="ekstraksi_fitur.html" />
+    <link rel="prev" title="3. Analisis Time Series" href="Time_series.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
   
     
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
   
   </head>
   <body data-default-mode="">
@@ -89,7 +93,7 @@
   <dialog id="pst-search-dialog">
     
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -149,6 +153,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -158,8 +166,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -214,11 +220,11 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_preparation.html">2. Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_series.html">3. Analisis Time Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline_cloud.html">4. Pipeline Cloud &amp; KNIME</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Pipeline Cloud &amp; KNIME</a></li>
 </ul>
 
     </div>
@@ -268,6 +274,54 @@
 
 
 
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/pipeline_cloud.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
@@ -293,7 +347,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -302,41 +358,94 @@
 </div>
               
               
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pipeline Cloud & KNIME</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arsitektur-pipeline-data">4.1. 1. Arsitektur Pipeline Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-cloud-database-aiven">4.2. 2. Integrasi Cloud Database (Aiven)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pipeline-cloud-knime">
+<h1><span class="section-number">4. </span>Pipeline Cloud &amp; KNIME<a class="headerlink" href="#pipeline-cloud-knime" title="Link to this heading">#</a></h1>
+<p>Bab ini membahas perancangan arsitektur integrasi data berbasis cloud dan otomatisasi alur kerja analitik menggunakan <strong>KNIME Analytics Platform</strong> untuk pemantauan data polutan di Kota Sumenep.</p>
+<hr class="docutils" />
+<section id="arsitektur-pipeline-data">
+<h2><span class="section-number">4.1. </span>1. Arsitektur Pipeline Data<a class="headerlink" href="#arsitektur-pipeline-data" title="Link to this heading">#</a></h2>
+<p>Pipeline data dirancang untuk mengalirkan data deret waktu polutan dari sumber pengunduhan ke penyimpanan database terkelola di cloud, lalu diproses secara otomatis di KNIME:</p>
+<ol class="arabic simple">
+<li><p><strong>Ingestion Layer</strong>: Pengambilan data deret waktu satelit Sentinel-5P melalui API openEO / Google Earth Engine.</p></li>
+<li><p><strong>Storage Layer (Cloud Database)</strong>: Penyimpanan data time series bersih ke dalam database cloud terkelola (Aiven Cloud Database).</p></li>
+<li><p><strong>Analytics &amp; Transformation Layer</strong>: Pengolahan alur data, integrasi, dan eksekusi model menggunakan alur kerja visual KNIME.</p></li>
+<li><p><strong>Reporting Layer</strong>: Ekspor fitur dan visualisasi ringkasan untuk kebutuhan buku digital / dashboard.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="integrasi-cloud-database-aiven">
+<h2><span class="section-number">4.2. </span>2. Integrasi Cloud Database (Aiven)<a class="headerlink" href="#integrasi-cloud-database-aiven" title="Link to this heading">#</a></h2>
+<p>Penyimpanan terpusat menggunakan layanan <strong>Aiven Cloud Database</strong> memastikan data polutan tersimpan secara aman, terkelola, dan dapat diakses kapan saja oleh pipeline analitik tanpa membebani memori lokal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
+
+<span class="c1"># Konfigurasi koneksi database Aiven</span>
+<span class="n">DB_HOST</span> <span class="o">=</span> <span class="s2">&quot;your-aiven-host.aivencloud.com&quot;</span>
+<span class="n">DB_PORT</span> <span class="o">=</span> <span class="s2">&quot;12345&quot;</span>
+<span class="n">DB_NAME</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span>
+<span class="n">DB_USER</span> <span class="o">=</span> <span class="s2">&quot;avnadmin&quot;</span>
+<span class="n">DB_PASSWORD</span> <span class="o">=</span> <span class="s2">&quot;your_password&quot;</span>
+
+<span class="c1"># Membuat URI koneksi PostgreSQL/MySQL</span>
+<span class="n">connection_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;postgresql://</span><span class="si">{</span><span class="n">DB_USER</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">DB_PASSWORD</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">DB_HOST</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">DB_PORT</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DB_NAME</span><span class="si">}</span><span class="s2">?sslmode=require&quot;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">connection_url</span><span class="p">)</span>
+
+<span class="c1"># Mengunggah data bersih ke Cloud Database</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Polutan-Sumenep-Clean.csv&quot;</span><span class="p">)</span>
+<span class="n">df_clean</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;polutan_sumenep&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data polutan berhasil disimpan ke Aiven Cloud!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
     }
-  </script>
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
 
               
               
@@ -345,12 +454,48 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Time_series.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Analisis Time Series</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ekstraksi_fitur.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arsitektur-pipeline-data">4.1. 1. Arsitektur Pipeline Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-cloud-database-aiven">4.2. 2. Integrasi Cloud Database (Aiven)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
