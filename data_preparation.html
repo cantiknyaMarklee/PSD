@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Data Preparation &#8212; Proyek Sains Data</title>
+    <title>3. Data Preparation &#8212; Proyek Sains Data</title>
   
   
   
@@ -66,8 +66,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3. Analisis Time Series" href="Time_series.html" />
-    <link rel="prev" title="1. Data Understanding" href="data_understanding.html" />
+    <link rel="next" title="4. Analisis Time Series" href="Time_series.html" />
+    <link rel="prev" title="2. Data Understanding" href="data_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -223,12 +223,13 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">1. Data Understanding</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Data Preparation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Time_series.html">3. Analisis Time Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline_cloud.html">4. Pipeline Cloud &amp; KNIME</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ekstraksi_fitur.html">5. Ekstraksi Fitur TSFEL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clustering.html">6. Reduksi Dimensi dan K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Time_series.html">4. Analisis Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_cloud.html">5. Pipeline Cloud &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ekstraksi_fitur.html">6. Ekstraksi Fitur TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">7. Reduksi Dimensi dan K-Means Clustering</a></li>
 </ul>
 
     </div>
@@ -374,8 +375,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembersihan-data-data-cleaning">2.1. Pembersihan Data (<em>Data Cleaning</em>)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values">2.1.1. Penanganan Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembersihan-data-data-cleaning">3.1. Pembersihan Data (<em>Data Cleaning</em>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values">3.1.1. Penanganan Missing Values</a></li>
 </ul>
 </li>
 </ul>
@@ -390,14 +391,14 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
-<h1><span class="section-number">2. </span>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
 <p>Tahap <strong>Data Preparation</strong> bertujuan untuk membersihkan, mentransformasikan, dan menstrukturkan data mentah deret waktu konsentrasi gas <span class="math notranslate nohighlight">\(NO_2\)</span> hasil ekstraksi satelit (Sentinel-5P / Google Earth Engine) sebelum dilakukan ekstraksi fitur sinyal (<em>TSFEL</em>) dan analisis lanjutan.</p>
 <hr class="docutils" />
 <section id="pembersihan-data-data-cleaning">
-<h2><span class="section-number">2.1. </span>Pembersihan Data (<em>Data Cleaning</em>)<a class="headerlink" href="#pembersihan-data-data-cleaning" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Pembersihan Data (<em>Data Cleaning</em>)<a class="headerlink" href="#pembersihan-data-data-cleaning" title="Link to this heading">#</a></h2>
 <p>Data penginderaan jauh (<em>remote sensing</em>) sering kali memiliki <em>gap</em> atau nilai kosong (<em>missing values</em>) akibat tutupan awan (<em>cloud masking</em>) tebal atau ketidaktersediaan citra satelit pada hari tertentu.</p>
 <section id="penanganan-missing-values">
-<h3><span class="section-number">2.1.1. </span>Penanganan Missing Values<a class="headerlink" href="#penanganan-missing-values" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.1. </span>Penanganan Missing Values<a class="headerlink" href="#penanganan-missing-values" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Pemeriksaan Gap Tanggal</strong>: Memastikan indeks temporal bersifat harian secara kontinu tanpa ada tanggal yang melompat.</p></li>
 <li><p><strong>Imputasi Interpolasi Temporal</strong>: Mengisi nilai kosong menggunakan metode interpolasi linear atau <em>forward-fill</em> (<em>ffill</em>) / <em>backward-fill</em> (<em>bfill</em>), tergantung pada pola gap data:</p></li>
@@ -442,7 +443,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Data Understanding</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Data Understanding</p>
       </div>
     </a>
     <a class="right-next"
@@ -450,7 +451,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Analisis Time Series</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Analisis Time Series</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -472,8 +473,8 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembersihan-data-data-cleaning">2.1. Pembersihan Data (<em>Data Cleaning</em>)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values">2.1.1. Penanganan Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembersihan-data-data-cleaning">3.1. Pembersihan Data (<em>Data Cleaning</em>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values">3.1.1. Penanganan Missing Values</a></li>
 </ul>
 </li>
 </ul>
