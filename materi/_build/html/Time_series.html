@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Analisis Time Series &#8212; Proyek Sains Data</title>
+    <title>4. Analisis Time Series &#8212; Proyek Sains Data</title>
   
   
   
@@ -66,8 +66,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. Pipeline Cloud &amp; KNIME" href="pipeline_cloud.html" />
-    <link rel="prev" title="2. Data Preparation" href="data_preparation.html" />
+    <link rel="next" title="5. Pipeline Cloud &amp; KNIME" href="pipeline_cloud.html" />
+    <link rel="prev" title="3. Data Preparation" href="data_preparation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -223,12 +223,13 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">1. Data Understanding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_preparation.html">2. Data Preparation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Analisis Time Series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline_cloud.html">4. Pipeline Cloud &amp; KNIME</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ekstraksi_fitur.html">5. Ekstraksi Fitur TSFEL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clustering.html">6. Reduksi Dimensi dan K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preparation.html">3. Data Preparation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Analisis Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_cloud.html">5. Pipeline Cloud &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ekstraksi_fitur.html">6. Ekstraksi Fitur TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">7. Reduksi Dimensi dan K-Means Clustering</a></li>
 </ul>
 
     </div>
@@ -374,7 +375,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-ekstraksi-multi-polutan-via-openeo">3.1. 1. Pipeline Ekstraksi Multi-Polutan via openEO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-ekstraksi-multi-polutan-via-openeo">4.1. 1. Pipeline Ekstraksi Multi-Polutan via openEO</a></li>
 </ul>
             </nav>
         </div>
@@ -387,11 +388,11 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-time-series">
-<h1><span class="section-number">3. </span>Analisis Time Series<a class="headerlink" href="#analisis-time-series" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>Analisis Time Series<a class="headerlink" href="#analisis-time-series" title="Link to this heading">#</a></h1>
 <p>Bab ini membahas pengunduhan deret waktu multi-polutan (<span class="math notranslate nohighlight">\(NO_2\)</span>, <span class="math notranslate nohighlight">\(SO_2\)</span>, dan <span class="math notranslate nohighlight">\(CO\)</span>) melalui <strong>openEO Copernicus Dataspace</strong>, analisis tren harian, serta dekomposisi karakteristik sinyal temporal di wilayah <strong>Kecamatan Kota Sumenep</strong>.</p>
 <hr class="docutils" />
 <section id="pipeline-ekstraksi-multi-polutan-via-openeo">
-<h2><span class="section-number">3.1. </span>1. Pipeline Ekstraksi Multi-Polutan via openEO<a class="headerlink" href="#pipeline-ekstraksi-multi-polutan-via-openeo" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>1. Pipeline Ekstraksi Multi-Polutan via openEO<a class="headerlink" href="#pipeline-ekstraksi-multi-polutan-via-openeo" title="Link to this heading">#</a></h2>
 <p>Untuk menambahkan parameter polutan <span class="math notranslate nohighlight">\(SO_2\)</span> dan <span class="math notranslate nohighlight">\(CO\)</span> berdampingan dengan <span class="math notranslate nohighlight">\(NO_2\)</span>, array <code class="docutils literal notranslate"><span class="pre">bands</span></code> pada pemanggilan <code class="docutils literal notranslate"><span class="pre">load_collection</span></code> diperluas:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
@@ -472,7 +473,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Data Preparation</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Data Preparation</p>
       </div>
     </a>
     <a class="right-next"
@@ -480,7 +481,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Pipeline Cloud &amp; KNIME</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Pipeline Cloud &amp; KNIME</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -502,7 +503,7 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-ekstraksi-multi-polutan-via-openeo">3.1. 1. Pipeline Ekstraksi Multi-Polutan via openEO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-ekstraksi-multi-polutan-via-openeo">4.1. 1. Pipeline Ekstraksi Multi-Polutan via openEO</a></li>
 </ul>
   </nav></div>
 
