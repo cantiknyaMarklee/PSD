@@ -7,7 +7,7 @@ parts:
       - file: business_understanding
       - file: data_understanding
       - file: data_preparation
-      - file: time_series
+      - file: Time_series
       - file: pipeline_cloud
       - file: ekstraksi_fitur
       - file: clustering

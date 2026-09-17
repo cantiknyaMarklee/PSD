@@ -11,13 +11,3 @@ Data penginderaan jauh (*remote sensing*) sering kali memiliki *gap* atau nilai 
 ### Penanganan Missing Values
 1. **Pemeriksaan Gap Tanggal**: Memastikan indeks temporal bersifat harian secara kontinu tanpa ada tanggal yang melompat.
 2. **Imputasi Interpolasi Temporal**: Mengisi nilai kosong menggunakan metode interpolasi linear atau *forward-fill* (*ffill*) / *backward-fill* (*bfill*), tergantung pada pola gap data:
-
-```python
-import pandas as pd
-
-# Contoh proses pembersihan data time-series
-df['date'] = pd.to_datetime(df['date'])
-df = df.set_index('date').asfreq('D') # Memastikan frekuensi data harian
-
-# Mengisi missing value dengan interpolasi linear
-df['NO2_column_number_density'] = df['NO2_column_number_density'].interpolate(method='linear')
