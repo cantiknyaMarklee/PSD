@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5. Ekstraksi Fitur TSFEL &#8212; Proyek Sains Data</title>
+    <title>Data Understanding &#8212; Proyek Sains Data</title>
   
   
   
@@ -60,12 +60,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ekstraksi_fitur';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bussiness_understanding';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. Reduksi Dimensi dan K-Means Clustering" href="clustering.html" />
-    <link rel="prev" title="4. Pipeline Cloud &amp; KNIME" href="pipeline_cloud.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -163,6 +163,8 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -216,12 +218,12 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">1. Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_preparation.html">2. Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_series.html">3. Analisis Time Series</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pipeline_cloud.html">4. Pipeline Cloud &amp; KNIME</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Ekstraksi Fitur TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ekstraksi_fitur.html">5. Ekstraksi Fitur TSFEL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clustering.html">6. Reduksi Dimensi dan K-Means Clustering</a></li>
 </ul>
 
@@ -282,7 +284,7 @@
       
       
       
-      <li><a href="_sources/ekstraksi_fitur.md" target="_blank"
+      <li><a href="_sources/bussiness_understanding.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -356,7 +358,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ekstraksi Fitur TSFEL</h1>
+    <h1>Data Understanding</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -370,9 +372,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ekstraksi-fitur-tsfel">
-<h1><span class="section-number">5. </span>Ekstraksi Fitur TSFEL<a class="headerlink" href="#ekstraksi-fitur-tsfel" title="Link to this heading">#</a></h1>
-<p>Bab ini membahas konsep 68 fitur TSFEL (domain statistik, temporal, dan spektral), pembuktian perhitungan manual, serta hasil ekstraksi 204 fitur multi-polutan.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
+<h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<p>Bab ini menjelaskan pemahaman data polutan udara (<span class="math notranslate nohighlight">\(NO_2\)</span>, <span class="math notranslate nohighlight">\(SO_2\)</span>, <span class="math notranslate nohighlight">\(CO\)</span>) di wilayah Kecamatan Kota Sumenep berdasarkan data satelit Sentinel-5P.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -405,24 +407,6 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="pipeline_cloud.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Pipeline Cloud &amp; KNIME</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="clustering.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Reduksi Dimensi dan K-Means Clustering</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
