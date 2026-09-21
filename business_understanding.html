@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Data Understanding &#8212; Proyek Sains Data</title>
+    <title>1. Business Understanding &#8212; Proyek Sains Data</title>
   
   
   
@@ -60,8 +60,6 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'business_understanding';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -155,6 +153,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -219,7 +221,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Data Understanding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_preparation.html">3. Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_series.html">4. Analisis Time Series</a></li>
@@ -348,7 +350,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -359,11 +363,22 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Data Understanding</h1>
+    <h1>Business Understanding</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1. Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#permasalahan">1.2. Permasalahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.3. Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-analisis">1.4. Alur Analisis</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -373,9 +388,50 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
-<h1><span class="section-number">1. </span>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
-<p>Bab ini menjelaskan pemahaman data polutan udara (<span class="math notranslate nohighlight">\(NO_2\)</span>, <span class="math notranslate nohighlight">\(SO_2\)</span>, <span class="math notranslate nohighlight">\(CO\)</span>) di wilayah Kecamatan Kota Sumenep berdasarkan data satelit Sentinel-5P.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="business-understanding">
+<h1><span class="section-number">1. </span>Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h1>
+<section id="latar-belakang">
+<h2><span class="section-number">1.1. </span>Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p>Kualitas udara merupakan salah satu aspek penting dalam pemantauan kondisi lingkungan. Beberapa polutan udara yang dapat digunakan untuk mengamati perubahan kondisi kualitas udara antara lain <strong>Carbon Monoxide (CO)</strong>, <strong>Nitrogen Dioxide (NO₂)</strong>, dan <strong>Sulfur Dioxide (SO₂)</strong>.</p>
+<p>Pada proyek ini dilakukan analisis terhadap data deret waktu (<em>time series</em>) polutan <strong>CO, NO₂, dan SO₂</strong> pada wilayah <strong>Kecamatan Kota Sumenep</strong>. Data polutan diperoleh dari data satelit <strong>Sentinel-5P</strong> melalui layanan <strong>openEO Copernicus Data Space Ecosystem</strong>.</p>
+<p>Analisis tidak hanya dilakukan terhadap nilai polutan dari waktu ke waktu, tetapi dilanjutkan dengan ekstraksi karakteristik sinyal menggunakan <strong>Time Series Feature Extraction Library (TSFEL)</strong>. Hasil ekstraksi fitur kemudian digunakan dalam proses reduksi dimensi dan <em>clustering</em> untuk mengetahui pola pengelompokan data berdasarkan karakteristik masing-masing polutan.</p>
+</section>
+<hr class="docutils" />
+<section id="permasalahan">
+<h2><span class="section-number">1.2. </span>Permasalahan<a class="headerlink" href="#permasalahan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan latar belakang tersebut, permasalahan yang dianalisis dalam proyek ini adalah:</p>
+<ol class="arabic simple">
+<li><p>Bagaimana karakteristik deret waktu (<em>time series</em>) dari polutan <strong>CO, NO₂, dan SO₂</strong> di Kecamatan Kota Sumenep?</p></li>
+<li><p>Bagaimana karakteristik statistik, temporal, dan spektral dari masing-masing polutan berdasarkan hasil ekstraksi fitur?</p></li>
+<li><p>Bagaimana membentuk representasi data menggunakan <strong>68 fitur TSFEL</strong> dari masing-masing polutan?</p></li>
+<li><p>Bagaimana hasil penggabungan fitur dari tiga polutan, yaitu <strong>68 fitur CO, 68 fitur NO₂, dan 68 fitur SO₂</strong>, sehingga menghasilkan <strong>204 fitur</strong>?</p></li>
+<li><p>Bagaimana melakukan reduksi dimensi data menggunakan <strong>Principal Component Analysis (PCA)</strong>?</p></li>
+<li><p>Bagaimana menentukan jumlah cluster pada <strong>K-Means Clustering</strong> dan mengevaluasi kualitas hasil clustering?</p></li>
+<li><p>Bagaimana hasil clustering apabila analisis dilakukan kembali pada <strong>68 fitur masing-masing polutan</strong>?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="tujuan">
+<h2><span class="section-number">1.3. </span>Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<p>Tujuan dari proyek ini adalah:</p>
+<ol class="arabic simple">
+<li><p>Melakukan eksplorasi data deret waktu pada polutan <strong>CO, NO₂, dan SO₂</strong>.</p></li>
+<li><p>Mengekstraksi karakteristik sinyal polutan menggunakan <strong>TSFEL</strong>.</p></li>
+<li><p>Memahami fitur yang digunakan melalui konsep dasar, deskripsi fitur, dan contoh perhitungan sebelum proses ekstraksi fitur.</p></li>
+<li><p>Menghasilkan <strong>68 fitur</strong> untuk setiap polutan CO, NO₂, dan SO₂.</p></li>
+<li><p>Menggabungkan fitur ketiga polutan menjadi <strong>204 fitur</strong> untuk analisis clustering.</p></li>
+<li><p>Melakukan reduksi dimensi menggunakan <strong>PCA hingga PCA1–PCA37</strong>.</p></li>
+<li><p>Menentukan jumlah cluster pada <strong>K-Means Clustering</strong> serta mengevaluasi kualitas cluster.</p></li>
+<li><p>Melakukan analisis clustering secara terpisah pada <strong>68 fitur CO, NO₂, dan SO₂</strong> menggunakan workflow KNIME.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="alur-analisis">
+<h2><span class="section-number">1.4. </span>Alur Analisis<a class="headerlink" href="#alur-analisis" title="Link to this heading">#</a></h2>
+<p>Secara umum, tahapan yang dilakukan pada proyek ini meliputi:</p>
+<p><strong>Pengambilan Data → Eksplorasi Time Series → Ekstraksi Fitur TSFEL → Penggabungan Fitur CO, NO₂, dan SO₂ → Normalisasi Data → PCA → K-Means Clustering → Evaluasi Cluster</strong></p>
+<p>Selain analisis gabungan 204 fitur, clustering juga dilakukan pada <strong>68 fitur masing-masing polutan</strong> untuk melihat hasil pengelompokan CO, NO₂, dan SO₂ secara terpisah.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -432,6 +488,26 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1. Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#permasalahan">1.2. Permasalahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.3. Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-analisis">1.4. Alur Analisis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
