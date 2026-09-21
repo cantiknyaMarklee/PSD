@@ -114,7 +114,7 @@ Peta berikut menunjukkan batas wilayah **Kecamatan Kota Sumenep** yang digunakan
 
 ```{raw} html
 <iframe
-    src="../peta_kota_sumenep.html"
+    src="peta_kota_sumenep.html"
     width="100%"
     height="550"
     style="border: none;">
