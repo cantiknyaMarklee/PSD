@@ -1,49 +1,46 @@
 # Analisis Time Series
 
-Bab ini membahas pengunduhan deret waktu multi-polutan ($NO_2$, $SO_2$, dan $CO$) melalui **openEO Copernicus Dataspace**, analisis tren harian, serta dekomposisi karakteristik sinyal temporal di wilayah **Kecamatan Kota Sumenep**.
+Tahap **Analisis Time Series** dilakukan untuk mengeksplorasi pola temporal dari tiga parameter polutan udara, yaitu **Karbon Monoksida (CO)**, **Nitrogen Dioksida (NO₂)**, dan **Sulfur Dioksida (SO₂)** di Kecamatan Kota Sumenep.
+
+Data yang digunakan pada tahap ini merupakan data hasil **Data Preparation** yang telah melalui penyesuaian format, deteksi *outlier*, serta penanganan *missing value*. Masing-masing dataset memiliki **365 observasi harian** pada periode **31 Agustus 2025 hingga 30 Agustus 2026**.
+
+Visualisasi deret waktu dilakukan secara terpisah untuk setiap polutan agar perubahan nilai CO, NO₂, dan SO₂ terhadap waktu dapat diamati dengan lebih jelas.
 
 ---
 
-## 1. Pipeline Ekstraksi Multi-Polutan via openEO
+## 1. Memuat Data Time Series Hasil Cleaning
 
-Untuk menambahkan parameter polutan $SO_2$ dan $CO$ berdampingan dengan $NO_2$, array `bands` pada pemanggilan `load_collection` diperluas:
+Dataset yang digunakan terdiri dari:
+
+- `CO_Kota_Sumenep_clean.csv`
+- `NO2_Kota_Sumenep_clean.csv`
+- `SO2_Kota_Sumenep_clean.csv`
+
+### 1.1 Code Memuat Data
 
 ```python
-import json
-import openeo
+import pandas as pd
+import matplotlib.pyplot as plt
 
-# 1. Hubungkan ke openEO Copernicus
-connection = openeo.connect("[https://openeo.dataspace.copernicus.eu](https://openeo.dataspace.copernicus.eu)")
-connection.authenticate_oidc_device()
+co = pd.read_csv("CO_Kota_Sumenep_clean.csv")
+no2 = pd.read_csv("NO2_Kota_Sumenep_clean.csv")
+so2 = pd.read_csv("SO2_Kota_Sumenep_clean.csv")
 
-# 2. Muat batas wilayah GeoJSON Kota Sumenep
-with open("KotaSumenep.geojson", "r") as f:
-    aoi = json.load(f)
+# Mengubah kolom tanggal menjadi datetime
+co["date"] = pd.to_datetime(co["date"])
+no2["date"] = pd.to_datetime(no2["date"])
+so2["date"] = pd.to_datetime(so2["date"])
 
-# 3. Muat Data Cube Sentinel-5P dengan band NO2, SO2, dan CO
-datacube = connection.load_collection(
-    "SENTINEL_5P_L2",
-    spatial_extent=aoi,
-    temporal_extent=["2025-08-31", "2026-08-31"],
-    bands=["NO2", "SO2", "CO"]
-)
+print("Shape CO :", co.shape)
+print("Shape NO2:", no2.shape)
+print("Shape SO2:", so2.shape)
+```
 
-# 4. Agregasi Temporal Harian (Mean)
-datacube_daily = datacube.aggregate_temporal_period(
-    period="day",
-    reducer="mean"
-)
+Ketiga dataset memiliki struktur yang sama, yaitu **365 baris dan 2 kolom**. Kolom `date` menunjukkan waktu pengamatan, sedangkan kolom kedua berisi nilai masing-masing polutan.
 
-# 5. Agregasi Spasial per Wilayah AOI
-datacube_daily_spatial = datacube_daily.aggregate_spatial(
-    geometries=aoi,
-    reducer="mean"
-)
+| Dataset | Jumlah Observasi | Kolom |
+|---|---:|---|
+| CO | 365 | `date`, `CO` |
+| NO₂ | 365 | `date`, `NO2` |
+| SO₂ | 365 | `date`, `SO2` |
 
-# 6. Eksekusi Batch Job dan Simpan ke CSV
-job = datacube_daily_spatial.save_result(format="CSV").execute_batch(
-    outputfile="Multi_Polutan_Kota_Sumenep_2025-2026.csv",
-    title="Time Series NO2, SO2, CO Kota Sumenep",
-    description="Sentinel-5P daily mean aggregated over Kota Sumenep"
-)
-print("Batch Job ID:", job.job_id)

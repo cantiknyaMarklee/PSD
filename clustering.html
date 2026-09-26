@@ -60,6 +60,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'clustering';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -152,6 +154,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -216,7 +222,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_preparation.html">3. Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_series.html">4. Analisis Time Series</a></li>
@@ -345,7 +351,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -361,6 +369,42 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-dengan-principal-component-analysis-pca">7.1. 1. Reduksi Dimensi dengan Principal Component Analysis (PCA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering-dan-silhouette-coefficient">7.2. 2. K-Means Clustering dan Silhouette Coefficient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">7.2.1. 2.1 K-Means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-coefficient">7.2.2. 2.2 Silhouette Coefficient</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-clustering-68-fitur-menggunakan-knime">7.3. 3. Implementasi Clustering 68 Fitur Menggunakan KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-clustering-pada-knime">7.3.1. 3.1 Workflow Clustering pada KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-68-fitur">7.4. 4. Hasil Clustering 68 Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-co">7.4.1. 4.1 Hasil Clustering CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-no2">7.4.2. 4.2 Hasil Clustering NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-so2">7.4.3. 4.3 Hasil Clustering SO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil">7.4.4. 4.4 Ringkasan Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-gabungan-204-fitur-co-no2-dan-so2">7.5. 5. Analisis Gabungan 204 Fitur CO, NO₂, dan SO₂</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penggabungan-data">7.5.1. 5.1 Penggabungan Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-kualitas-fitur">7.5.2. 5.2 Pemeriksaan Kualitas Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data-gabungan">7.5.3. 5.3 Normalisasi Data Gabungan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-menjadi-37-komponen-pca">7.5.4. 5.4 Reduksi Dimensi Menjadi 37 Komponen PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explained-variance-pca">7.5.5. 5.5 Explained Variance PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penentuan-jumlah-cluster-k-means">7.5.6. 5.6 Penentuan Jumlah Cluster K-Means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-elbow-method-dan-silhouette-score">7.5.7. 5.7 Visualisasi Elbow Method dan Silhouette Score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering-dengan-k-2">7.5.8. 5.8 K-Means Clustering dengan K=2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-kualitas-clustering-pca1-sampai-pca37">7.5.9. 5.9 Evaluasi Kualitas Clustering PCA1 sampai PCA37</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -372,7 +416,670 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="reduksi-dimensi-dan-k-means-clustering">
 <h1><span class="section-number">7. </span>Reduksi Dimensi dan K-Means Clustering<a class="headerlink" href="#reduksi-dimensi-dan-k-means-clustering" title="Link to this heading">#</a></h1>
-<p>Bab ini memaparkan reduksi dimensi PCA menjadi 37 komponen serta penentuan kluster optimal K-Means menggunakan Elbow Method dan Silhouette Analysis.</p>
+<p>Tahap ini dilakukan untuk menganalisis hasil ekstraksi fitur dari tiga polutan, yaitu Karbon Monoksida (CO), Nitrogen Dioksida (NO₂), dan Sulfur Dioksida (SO₂). Analisis clustering dilakukan terhadap 68 fitur hasil ekstraksi masing-masing polutan menggunakan KNIME.</p>
+<p>Sebelum proses clustering, data fitur dinormalisasi menggunakan Z-score, kemudian dilakukan reduksi dimensi menggunakan Principal Component Analysis (PCA) dari 68 fitur menjadi 37 komponen utama. Hasil reduksi dimensi tersebut selanjutnya digunakan sebagai masukan pada algoritma K-Means Clustering.</p>
+<p>Kualitas hasil clustering dievaluasi menggunakan Silhouette Coefficient untuk mengetahui seberapa baik objek berada pada cluster-nya dibandingkan dengan cluster lainnya. Hasil clustering kemudian divisualisasikan menggunakan Scatter Plot berdasarkan nama dan cluster yang diperoleh.</p>
+<section id="reduksi-dimensi-dengan-principal-component-analysis-pca">
+<h2><span class="section-number">7.1. </span>1. Reduksi Dimensi dengan Principal Component Analysis (PCA)<a class="headerlink" href="#reduksi-dimensi-dengan-principal-component-analysis-pca" title="Link to this heading">#</a></h2>
+<p>Principal Component Analysis (PCA) merupakan metode reduksi dimensi yang digunakan untuk mengubah sejumlah variabel yang saling berkorelasi menjadi sekumpulan variabel baru yang disebut <strong>principal components</strong> atau komponen utama. Setiap komponen utama merupakan kombinasi linear dari fitur-fitur awal dan disusun berdasarkan besarnya variasi data yang dapat dijelaskan.</p>
+<p>Secara umum, PCA membentuk komponen utama sebagai:</p>
+<div class="math notranslate nohighlight">
+\[
+PC_j = w_{j1}X_1 + w_{j2}X_2 + \cdots + w_{jp}X_p
+\]</div>
+<p>dengan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(PC_j\)</span> = komponen utama ke-<span class="math notranslate nohighlight">\(j\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_p\)</span> = fitur awal,</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_{j1}, w_{j2}, \ldots, w_{jp}\)</span> = bobot atau <em>loading</em> setiap fitur.</p></li>
+</ul>
+<p>Pada penelitian ini, setiap polutan memiliki <strong>68 fitur hasil ekstraksi TSFEL</strong>. Sebelum PCA diterapkan, seluruh fitur dinormalisasi menggunakan <strong>Z-score</strong> agar perbedaan skala antarfitur tidak mendominasi proses pembentukan komponen utama.</p>
+<p>Normalisasi Z-score dirumuskan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[
+z = \frac{x-\mu}{\sigma}
+\]</div>
+<p>dengan <span class="math notranslate nohighlight">\(x\)</span> sebagai nilai data, <span class="math notranslate nohighlight">\(\mu\)</span> sebagai rata-rata, dan <span class="math notranslate nohighlight">\(\sigma\)</span> sebagai standar deviasi.</p>
+<p>Sesuai tahapan analisis yang dilakukan, <strong>68 fitur pada masing-masing polutan direduksi menjadi 37 komponen PCA</strong>. Dengan demikian, data yang digunakan sebagai masukan K-Means memiliki 37 dimensi untuk setiap mahasiswa/objek pengamatan.</p>
+</section>
+<section id="k-means-clustering-dan-silhouette-coefficient">
+<h2><span class="section-number">7.2. </span>2. K-Means Clustering dan Silhouette Coefficient<a class="headerlink" href="#k-means-clustering-dan-silhouette-coefficient" title="Link to this heading">#</a></h2>
+<section id="k-means-clustering">
+<h3><span class="section-number">7.2.1. </span>2.1 K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Link to this heading">#</a></h3>
+<p>K-Means merupakan metode <em>unsupervised learning</em> yang digunakan untuk mengelompokkan data ke dalam sejumlah <span class="math notranslate nohighlight">\(K\)</span> cluster berdasarkan kemiripan karakteristiknya. Setiap cluster memiliki titik pusat yang disebut <strong>centroid</strong>.</p>
+<p>Secara umum, K-Means berusaha meminimalkan jarak antara setiap data dengan centroid cluster tempat data tersebut berada. Fungsi objektif K-Means dapat dituliskan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[
+J = \sum_{k=1}^{K}\sum_{x_i \in C_k} ||x_i-\mu_k||^2
+\]</div>
+<p>dengan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K\)</span> = jumlah cluster,</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_k\)</span> = cluster ke-<span class="math notranslate nohighlight">\(k\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> = data ke-<span class="math notranslate nohighlight">\(i\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_k\)</span> = centroid cluster ke-<span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+</ul>
+<p>Pada penelitian ini, masukan K-Means adalah <strong>37 komponen hasil PCA</strong> dari masing-masing polutan CO, NO₂, dan SO₂.</p>
+</section>
+<section id="silhouette-coefficient">
+<h3><span class="section-number">7.2.2. </span>2.2 Silhouette Coefficient<a class="headerlink" href="#silhouette-coefficient" title="Link to this heading">#</a></h3>
+<p>Silhouette Coefficient digunakan untuk mengevaluasi kualitas hasil clustering dengan membandingkan kedekatan suatu data terhadap cluster-nya sendiri dengan kedekatannya terhadap cluster lain.</p>
+<p>Nilai Silhouette untuk suatu data dirumuskan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[
+s(i)=\frac{b(i)-a(i)}{\max(a(i),b(i))}
+\]</div>
+<p>dengan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a(i)\)</span> = rata-rata jarak data ke anggota lain dalam cluster yang sama,</p></li>
+<li><p><span class="math notranslate nohighlight">\(b(i)\)</span> = rata-rata jarak terkecil data ke cluster lain,</p></li>
+<li><p><span class="math notranslate nohighlight">\(s(i)\)</span> = nilai Silhouette data ke-<span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+</ul>
+<p>Nilai Silhouette berada pada rentang <strong>-1 sampai 1</strong>. Nilai yang semakin mendekati 1 menunjukkan pemisahan cluster yang semakin jelas, nilai yang mendekati 0 menunjukkan adanya kedekatan antarcluster, sedangkan nilai negatif menunjukkan bahwa sebagian data lebih dekat dengan cluster lain dibandingkan cluster tempat data tersebut ditempatkan.</p>
+<p>Silhouette Coefficient digunakan untuk mengevaluasi hasil K-Means pada masing-masing polutan setelah reduksi dimensi PCA.</p>
+</section>
+</section>
+<section id="implementasi-clustering-68-fitur-menggunakan-knime">
+<h2><span class="section-number">7.3. </span>3. Implementasi Clustering 68 Fitur Menggunakan KNIME<a class="headerlink" href="#implementasi-clustering-68-fitur-menggunakan-knime" title="Link to this heading">#</a></h2>
+<p>Proses clustering untuk masing-masing polutan dilakukan menggunakan KNIME. Data yang digunakan berasal dari tabel ekstraksi fitur yang tersimpan pada database PostgreSQL di Aiven. Masing-masing tabel terdiri atas 37 baris data mahasiswa dengan 68 fitur hasil ekstraksi TSFEL serta kolom identitas.</p>
+<p>Tahapan utama yang dilakukan pada KNIME adalah:</p>
+<ol class="arabic simple">
+<li><p>Membaca data ekstraksi fitur dari database PostgreSQL.</p></li>
+<li><p>Memilih 68 fitur numerik yang digunakan dalam analisis.</p></li>
+<li><p>Melakukan normalisasi menggunakan metode Z-score.</p></li>
+<li><p>Mereduksi 68 fitur menjadi 37 komponen menggunakan PCA.</p></li>
+<li><p>Melakukan clustering menggunakan K-Means.</p></li>
+<li><p>Mengevaluasi hasil clustering menggunakan Silhouette Coefficient.</p></li>
+<li><p>Memvisualisasikan hasil cluster menggunakan Scatter Plot dengan <code class="docutils literal notranslate"><span class="pre">nama</span></code> sebagai sumbu X dan <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> sebagai sumbu Y.</p></li>
+</ol>
+<p>Alur utama proses analisis dapat digambarkan sebagai berikut:</p>
+<p><code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span> <span class="pre">→</span> <span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span> <span class="pre">→</span> <span class="pre">DB</span> <span class="pre">Reader</span> <span class="pre">→</span> <span class="pre">Column</span> <span class="pre">Filter</span> <span class="pre">→</span> <span class="pre">Normalizer</span> <span class="pre">→</span> <span class="pre">PCA</span> <span class="pre">→</span> <span class="pre">K-Means</span> <span class="pre">→</span> <span class="pre">Silhouette</span> <span class="pre">Coefficient</span></code></p>
+<p>Hasil cluster kemudian dihubungkan kembali dengan kolom <code class="docutils literal notranslate"><span class="pre">nama</span></code> untuk keperluan visualisasi Scatter Plot. Kolom <code class="docutils literal notranslate"><span class="pre">nama</span></code> tidak digunakan sebagai fitur dalam proses normalisasi, PCA, maupun K-Means.</p>
+<section id="workflow-clustering-pada-knime">
+<h3><span class="section-number">7.3.1. </span>3.1 Workflow Clustering pada KNIME<a class="headerlink" href="#workflow-clustering-pada-knime" title="Link to this heading">#</a></h3>
+<p>Workflow KNIME yang digunakan untuk proses reduksi dimensi, clustering, evaluasi, dan visualisasi ditunjukkan pada gambar berikut.</p>
+<figure class="align-default" id="workflow-clustering-knime">
+<a class="reference internal image-reference" href="_images/workflow-knime.png"><img alt="_images/workflow-knime.png" src="_images/workflow-knime.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">Workflow clustering 68 fitur menggunakan KNIME.</span><a class="headerlink" href="#workflow-clustering-knime" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Pada workflow tersebut, data dibaca dari PostgreSQL Aiven menggunakan <strong>PostgreSQL Connector</strong>, <strong>DB Table Selector</strong>, dan <strong>DB Reader</strong>. Selanjutnya, <strong>Column Filter</strong> digunakan untuk memilih fitur yang dianalisis, kemudian data dinormalisasi menggunakan <strong>Normalizer</strong>. PCA digunakan untuk mereduksi 68 fitur menjadi 37 dimensi sebelum dilakukan K-Means Clustering. Hasil clustering dievaluasi menggunakan <strong>Silhouette Coefficient</strong> dan divisualisasikan menggunakan <strong>Scatter Plot</strong>.</p>
+</section>
+</section>
+<section id="hasil-clustering-68-fitur">
+<h2><span class="section-number">7.4. </span>4. Hasil Clustering 68 Fitur<a class="headerlink" href="#hasil-clustering-68-fitur" title="Link to this heading">#</a></h2>
+<p>Proses PCA dan K-Means dilakukan secara terpisah pada masing-masing polutan. Sebanyak 68 fitur hasil ekstraksi direduksi menjadi 37 komponen PCA sebelum digunakan dalam proses clustering.</p>
+<section id="hasil-clustering-co">
+<h3><span class="section-number">7.4.1. </span>4.1 Hasil Clustering CO<a class="headerlink" href="#hasil-clustering-co" title="Link to this heading">#</a></h3>
+<p>Pada data Karbon Monoksida (CO), K-Means menggunakan <strong>4 cluster (K=4)</strong>. Berdasarkan hasil evaluasi pada KNIME, diperoleh <strong>Overall Silhouette Coefficient sebesar 0.192</strong>.</p>
+<p>Hasil tersebut menunjukkan bahwa pemisahan antarcluster pada data CO masih relatif rendah karena nilai Silhouette berada dekat dengan 0. Visualisasi hasil clustering ditampilkan menggunakan Scatter Plot dengan <code class="docutils literal notranslate"><span class="pre">nama</span></code> pada sumbu X dan <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> pada sumbu Y.</p>
+<figure class="align-default" id="scatter-co">
+<a class="reference internal image-reference" href="_images/ScatterPlot-CO.png"><img alt="_images/ScatterPlot-CO.png" src="_images/ScatterPlot-CO.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Hasil Scatter Plot clustering CO dengan K=4.</span><a class="headerlink" href="#scatter-co" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="hasil-clustering-no2">
+<h3><span class="section-number">7.4.2. </span>4.2 Hasil Clustering NO₂<a class="headerlink" href="#hasil-clustering-no2" title="Link to this heading">#</a></h3>
+<p>Pada data Nitrogen Dioksida (NO₂), K-Means menggunakan <strong>5 cluster (K=5)</strong>. Hasil evaluasi menggunakan Silhouette Coefficient menghasilkan nilai <strong>Overall sebesar 0.193</strong>.</p>
+<p>Nilai tersebut menunjukkan bahwa pemisahan antarcluster pada data NO₂ masih relatif rendah. Hasil pengelompokan divisualisasikan menggunakan <code class="docutils literal notranslate"><span class="pre">nama</span></code> pada sumbu X dan <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> pada sumbu Y sehingga cluster setiap data dapat diamati secara langsung.</p>
+<figure class="align-default" id="scatter-no2">
+<a class="reference internal image-reference" href="_images/ScatterPlot-NO.png"><img alt="_images/ScatterPlot-NO.png" src="_images/ScatterPlot-NO.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7.3 </span><span class="caption-text">Hasil Scatter Plot clustering NO₂ dengan K=5.</span><a class="headerlink" href="#scatter-no2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="hasil-clustering-so2">
+<h3><span class="section-number">7.4.3. </span>4.3 Hasil Clustering SO₂<a class="headerlink" href="#hasil-clustering-so2" title="Link to this heading">#</a></h3>
+<p>Pada data Sulfur Dioksida (SO₂), K-Means menggunakan <strong>2 cluster (K=2)</strong>. Hasil evaluasi menghasilkan <strong>Overall Silhouette Coefficient sebesar 0.747</strong>.</p>
+<p>Nilai Silhouette SO₂ lebih mendekati 1 dibandingkan hasil CO dan NO₂. Pada konfigurasi clustering yang digunakan, hasil ini menunjukkan bahwa pemisahan cluster pada data SO₂ lebih jelas.</p>
+<figure class="align-default" id="scatter-so2">
+<a class="reference internal image-reference" href="_images/ScatterPlot-SO.png"><img alt="_images/ScatterPlot-SO.png" src="_images/ScatterPlot-SO.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7.4 </span><span class="caption-text">Hasil Scatter Plot clustering SO₂ dengan K=2.</span><a class="headerlink" href="#scatter-so2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="ringkasan-hasil">
+<h3><span class="section-number">7.4.4. </span>4.4 Ringkasan Hasil<a class="headerlink" href="#ringkasan-hasil" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Jumlah Fitur Awal</p></th>
+<th class="head text-right"><p>Dimensi PCA</p></th>
+<th class="head text-right"><p>Jumlah Cluster (K)</p></th>
+<th class="head text-right"><p>Overall Silhouette</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>68</p></td>
+<td class="text-right"><p>37</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0.192</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>68</p></td>
+<td class="text-right"><p>37</p></td>
+<td class="text-right"><p>5</p></td>
+<td class="text-right"><p>0.193</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>68</p></td>
+<td class="text-right"><p>37</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0.747</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Berdasarkan hasil evaluasi tersebut, konfigurasi clustering pada ketiga polutan menghasilkan nilai Silhouette yang berbeda. CO memperoleh nilai 0.192 pada K=4, NO₂ memperoleh nilai 0.193 pada K=5, sedangkan SO₂ memperoleh nilai 0.747 pada K=2.</p>
+</section>
+</section>
+<section id="analisis-gabungan-204-fitur-co-no2-dan-so2">
+<h2><span class="section-number">7.5. </span>5. Analisis Gabungan 204 Fitur CO, NO₂, dan SO₂<a class="headerlink" href="#analisis-gabungan-204-fitur-co-no2-dan-so2" title="Link to this heading">#</a></h2>
+<p>Selain analisis 68 fitur pada masing-masing polutan menggunakan KNIME, dilakukan pula analisis gabungan terhadap fitur CO, NO₂, dan SO₂ menggunakan Python pada Google Colab.</p>
+<p>Setiap polutan memiliki 68 fitur hasil ekstraksi TSFEL, sehingga penggabungan ketiga polutan menghasilkan:</p>
+<p>[
+68 \times 3 = 204 \text{ fitur}
+]</p>
+<p>Data CO, NO₂, dan SO₂ dipasangkan berdasarkan nama mahasiswa yang telah dinormalisasi. Hal ini dilakukan agar fitur dari ketiga polutan pada setiap baris berasal dari mahasiswa yang sama.</p>
+<section id="penggabungan-data">
+<h3><span class="section-number">7.5.1. </span>5.1 Penggabungan Data<a class="headerlink" href="#penggabungan-data" title="Link to this heading">#</a></h3>
+<p>Data hasil ekstraksi fitur dari ketiga polutan dibaca menggunakan Pandas.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">co</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/ekstraksi_fitur_co.csv&#39;</span><span class="p">)</span>
+<span class="n">no2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/ekstraksi_fitur_no2.csv&#39;</span><span class="p">)</span>
+<span class="n">so2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/ekstraksi_fitur_so2.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Setelah proses pencocokan dan penggabungan, dataset gabungan memiliki <strong>37 baris data dengan 204 fitur numerik</strong>, di luar kolom identitas <code class="docutils literal notranslate"><span class="pre">nama</span></code> dan <code class="docutils literal notranslate"><span class="pre">daerah</span></code>.</p>
+<p>Dengan demikian, bentuk dataset gabungan adalah <strong>37 × 206 kolom</strong>, yang terdiri atas:</p>
+<ul class="simple">
+<li><p>1 kolom <code class="docutils literal notranslate"><span class="pre">nama</span></code>,</p></li>
+<li><p>1 kolom <code class="docutils literal notranslate"><span class="pre">daerah</span></code>,</p></li>
+<li><p>68 fitur CO,</p></li>
+<li><p>68 fitur NO₂,</p></li>
+<li><p>68 fitur SO₂.</p></li>
+</ul>
+<p>Dataset gabungan kemudian disimpan sebagai:</p>
+<p><code class="docutils literal notranslate"><span class="pre">dataset_204_fitur_CO_NO2_SO2.csv</span></code></p>
+</section>
+<section id="pemeriksaan-kualitas-fitur">
+<h3><span class="section-number">7.5.2. </span>5.2 Pemeriksaan Kualitas Fitur<a class="headerlink" href="#pemeriksaan-kualitas-fitur" title="Link to this heading">#</a></h3>
+<p>Sebelum PCA dan clustering dilakukan, 204 fitur numerik diperiksa untuk memastikan tidak terdapat masalah pada data.</p>
+<p>Hasil pemeriksaan menunjukkan:</p>
+<ul class="simple">
+<li><p>jumlah fitur awal: <strong>204 fitur</strong>,</p></li>
+<li><p>fitur nonnumerik: <strong>0</strong>,</p></li>
+<li><p>missing value (NaN): <strong>0</strong>,</p></li>
+<li><p>nilai infinite: <strong>0</strong>,</p></li>
+<li><p>baris duplikat: <strong>0</strong>,</p></li>
+<li><p>fitur konstan: <strong>7 fitur</strong>.</p></li>
+</ul>
+<p>Tujuh fitur konstan yang ditemukan adalah:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CO_human_range_energy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO_spectral_roll_on</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CO_zero_cross</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO2_human_range_energy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO2_spectral_roll_on</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SO2_human_range_energy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SO2_spectral_roll_on</span></code></p></li>
+</ol>
+<p>Fitur konstan tidak memberikan variasi untuk proses analisis sehingga dikeluarkan dari data yang digunakan untuk PCA dan clustering. Setelah fitur konstan dikeluarkan, data analisis memiliki <strong>197 fitur</strong>.</p>
+<p>Dataset 204 fitur asli tetap dipertahankan, sedangkan penghapusan tujuh fitur konstan hanya dilakukan pada data yang digunakan dalam tahap analisis berikutnya.</p>
+</section>
+<section id="normalisasi-data-gabungan">
+<h3><span class="section-number">7.5.3. </span>5.3 Normalisasi Data Gabungan<a class="headerlink" href="#normalisasi-data-gabungan" title="Link to this heading">#</a></h3>
+<p>Setelah tujuh fitur konstan dikeluarkan, data yang digunakan dalam analisis terdiri atas <strong>37 observasi dan 197 fitur</strong>. Sebelum PCA dilakukan, seluruh fitur tersebut distandardisasi menggunakan <strong>StandardScaler</strong>.</p>
+<p>Standardisasi dilakukan agar fitur-fitur yang memiliki skala berbeda dapat berada pada skala yang sebanding. Setelah standardisasi, setiap fitur memiliki rata-rata mendekati 0 dan standar deviasi mendekati 1.</p>
+<p>Kode yang digunakan adalah sebagai berikut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Standardisasi 197 fitur</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled_array</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_clean</span><span class="p">)</span>
+
+<span class="c1"># Kembalikan menjadi DataFrame</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">X_scaled_array</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">X_clean</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">X_clean</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== HASIL STANDARDISASI ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran data :&quot;</span><span class="p">,</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Rata-rata keseluruhan (≈ 0):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Standar deviasi rata-rata (≈ 1):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">NaN :&quot;</span><span class="p">,</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inf :&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Hasil standardisasi menunjukkan ukuran data:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(37, 197)
+</pre></div>
+</div>
+<p>Rata-rata keseluruhan setelah standardisasi adalah sekitar <strong>1.1748286969113542e-15</strong>, sehingga nilainya sangat dekat dengan 0. Standar deviasi rata-rata adalah <strong>1.0</strong>.</p>
+<p>Selain itu, hasil pemeriksaan menunjukkan:</p>
+<ul class="simple">
+<li><p>jumlah nilai NaN = <strong>0</strong>,</p></li>
+<li><p>jumlah nilai infinite = <strong>0</strong>.</p></li>
+</ul>
+<p>Dengan demikian, data hasil standardisasi memiliki <strong>37 observasi dan 197 fitur</strong> serta siap digunakan pada proses reduksi dimensi menggunakan PCA.</p>
+</section>
+<section id="reduksi-dimensi-menjadi-37-komponen-pca">
+<h3><span class="section-number">7.5.4. </span>5.4 Reduksi Dimensi Menjadi 37 Komponen PCA<a class="headerlink" href="#reduksi-dimensi-menjadi-37-komponen-pca" title="Link to this heading">#</a></h3>
+<p>Setelah proses standardisasi, data yang terdiri atas <strong>197 fitur</strong> direduksi menggunakan <strong>Principal Component Analysis (PCA)</strong>. Sesuai tahapan analisis, PCA diterapkan dengan jumlah komponen sebanyak <strong>37</strong>, yaitu PCA1 sampai PCA37.</p>
+<p>Kode yang digunakan adalah sebagai berikut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># PCA sesuai instruksi: PCA1 sampai PCA37</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
+
+<span class="n">X_pca_array</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="c1"># Buat nama PCA1 ... PCA37</span>
+<span class="n">nama_pca</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;PCA</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">38</span><span class="p">)]</span>
+
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">X_pca_array</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">nama_pca</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
+
+<span class="c1"># Explained variance</span>
+<span class="n">explained</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+<span class="n">cumulative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">explained</span><span class="p">)</span>
+
+<span class="n">pca_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;PCA&#39;</span><span class="p">:</span> <span class="n">nama_pca</span><span class="p">,</span>
+    <span class="s1">&#39;Explained_Variance&#39;</span><span class="p">:</span> <span class="n">explained</span><span class="p">,</span>
+    <span class="s1">&#39;Cumulative_Variance&#39;</span><span class="p">:</span> <span class="n">cumulative</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== HASIL PCA ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data sebelum PCA :&quot;</span><span class="p">,</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data setelah PCA :&quot;</span><span class="p">,</span> <span class="n">X_pca</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total explained variance 37 PCA:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cumulative</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Explained variance PCA37:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">explained</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">pca_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hasil proses PCA menunjukkan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Data sebelum PCA : (37, 197)
+Data setelah PCA : (37, 37)
+
+Total explained variance 37 PCA:
+1.0
+
+Explained variance PCA37:
+3.427314217122068e-33
+</pre></div>
+</div>
+<p>Dengan demikian, data yang sebelumnya terdiri atas <strong>197 fitur</strong> berhasil direduksi menjadi <strong>37 komponen utama</strong>, yaitu PCA1 sampai PCA37.</p>
+<p>Total <em>explained variance</em> dari 37 komponen mencapai <strong>1.0 atau 100%</strong>, sedangkan <em>explained variance</em> pada PCA37 sangat mendekati nol, yaitu sekitar <strong>3.427 × 10⁻³³</strong>.</p>
+<p>Data hasil PCA berukuran <strong>37 × 37</strong> ini selanjutnya digunakan sebagai masukan dalam proses K-Means Clustering.</p>
+</section>
+<section id="explained-variance-pca">
+<h3><span class="section-number">7.5.5. </span>5.5 Explained Variance PCA<a class="headerlink" href="#explained-variance-pca" title="Link to this heading">#</a></h3>
+<p><em>Explained variance</em> digunakan untuk melihat proporsi variasi data yang dapat dijelaskan oleh setiap komponen PCA. Berdasarkan hasil analisis, beberapa nilai kumulatif <em>explained variance</em> yang diperoleh adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head text-right"><p>Cumulative Explained Variance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PCA1</p></td>
+<td class="text-right"><p>0.499390</p></td>
+</tr>
+<tr class="row-odd"><td><p>PCA2</p></td>
+<td class="text-right"><p>0.661485</p></td>
+</tr>
+<tr class="row-even"><td><p>PCA3</p></td>
+<td class="text-right"><p>0.760222</p></td>
+</tr>
+<tr class="row-odd"><td><p>PCA9</p></td>
+<td class="text-right"><p>0.907925</p></td>
+</tr>
+<tr class="row-even"><td><p>PCA14</p></td>
+<td class="text-right"><p>0.953350</p></td>
+</tr>
+<tr class="row-odd"><td><p>PCA36</p></td>
+<td class="text-right"><p>1.000000</p></td>
+</tr>
+<tr class="row-even"><td><p>PCA37</p></td>
+<td class="text-right"><p>1.000000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>PCA1 sendiri menjelaskan sekitar <strong>49.94%</strong> variasi data, sedangkan PCA1 sampai PCA9 secara kumulatif menjelaskan sekitar <strong>90.79%</strong> variasi. Pada PCA36, cumulative explained variance telah mencapai 1 atau sekitar <strong>100%</strong>.</p>
+<p>Nilai variasi tambahan pada PCA37 sangat mendekati nol. Kondisi ini berkaitan dengan jumlah data yang digunakan, yaitu 37 observasi, sehingga jumlah arah variasi independen setelah data dipusatkan terbatas. Meskipun demikian, analisis tetap menggunakan <strong>37 komponen PCA</strong> sesuai tahapan reduksi dimensi yang diterapkan.</p>
+</section>
+<section id="penentuan-jumlah-cluster-k-means">
+<h3><span class="section-number">7.5.6. </span>5.6 Penentuan Jumlah Cluster K-Means<a class="headerlink" href="#penentuan-jumlah-cluster-k-means" title="Link to this heading">#</a></h3>
+<p>Setelah diperoleh 37 komponen PCA, tahap berikutnya adalah menentukan jumlah cluster pada algoritma K-Means. Pengujian dilakukan menggunakan jumlah cluster <strong>K=2 sampai K=10</strong>.</p>
+<p>Setiap nilai K dievaluasi menggunakan <strong>Inertia</strong> dan <strong>Silhouette Score</strong>. Inertia mengukur jumlah kuadrat jarak data terhadap centroid cluster, sedangkan Silhouette Score digunakan untuk mengevaluasi seberapa baik pemisahan antarcluster.</p>
+<p>Kode yang digunakan adalah sebagai berikut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">hasil_k</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Uji K = 2 sampai 10</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span>
+        <span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+        <span class="n">n_init</span><span class="o">=</span><span class="mi">20</span>
+    <span class="p">)</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_pca</span><span class="p">)</span>
+
+    <span class="n">silhouette</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="n">inertia</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span>
+
+    <span class="n">hasil_k</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span>
+        <span class="s1">&#39;Inertia&#39;</span><span class="p">:</span> <span class="n">inertia</span><span class="p">,</span>
+        <span class="s1">&#39;Silhouette_Score&#39;</span><span class="p">:</span> <span class="n">silhouette</span>
+    <span class="p">})</span>
+
+<span class="n">hasil_cluster</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hasil_k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== EVALUASI JUMLAH CLUSTER ===&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">hasil_cluster</span><span class="p">)</span>
+
+<span class="c1"># K dengan silhouette tertinggi</span>
+<span class="n">best_row</span> <span class="o">=</span> <span class="n">hasil_cluster</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">hasil_cluster</span><span class="p">[</span><span class="s1">&#39;Silhouette_Score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">K terbaik berdasarkan Silhouette Score:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;K =&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">best_row</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Silhouette Score =&quot;</span><span class="p">,</span> <span class="n">best_row</span><span class="p">[</span><span class="s1">&#39;Silhouette_Score&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Hasil evaluasi jumlah cluster adalah sebagai berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>K</p></th>
+<th class="head text-right"><p>Inertia</p></th>
+<th class="head text-right"><p>Silhouette Score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>3660.838873</p></td>
+<td class="text-right"><p>0.770191</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>2595.688251</p></td>
+<td class="text-right"><p>0.622618</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>2143.630501</p></td>
+<td class="text-right"><p>0.372594</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td class="text-right"><p>1818.688380</p></td>
+<td class="text-right"><p>0.271124</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p>1584.751368</p></td>
+<td class="text-right"><p>0.121962</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td class="text-right"><p>1413.665127</p></td>
+<td class="text-right"><p>0.110611</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>8</p></td>
+<td class="text-right"><p>1258.661437</p></td>
+<td class="text-right"><p>0.105963</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>9</p></td>
+<td class="text-right"><p>1133.576436</p></td>
+<td class="text-right"><p>0.112529</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>10</p></td>
+<td class="text-right"><p>1020.359825</p></td>
+<td class="text-right"><p>0.093949</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Berdasarkan hasil pengujian, <strong>Silhouette Score tertinggi diperoleh pada K=2</strong>, yaitu sebesar <strong>0.770191</strong>. Nilai tersebut lebih tinggi dibandingkan nilai Silhouette pada K=3 sampai K=10.</p>
+<p>Oleh karena itu, berdasarkan evaluasi Silhouette Score, <strong>K=2 digunakan sebagai jumlah cluster pada analisis K-Means selanjutnya</strong>.</p>
+</section>
+<section id="visualisasi-elbow-method-dan-silhouette-score">
+<h3><span class="section-number">7.5.7. </span>5.7 Visualisasi Elbow Method dan Silhouette Score<a class="headerlink" href="#visualisasi-elbow-method-dan-silhouette-score" title="Link to this heading">#</a></h3>
+<p>Untuk memperjelas hasil evaluasi jumlah cluster, nilai Inertia dan Silhouette Score pada K=2 sampai K=10 divisualisasikan menggunakan Elbow Method dan grafik Silhouette Score.</p>
+<p>Kode yang digunakan adalah sebagai berikut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># ============================</span>
+<span class="c1"># 1. ELBOW METHOD</span>
+<span class="c1"># ============================</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">hasil_cluster</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">],</span>
+    <span class="n">hasil_cluster</span><span class="p">[</span><span class="s1">&#39;Inertia&#39;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Inertia&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Elbow Method untuk Menentukan Jumlah Cluster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">hasil_cluster</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># ============================</span>
+<span class="c1"># 2. SILHOUETTE SCORE</span>
+<span class="c1"># ============================</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">hasil_cluster</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">],</span>
+    <span class="n">hasil_cluster</span><span class="p">[</span><span class="s1">&#39;Silhouette_Score&#39;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Silhouette Score untuk Menentukan Jumlah Cluster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">hasil_cluster</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Grafik Elbow Method:</p>
+<figure class="align-default" id="elbow-204">
+<a class="reference internal image-reference" href="_images/Elbow-204.png"><img alt="_images/Elbow-204.png" src="_images/Elbow-204.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7.5 </span><span class="caption-text">Elbow Method untuk pengujian jumlah cluster K=2 sampai K=10 pada data gabungan.</span><a class="headerlink" href="#elbow-204" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Grafik Silhouette Score:</p>
+<figure class="align-default" id="silhouette-204">
+<a class="reference internal image-reference" href="_images/Silhoutte-204.png"><img alt="_images/Silhoutte-204.png" src="_images/Silhoutte-204.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7.6 </span><span class="caption-text">Silhouette Score untuk pengujian jumlah cluster K=2 sampai K=10 pada data gabungan.</span><a class="headerlink" href="#silhouette-204" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Pada grafik Elbow Method, nilai Inertia menurun seiring bertambahnya jumlah cluster. Grafik ini digunakan untuk mengamati perubahan penurunan Inertia pada setiap nilai K.</p>
+<p>Pada grafik Silhouette Score, nilai tertinggi diperoleh pada <strong>K=2</strong>, yaitu sebesar <strong>0.770191</strong>. Oleh karena itu, berdasarkan evaluasi Silhouette Score, <strong>K=2 digunakan sebagai jumlah cluster pada proses K-Means selanjutnya</strong>.</p>
+</section>
+<section id="k-means-clustering-dengan-k-2">
+<h3><span class="section-number">7.5.8. </span>5.8 K-Means Clustering dengan K=2<a class="headerlink" href="#k-means-clustering-dengan-k-2" title="Link to this heading">#</a></h3>
+<p>Berdasarkan evaluasi jumlah cluster sebelumnya, nilai <strong>K=2</strong> memperoleh Silhouette Score tertinggi. Oleh karena itu, K-Means final diterapkan pada 37 komponen PCA menggunakan dua cluster.</p>
+<p>Kode yang digunakan adalah sebagai berikut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># K-Means menggunakan K=2 hasil evaluasi sebelumnya</span>
+<span class="n">kmeans_final</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span>
+    <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">n_init</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+
+<span class="n">cluster_final</span> <span class="o">=</span> <span class="n">kmeans_final</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_pca</span><span class="p">)</span>
+
+<span class="c1"># Buat tabel hasil clustering</span>
+<span class="n">hasil_final</span> <span class="o">=</span> <span class="n">data_204</span><span class="p">[[</span><span class="s1">&#39;nama&#39;</span><span class="p">,</span> <span class="s1">&#39;daerah&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">hasil_final</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_final</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== JUMLAH ANGGOTA SETIAP CLUSTER ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="n">hasil_final</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== ANGGOTA CLUSTER ===&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span>
+    <span class="n">hasil_final</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;Cluster&#39;</span><span class="p">,</span> <span class="s1">&#39;nama&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Hasil K-Means menunjukkan jumlah anggota pada masing-masing cluster sebagai berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Cluster</p></th>
+<th class="head text-right"><p>Jumlah Anggota</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>36</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dengan demikian, dari <strong>37 observasi</strong>, satu observasi berada pada Cluster 0 dan 36 observasi berada pada Cluster 1.</p>
+<p>Hasil ini merupakan pengelompokan K-Means menggunakan <strong>K=2 pada PCA1 sampai PCA37</strong>. Selanjutnya dilakukan evaluasi terhadap penggunaan jumlah komponen PCA secara bertahap dari PCA1 hingga PCA37 untuk melihat perubahan kualitas clustering berdasarkan Silhouette Score.</p>
+</section>
+<section id="evaluasi-kualitas-clustering-pca1-sampai-pca37">
+<h3><span class="section-number">7.5.9. </span>5.9 Evaluasi Kualitas Clustering PCA1 sampai PCA37<a class="headerlink" href="#evaluasi-kualitas-clustering-pca1-sampai-pca37" title="Link to this heading">#</a></h3>
+<p>Setelah diperoleh jumlah cluster K=2, dilakukan evaluasi untuk mengetahui kualitas clustering ketika jumlah komponen PCA ditambahkan secara bertahap dari <strong>PCA1 sampai PCA37</strong>.</p>
+<p>Pada setiap iterasi, K-Means menggunakan K=2 dan Silhouette Score dihitung untuk mengukur kualitas hasil clustering. Selain itu, jumlah anggota pada masing-masing cluster juga dicatat.</p>
+<p>Kode yang digunakan adalah sebagai berikut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">hasil_pca_cluster</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">n_pca</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">38</span><span class="p">):</span>
+
+    <span class="c1"># Gunakan PCA1 sampai PCA-n</span>
+    <span class="n">X_temp</span> <span class="o">=</span> <span class="n">X_pca</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="n">n_pca</span><span class="p">]</span>
+
+    <span class="c1"># K-Means dengan K terbaik = 2</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span>
+        <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+        <span class="n">n_init</span><span class="o">=</span><span class="mi">20</span>
+    <span class="p">)</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_temp</span><span class="p">)</span>
+
+    <span class="c1"># Evaluasi</span>
+    <span class="n">silhouette</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X_temp</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+    <span class="c1"># Jumlah anggota masing-masing cluster</span>
+    <span class="n">jumlah_cluster</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+
+    <span class="n">hasil_pca_cluster</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;Jumlah_PCA&#39;</span><span class="p">:</span> <span class="n">n_pca</span><span class="p">,</span>
+        <span class="s1">&#39;Silhouette_Score&#39;</span><span class="p">:</span> <span class="n">silhouette</span><span class="p">,</span>
+        <span class="s1">&#39;Cluster_0&#39;</span><span class="p">:</span> <span class="n">jumlah_cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;Cluster_1&#39;</span><span class="p">:</span> <span class="n">jumlah_cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">})</span>
+
+<span class="n">hasil_pca_cluster</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hasil_pca_cluster</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== EVALUASI PCA1 SAMPAI PCA37 ===&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">hasil_pca_cluster</span><span class="p">)</span>
+
+<span class="c1"># PCA dengan silhouette tertinggi</span>
+<span class="n">best_pca</span> <span class="o">=</span> <span class="n">hasil_pca_cluster</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">hasil_pca_cluster</span><span class="p">[</span><span class="s1">&#39;Silhouette_Score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== HASIL TERBAIK ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah PCA       :&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">best_pca</span><span class="p">[</span><span class="s1">&#39;Jumlah_PCA&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Silhouette Score :&quot;</span><span class="p">,</span> <span class="n">best_pca</span><span class="p">[</span><span class="s1">&#39;Silhouette_Score&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Ukuran cluster  :&quot;</span><span class="p">,</span>
+    <span class="nb">int</span><span class="p">(</span><span class="n">best_pca</span><span class="p">[</span><span class="s1">&#39;Cluster_0&#39;</span><span class="p">]),</span>
+    <span class="s2">&quot;dan&quot;</span><span class="p">,</span>
+    <span class="nb">int</span><span class="p">(</span><span class="n">best_pca</span><span class="p">[</span><span class="s1">&#39;Cluster_1&#39;</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Hasil evaluasi menunjukkan bahwa nilai Silhouette Score berubah seiring dengan penambahan jumlah komponen PCA. Beberapa hasil yang diperoleh adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Jumlah PCA</p></th>
+<th class="head text-right"><p>Silhouette Score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0.962142</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0.905277</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0.861190</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>36</p></td>
+<td class="text-right"><p>0.770191</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>37</p></td>
+<td class="text-right"><p>0.770191</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pada <strong>PCA1</strong>, Silhouette Score mencapai sekitar <strong>0.962142</strong>. Ketika jumlah komponen PCA ditambah, nilai Silhouette mengalami perubahan dan pada penggunaan seluruh <strong>37 komponen PCA</strong> diperoleh nilai sekitar <strong>0.770191</strong>.</p>
+<p>Dengan demikian, berdasarkan Silhouette Score, hasil clustering tetap menunjukkan pemisahan cluster yang terukur pada penggunaan PCA1 sampai PCA37. Pada data dengan seluruh 37 komponen PCA, Silhouette Score yang diperoleh adalah <strong>0.770191</strong>.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -420,6 +1127,51 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-dengan-principal-component-analysis-pca">7.1. 1. Reduksi Dimensi dengan Principal Component Analysis (PCA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering-dan-silhouette-coefficient">7.2. 2. K-Means Clustering dan Silhouette Coefficient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">7.2.1. 2.1 K-Means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-coefficient">7.2.2. 2.2 Silhouette Coefficient</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-clustering-68-fitur-menggunakan-knime">7.3. 3. Implementasi Clustering 68 Fitur Menggunakan KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-clustering-pada-knime">7.3.1. 3.1 Workflow Clustering pada KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-68-fitur">7.4. 4. Hasil Clustering 68 Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-co">7.4.1. 4.1 Hasil Clustering CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-no2">7.4.2. 4.2 Hasil Clustering NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-so2">7.4.3. 4.3 Hasil Clustering SO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil">7.4.4. 4.4 Ringkasan Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-gabungan-204-fitur-co-no2-dan-so2">7.5. 5. Analisis Gabungan 204 Fitur CO, NO₂, dan SO₂</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penggabungan-data">7.5.1. 5.1 Penggabungan Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-kualitas-fitur">7.5.2. 5.2 Pemeriksaan Kualitas Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data-gabungan">7.5.3. 5.3 Normalisasi Data Gabungan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-menjadi-37-komponen-pca">7.5.4. 5.4 Reduksi Dimensi Menjadi 37 Komponen PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explained-variance-pca">7.5.5. 5.5 Explained Variance PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penentuan-jumlah-cluster-k-means">7.5.6. 5.6 Penentuan Jumlah Cluster K-Means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-elbow-method-dan-silhouette-score">7.5.7. 5.7 Visualisasi Elbow Method dan Silhouette Score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering-dengan-k-2">7.5.8. 5.8 K-Means Clustering dengan K=2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-kualitas-clustering-pca1-sampai-pca37">7.5.9. 5.9 Evaluasi Kualitas Clustering PCA1 sampai PCA37</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -223,7 +223,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_series.html">4. Analisis Time Series</a></li>
@@ -375,10 +375,42 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembersihan-data-data-cleaning">3.1. Pembersihan Data (<em>Data Cleaning</em>)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values">3.1.1. Penanganan Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyesuaian-format-data">3.1. 1. Penyesuaian Format Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-penyesuaian-data-co">3.1.1. 1.1 Code Penyesuaian Data CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-no2">3.1.2. 2.2 Deteksi Outlier NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-so2">3.1.3. 2.3 Deteksi Outlier SO₂</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-value-dan-outlier">3.2. 3. Penanganan Missing Value dan Outlier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-data-co">3.2.1. 3.1 Imputasi Data CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-data-no2">3.2.2. 3.2 Imputasi Data NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-data-so2">3.2.3. 3.3 Imputasi Data SO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-penanganan-missing-value">3.2.4. 3.4 Hasil Penanganan Missing Value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-hasil-data-cleaning">3.3. 4. Verifikasi Hasil Data Cleaning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-verifikasi">3.3.1. 4.1 Code Verifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-verifikasi">3.3.2. 4.2 Hasil Verifikasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-dataset-hasil-cleaning">3.4. 5. Penyimpanan Dataset Hasil Cleaning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-data-preparation">3.5. 6. Ringkasan Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-time-series-co">3.6. 2. Analisis Time Series CO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-co">3.6.1. 2.1 Visualisasi Time Series CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-time-series-co">3.6.2. 2.2 Interpretasi Time Series CO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-time-series-no2">3.7. 3. Analisis Time Series NO₂</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-no2">3.7.1. 3.1 Visualisasi Time Series NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-time-series-no2">3.7.2. 3.2 Interpretasi Time Series NO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-time-series-so2">3.8. 4. Analisis Time Series SO₂</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-so2">3.8.1. 4.1 Visualisasi Time Series SO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-time-series-so2">3.8.2. 4.2 Interpretasi Time Series SO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-analisis-time-series">3.9. 5. Ringkasan Analisis Time Series</a></li>
 </ul>
             </nav>
         </div>
@@ -392,18 +424,586 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
 <h1><span class="section-number">3. </span>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
-<p>Tahap <strong>Data Preparation</strong> bertujuan untuk membersihkan, mentransformasikan, dan menstrukturkan data mentah deret waktu konsentrasi gas <span class="math notranslate nohighlight">\(NO_2\)</span> hasil ekstraksi satelit (Sentinel-5P / Google Earth Engine) sebelum dilakukan ekstraksi fitur sinyal (<em>TSFEL</em>) dan analisis lanjutan.</p>
+<p>Tahap <strong>Data Preparation</strong> dilakukan untuk menyiapkan data mentah CO, NO₂, dan SO₂ agar memiliki format dan kondisi yang sesuai untuk digunakan pada tahap analisis selanjutnya.</p>
+<p>Berdasarkan hasil <strong>Data Understanding</strong>, ketiga dataset memiliki 365 tanggal pengamatan pada periode 31 Agustus 2025 hingga 30 Agustus 2026. Namun, masih ditemukan beberapa kondisi yang perlu ditangani sebelum data dapat digunakan untuk analisis.</p>
+<p>Kondisi tersebut meliputi:</p>
+<ul class="simple">
+<li><p>kolom <code class="docutils literal notranslate"><span class="pre">CO</span></code> pada data mentah masih bertipe <code class="docutils literal notranslate"><span class="pre">object</span></code>,</p></li>
+<li><p>terdapat nilai <code class="docutils literal notranslate"><span class="pre">[None]</span></code> pada data CO,</p></li>
+<li><p>terdapat <em>missing value</em> pada data NO₂,</p></li>
+<li><p>terdapat <em>missing value</em> pada data SO₂.</p></li>
+</ul>
+<p>Oleh karena itu, tahap Data Preparation berfokus pada penyesuaian format data dan penanganan nilai yang tidak tersedia dengan tetap mempertahankan struktur temporal dari masing-masing dataset.</p>
+<p>Proses persiapan dilakukan secara terpisah terhadap data CO, NO₂, dan SO₂ sebelum data digunakan pada tahap analisis <em>time series</em> dan ekstraksi fitur.</p>
 <hr class="docutils" />
-<section id="pembersihan-data-data-cleaning">
-<h2><span class="section-number">3.1. </span>Pembersihan Data (<em>Data Cleaning</em>)<a class="headerlink" href="#pembersihan-data-data-cleaning" title="Link to this heading">#</a></h2>
-<p>Data penginderaan jauh (<em>remote sensing</em>) sering kali memiliki <em>gap</em> atau nilai kosong (<em>missing values</em>) akibat tutupan awan (<em>cloud masking</em>) tebal atau ketidaktersediaan citra satelit pada hari tertentu.</p>
-<section id="penanganan-missing-values">
-<h3><span class="section-number">3.1.1. </span>Penanganan Missing Values<a class="headerlink" href="#penanganan-missing-values" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>Pemeriksaan Gap Tanggal</strong>: Memastikan indeks temporal bersifat harian secara kontinu tanpa ada tanggal yang melompat.</p></li>
-<li><p><strong>Imputasi Interpolasi Temporal</strong>: Mengisi nilai kosong menggunakan metode interpolasi linear atau <em>forward-fill</em> (<em>ffill</em>) / <em>backward-fill</em> (<em>bfill</em>), tergantung pada pola gap data:</p></li>
-</ol>
+<section id="penyesuaian-format-data">
+<h2><span class="section-number">3.1. </span>1. Penyesuaian Format Data<a class="headerlink" href="#penyesuaian-format-data" title="Link to this heading">#</a></h2>
+<p>Sebelum dilakukan penanganan <em>missing value</em> dan <em>outlier</em>, format data diperiksa dan disesuaikan terlebih dahulu. Kolom <code class="docutils literal notranslate"><span class="pre">date</span></code> pada ketiga dataset diubah menjadi tipe <code class="docutils literal notranslate"><span class="pre">datetime</span></code> agar dapat digunakan sebagai indeks temporal.</p>
+<p>Pada data CO terdapat kondisi khusus karena nilai pada kolom <code class="docutils literal notranslate"><span class="pre">CO</span></code> masih terbaca sebagai tipe <code class="docutils literal notranslate"><span class="pre">object</span></code> dengan format seperti <code class="docutils literal notranslate"><span class="pre">[0.0257152002304792]</span></code> dan <code class="docutils literal notranslate"><span class="pre">[None]</span></code>. Oleh karena itu, nilai CO perlu dikonversi terlebih dahulu menjadi nilai numerik.</p>
+<p>Nilai <code class="docutils literal notranslate"><span class="pre">[None]</span></code> dikonversi menjadi <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, sedangkan nilai yang berada di dalam list diambil sebagai nilai numerik.</p>
+<section id="code-penyesuaian-data-co">
+<h3><span class="section-number">3.1.1. </span>1.1 Code Penyesuaian Data CO<a class="headerlink" href="#code-penyesuaian-data-co" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+
+<span class="n">df_co</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;CO_Kota_Sumenep_raw.csv&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_co</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="n">df_co</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_co</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+<span class="n">df_co</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_co</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">parse_co</span><span class="p">)</span>
+
+<span class="n">df_co</span> <span class="o">=</span> <span class="n">df_co</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="o">---</span>
+
+<span class="c1">## 2. Deteksi Outlier Menggunakan IQR</span>
+
+<span class="n">Selain</span> <span class="o">*</span><span class="n">missing</span> <span class="n">value</span><span class="o">*</span><span class="p">,</span> <span class="n">data</span> <span class="n">juga</span> <span class="n">diperiksa</span> <span class="n">untuk</span> <span class="n">mendeteksi</span> <span class="n">nilai</span> <span class="n">yang</span> <span class="n">berada</span> <span class="n">di</span> <span class="n">luar</span> <span class="n">rentang</span> <span class="n">umum</span> <span class="n">data</span> <span class="p">(</span><span class="o">*</span><span class="n">outlier</span><span class="o">*</span><span class="p">)</span><span class="o">.</span> <span class="n">Deteksi</span> <span class="o">*</span><span class="n">outlier</span><span class="o">*</span> <span class="n">dilakukan</span> <span class="n">menggunakan</span> <span class="n">metode</span> <span class="o">**</span><span class="n">Interquartile</span> <span class="n">Range</span> <span class="p">(</span><span class="n">IQR</span><span class="p">)</span><span class="o">**.</span>
+
+<span class="n">IQR</span> <span class="n">merupakan</span> <span class="n">selisih</span> <span class="n">antara</span> <span class="n">kuartil</span> <span class="n">ketiga</span> <span class="p">(</span><span class="err">$</span><span class="n">Q_3</span><span class="err">$</span><span class="p">)</span> <span class="n">dan</span> <span class="n">kuartil</span> <span class="n">pertama</span> <span class="p">(</span><span class="err">$</span><span class="n">Q_1</span><span class="err">$</span><span class="p">):</span>
+
+<span class="err">$$</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q_3</span> <span class="o">-</span> <span class="n">Q_1</span>
+<span class="err">$$</span>
+
+<span class="n">Batas</span> <span class="n">bawah</span> <span class="n">dan</span> <span class="n">batas</span> <span class="n">atas</span> <span class="n">ditentukan</span> <span class="n">menggunakan</span><span class="p">:</span>
+
+<span class="err">$$</span>
+\<span class="n">text</span><span class="p">{</span><span class="n">Lower</span> <span class="n">Bound</span><span class="p">}</span> <span class="o">=</span> <span class="n">Q_1</span> <span class="o">-</span> <span class="mf">1.5</span> \<span class="n">times</span> <span class="n">IQR</span>
+<span class="err">$$</span>
+
+<span class="err">$$</span>
+\<span class="n">text</span><span class="p">{</span><span class="n">Upper</span> <span class="n">Bound</span><span class="p">}</span> <span class="o">=</span> <span class="n">Q_3</span> <span class="o">+</span> <span class="mf">1.5</span> \<span class="n">times</span> <span class="n">IQR</span>
+<span class="err">$$</span>
+
+<span class="n">Nilai</span> <span class="n">polutan</span> <span class="n">yang</span> <span class="n">berada</span> <span class="n">di</span> <span class="n">bawah</span> <span class="o">*</span><span class="n">lower</span> <span class="n">bound</span><span class="o">*</span> <span class="n">atau</span> <span class="n">di</span> <span class="n">atas</span> <span class="o">*</span><span class="n">upper</span> <span class="n">bound</span><span class="o">*</span> <span class="n">ditandai</span> <span class="n">sebagai</span> <span class="o">*</span><span class="n">outlier</span><span class="o">*.</span> <span class="n">Pada</span> <span class="n">proses</span> <span class="n">berikutnya</span><span class="p">,</span> <span class="n">nilai</span> <span class="n">tersebut</span> <span class="n">diubah</span> <span class="n">menjadi</span> <span class="err">`</span><span class="n">NaN</span><span class="err">`</span> <span class="n">agar</span> <span class="n">dapat</span> <span class="n">ditangani</span> <span class="n">bersama</span> <span class="o">*</span><span class="n">missing</span> <span class="n">value</span><span class="o">*</span> <span class="n">melalui</span> <span class="n">proses</span> <span class="n">imputasi</span><span class="o">.</span>
+
+<span class="c1">### 2.1 Deteksi Outlier CO</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">df_co</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df_co</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+
+<span class="n">outlier_co</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">df_co</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span>
+    <span class="p">(</span><span class="n">df_co</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Q1          :&quot;</span><span class="p">,</span> <span class="n">Q1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Q3          :&quot;</span><span class="p">,</span> <span class="n">Q3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IQR         :&quot;</span><span class="p">,</span> <span class="n">IQR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lower bound :&quot;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Upper bound :&quot;</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outlier CO  :&quot;</span><span class="p">,</span> <span class="n">outlier_co</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Hasil deteksi menunjukkan terdapat <strong>3 outlier pada data CO</strong>.</p>
 </section>
+<section id="deteksi-outlier-no2">
+<h3><span class="section-number">3.1.2. </span>2.2 Deteksi Outlier NO₂<a class="headerlink" href="#deteksi-outlier-no2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Q1</span> <span class="o">=</span> <span class="n">df_no2</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df_no2</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+
+<span class="n">outlier_no2</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">df_no2</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span>
+    <span class="p">(</span><span class="n">df_no2</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outlier NO2 :&quot;</span><span class="p">,</span> <span class="n">outlier_no2</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Hasil deteksi menunjukkan terdapat <strong>4 outlier pada data NO₂</strong>.</p>
+</section>
+<section id="deteksi-outlier-so2">
+<h3><span class="section-number">3.1.3. </span>2.3 Deteksi Outlier SO₂<a class="headerlink" href="#deteksi-outlier-so2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Q1</span> <span class="o">=</span> <span class="n">df_so2</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df_so2</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+
+<span class="n">outlier_so2</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">df_so2</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span>
+    <span class="p">(</span><span class="n">df_so2</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outlier SO2 :&quot;</span><span class="p">,</span> <span class="n">outlier_so2</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Berdasarkan hasil pemeriksaan, jumlah nilai yang perlu ditangani sebelum imputasi menjadi:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Missing Awal</p></th>
+<th class="head text-right"><p>Outlier IQR</p></th>
+<th class="head text-right"><p>Total Sebelum Imputasi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>167</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>170</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>190</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>194</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>158</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>166</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai <em>outlier</em> tersebut tidak langsung menghapus baris pengamatan. Nilai <em>outlier</em> ditandai sebagai <code class="docutils literal notranslate"><span class="pre">NaN</span></code> sehingga jumlah observasi tetap <strong>365 baris</strong> untuk setiap polutan.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="penanganan-missing-value-dan-outlier">
+<h2><span class="section-number">3.2. </span>3. Penanganan Missing Value dan Outlier<a class="headerlink" href="#penanganan-missing-value-dan-outlier" title="Link to this heading">#</a></h2>
+<p>Setelah <em>outlier</em> teridentifikasi menggunakan metode IQR, nilai <em>outlier</em> ditandai sebagai <code class="docutils literal notranslate"><span class="pre">NaN</span></code>. Nilai tersebut kemudian ditangani bersama <em>missing value</em> yang sudah terdapat pada data awal.</p>
+<p>Karena data merupakan deret waktu harian, proses imputasi dilakukan menggunakan <strong>interpolasi berbasis waktu (<em>time interpolation</em>)</strong>. Metode ini memperkirakan nilai yang hilang berdasarkan nilai sebelum dan sesudahnya dengan mempertimbangkan indeks waktu.</p>
+<p>Setelah interpolasi dilakukan, metode <code class="docutils literal notranslate"><span class="pre">ffill()</span></code> dan <code class="docutils literal notranslate"><span class="pre">bfill()</span></code> digunakan untuk menangani nilai kosong yang masih mungkin tersisa pada bagian awal atau akhir deret waktu.</p>
+<p>Secara umum, proses yang digunakan adalah:</p>
+<ol class="arabic simple">
+<li><p>Mengubah nilai <em>outlier</em> menjadi <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p></li>
+<li><p>Menjadikan kolom <code class="docutils literal notranslate"><span class="pre">date</span></code> sebagai indeks.</p></li>
+<li><p>Melakukan interpolasi dengan <code class="docutils literal notranslate"><span class="pre">method=&quot;time&quot;</span></code>.</p></li>
+<li><p>Melakukan <em>forward fill</em> (<code class="docutils literal notranslate"><span class="pre">ffill()</span></code>).</p></li>
+<li><p>Melakukan <em>backward fill</em> (<code class="docutils literal notranslate"><span class="pre">bfill()</span></code>).</p></li>
+<li><p>Mengembalikan <code class="docutils literal notranslate"><span class="pre">date</span></code> menjadi kolom.</p></li>
+</ol>
+<section id="imputasi-data-co">
+<h3><span class="section-number">3.2.1. </span>3.1 Imputasi Data CO<a class="headerlink" href="#imputasi-data-co" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_co_clean</span> <span class="o">=</span> <span class="n">df_co</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Tandai outlier sebagai missing value</span>
+<span class="n">df_co_clean</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">outlier_co</span><span class="p">,</span> <span class="s2">&quot;CO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Missing CO sebelum imputasi:&quot;</span><span class="p">,</span>
+    <span class="n">df_co_clean</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Jadikan date sebagai index untuk interpolasi berbasis waktu</span>
+<span class="n">df_co_clean</span> <span class="o">=</span> <span class="n">df_co_clean</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+
+<span class="c1"># Imputasi missing value</span>
+<span class="n">df_co_clean</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_co_clean</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Kembalikan date menjadi kolom</span>
+<span class="n">df_co_clean</span> <span class="o">=</span> <span class="n">df_co_clean</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Missing CO setelah imputasi:&quot;</span><span class="p">,</span>
+    <span class="n">df_co_clean</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Hasil proses menunjukkan bahwa jumlah nilai yang perlu diimputasi pada CO adalah <strong>170 nilai</strong>. Setelah interpolasi dan proses pengisian dilakukan, jumlah <em>missing value</em> menjadi <strong>0</strong>.</p>
+</section>
+<section id="imputasi-data-no2">
+<h3><span class="section-number">3.2.2. </span>3.2 Imputasi Data NO₂<a class="headerlink" href="#imputasi-data-no2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_no2_clean</span> <span class="o">=</span> <span class="n">df_no2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Tandai outlier sebagai NaN</span>
+<span class="n">df_no2_clean</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">outlier_no2</span><span class="p">,</span> <span class="s2">&quot;NO2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Missing NO2 sebelum imputasi:&quot;</span><span class="p">,</span>
+    <span class="n">df_no2_clean</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Interpolasi berdasarkan waktu</span>
+<span class="n">df_no2_clean</span> <span class="o">=</span> <span class="n">df_no2_clean</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+
+<span class="n">df_no2_clean</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_no2_clean</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Kembalikan date menjadi kolom</span>
+<span class="n">df_no2_clean</span> <span class="o">=</span> <span class="n">df_no2_clean</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Missing NO2 setelah imputasi:&quot;</span><span class="p">,</span>
+    <span class="n">df_no2_clean</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Pada data NO₂ terdapat <strong>194 nilai</strong> yang perlu ditangani setelah <em>missing value</em> awal dan <em>outlier</em> diperhitungkan. Setelah proses imputasi, jumlah <em>missing value</em> menjadi <strong>0</strong>.</p>
+</section>
+<section id="imputasi-data-so2">
+<h3><span class="section-number">3.2.3. </span>3.3 Imputasi Data SO₂<a class="headerlink" href="#imputasi-data-so2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_so2_clean</span> <span class="o">=</span> <span class="n">df_so2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Tandai outlier sebagai NaN</span>
+<span class="n">df_so2_clean</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">outlier_so2</span><span class="p">,</span> <span class="s2">&quot;SO2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Missing SO2 sebelum imputasi:&quot;</span><span class="p">,</span>
+    <span class="n">df_so2_clean</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Interpolasi berdasarkan waktu</span>
+<span class="n">df_so2_clean</span> <span class="o">=</span> <span class="n">df_so2_clean</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+
+<span class="n">df_so2_clean</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_so2_clean</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Kembalikan date menjadi kolom</span>
+<span class="n">df_so2_clean</span> <span class="o">=</span> <span class="n">df_so2_clean</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Missing SO2 setelah imputasi:&quot;</span><span class="p">,</span>
+    <span class="n">df_so2_clean</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Pada data SO₂ terdapat <strong>166 nilai</strong> yang perlu ditangani sebelum imputasi. Setelah proses interpolasi, <code class="docutils literal notranslate"><span class="pre">ffill()</span></code>, dan <code class="docutils literal notranslate"><span class="pre">bfill()</span></code>, jumlah <em>missing value</em> menjadi <strong>0</strong>.</p>
+</section>
+<section id="hasil-penanganan-missing-value">
+<h3><span class="section-number">3.2.4. </span>3.4 Hasil Penanganan Missing Value<a class="headerlink" href="#hasil-penanganan-missing-value" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Sebelum Imputasi</p></th>
+<th class="head text-right"><p>Setelah Imputasi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>170</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>194</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>166</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Proses ini mempertahankan <strong>365 observasi</strong> pada masing-masing polutan. Dengan demikian, tidak ada baris pengamatan yang dihapus selama proses pembersihan data.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="verifikasi-hasil-data-cleaning">
+<h2><span class="section-number">3.3. </span>4. Verifikasi Hasil Data Cleaning<a class="headerlink" href="#verifikasi-hasil-data-cleaning" title="Link to this heading">#</a></h2>
+<p>Setelah proses penyesuaian format, deteksi <em>outlier</em>, dan imputasi selesai dilakukan, tahap berikutnya adalah melakukan verifikasi terhadap dataset hasil pembersihan.</p>
+<p>Verifikasi dilakukan untuk memastikan bahwa:</p>
+<ul class="simple">
+<li><p>jumlah observasi tetap 365 baris,</p></li>
+<li><p>kolom polutan sudah bertipe numerik,</p></li>
+<li><p>tidak terdapat <em>missing value</em>,</p></li>
+<li><p>struktur tanggal tetap dipertahankan,</p></li>
+<li><p>dataset siap digunakan pada tahap ekstraksi fitur.</p></li>
+</ul>
+<section id="code-verifikasi">
+<h3><span class="section-number">3.3.1. </span>4.1 Code Verifikasi<a class="headerlink" href="#code-verifikasi" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datasets_clean</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;CO&quot;</span><span class="p">:</span> <span class="n">df_co_clean</span><span class="p">,</span>
+    <span class="s2">&quot;NO2&quot;</span><span class="p">:</span> <span class="n">df_no2_clean</span><span class="p">,</span>
+    <span class="s2">&quot;SO2&quot;</span><span class="p">:</span> <span class="n">df_so2_clean</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">nama</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">datasets_clean</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;===== </span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2"> =====&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape        :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipe data    :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">nama</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing      :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">nama</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tanggal awal :&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tanggal akhir:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="hasil-verifikasi">
+<h3><span class="section-number">3.3.2. </span>4.2 Hasil Verifikasi<a class="headerlink" href="#hasil-verifikasi" title="Link to this heading">#</a></h3>
+<p>Berdasarkan hasil pemeriksaan, ketiga dataset hasil <em>cleaning</em> memiliki <strong>365 observasi</strong> dan tidak lagi memiliki <em>missing value</em> pada kolom polutan.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Jumlah Observasi</p></th>
+<th class="head text-right"><p>Missing Setelah Cleaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>365</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>365</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>365</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dengan demikian, ketiga dataset telah memiliki deret waktu harian yang lengkap dan dapat digunakan pada tahap berikutnya.</p>
+</section>
+</section>
+<section id="penyimpanan-dataset-hasil-cleaning">
+<h2><span class="section-number">3.4. </span>5. Penyimpanan Dataset Hasil Cleaning<a class="headerlink" href="#penyimpanan-dataset-hasil-cleaning" title="Link to this heading">#</a></h2>
+<p>Dataset yang telah melalui proses pembersihan kemudian disimpan dalam format CSV.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_co_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="s2">&quot;CO_Kota_Sumenep_clean.csv&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">df_no2_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="s2">&quot;NO2_Kota_Sumenep_clean.csv&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">df_so2_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="s2">&quot;SO2_Kota_Sumenep_clean.csv&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>File yang dihasilkan adalah:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CO_Kota_Sumenep_clean.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO2_Kota_Sumenep_clean.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SO2_Kota_Sumenep_clean.csv</span></code></p></li>
+</ul>
+<p>Ketiga file tersebut menjadi <strong>dataset hasil Data Preparation</strong> yang selanjutnya digunakan sebagai input pada proses <strong>ekstraksi 68 fitur time series menggunakan TSFEL</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="ringkasan-data-preparation">
+<h2><span class="section-number">3.5. </span>6. Ringkasan Data Preparation<a class="headerlink" href="#ringkasan-data-preparation" title="Link to this heading">#</a></h2>
+<p>Tahap Data Preparation menghasilkan tiga dataset deret waktu yang telah siap digunakan untuk analisis berikutnya. Proses yang dilakukan meliputi penyesuaian format data, konversi nilai CO menjadi numerik, deteksi <em>outlier</em> menggunakan IQR, penandaan <em>outlier</em> sebagai <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, serta imputasi menggunakan interpolasi berbasis waktu yang dilanjutkan dengan <code class="docutils literal notranslate"><span class="pre">ffill()</span></code> dan <code class="docutils literal notranslate"><span class="pre">bfill()</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Missing Awal</p></th>
+<th class="head text-right"><p>Outlier</p></th>
+<th class="head text-right"><p>Sebelum Imputasi</p></th>
+<th class="head text-right"><p>Setelah Cleaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>167</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>170</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>190</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>194</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>158</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>166</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jumlah observasi tetap <strong>365 baris untuk setiap polutan</strong>, sehingga struktur temporal data tetap dipertahankan.</p>
+<p>Dataset hasil <em>cleaning</em> selanjutnya digunakan pada tahap <strong>Analisis Time Series dan Ekstraksi Fitur TSFEL</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="analisis-time-series-co">
+<h2><span class="section-number">3.6. </span>2. Analisis Time Series CO<a class="headerlink" href="#analisis-time-series-co" title="Link to this heading">#</a></h2>
+<p>Visualisasi <em>time series</em> digunakan untuk melihat perubahan nilai <strong>Karbon Monoksida (CO)</strong> terhadap waktu setelah melalui tahap <em>Data Preparation</em>.</p>
+<section id="visualisasi-time-series-co">
+<h3><span class="section-number">3.6.1. </span>2.1 Visualisasi Time Series CO<a class="headerlink" href="#visualisasi-time-series-co" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">co_clean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;CO_Kota_Sumenep_clean.csv&quot;</span><span class="p">)</span>
+<span class="n">co_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">co_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">co_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span>
+    <span class="n">co_clean</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">],</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Time Series Karbon Monoksida (CO) Setelah Data Cleaning&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tanggal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;CO&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+    <span class="s2">&quot;timeseries_CO_clean.png&quot;</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Hasil visualisasi deret waktu CO ditunjukkan pada gambar berikut.</p>
+<figure class="align-default" id="timeseries-co-clean">
+<a class="reference internal image-reference" href="_images/timeseries_CO_clean.png"><img alt="_images/timeseries_CO_clean.png" src="_images/timeseries_CO_clean.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Time Series Karbon Monoksida (CO) setelah proses <em>data cleaning</em>.</span><a class="headerlink" href="#timeseries-co-clean" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="interpretasi-time-series-co">
+<h3><span class="section-number">3.6.2. </span>2.2 Interpretasi Time Series CO<a class="headerlink" href="#interpretasi-time-series-co" title="Link to this heading">#</a></h3>
+<p>Berdasarkan visualisasi <em>time series</em>, nilai CO di Kecamatan Kota Sumenep menunjukkan <strong>fluktuasi sepanjang periode pengamatan</strong>. Nilai CO secara umum berada pada kisaran sekitar <strong>0,020 hingga 0,035</strong>.</p>
+<p>Beberapa peningkatan nilai terlihat pada sekitar Oktober–November 2025, awal tahun 2026, serta menjelang akhir periode pengamatan. Sementara itu, beberapa penurunan terlihat hingga mendekati nilai 0,020.</p>
+<p>Setelah proses <em>data cleaning</em>, deret waktu CO sudah tersusun secara kontinu tanpa bagian data yang kosong. Hal ini menunjukkan bahwa proses penanganan <em>missing value</em> dan <em>outlier</em> pada tahap Data Preparation telah menghasilkan deret waktu yang lengkap untuk digunakan pada proses analisis dan ekstraksi fitur selanjutnya.</p>
+<p>Secara visual, pola CO menunjukkan perubahan nilai dari waktu ke waktu dan tidak memperlihatkan kecenderungan naik atau turun yang konsisten sepanjang keseluruhan periode pengamatan. Variasi temporal tersebut selanjutnya akan direpresentasikan secara kuantitatif melalui proses ekstraksi fitur <em>time series</em> menggunakan TSFEL.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-time-series-no2">
+<h2><span class="section-number">3.7. </span>3. Analisis Time Series NO₂<a class="headerlink" href="#analisis-time-series-no2" title="Link to this heading">#</a></h2>
+<p>Visualisasi <em>time series</em> digunakan untuk melihat perubahan nilai <strong>Nitrogen Dioksida (NO₂)</strong> terhadap waktu setelah melalui tahap <em>Data Preparation</em>.</p>
+<section id="visualisasi-time-series-no2">
+<h3><span class="section-number">3.7.1. </span>3.1 Visualisasi Time Series NO₂<a class="headerlink" href="#visualisasi-time-series-no2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">no2_clean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;NO2_Kota_Sumenep_clean.csv&quot;</span><span class="p">)</span>
+<span class="n">no2_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">no2_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">no2_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span>
+    <span class="n">no2_clean</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">],</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Time Series Nitrogen Dioksida (NO₂) Setelah Data Cleaning&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tanggal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;NO₂&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+    <span class="s2">&quot;timeseries_NO2_clean.png&quot;</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Hasil visualisasi deret waktu NO₂ ditunjukkan pada gambar berikut.</p>
+<figure class="align-default" id="timeseries-no2-clean">
+<a class="reference internal image-reference" href="_images/timeseries_NO2_clean.png"><img alt="_images/timeseries_NO2_clean.png" src="_images/timeseries_NO2_clean.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Time Series Nitrogen Dioksida (NO₂) setelah proses <em>data cleaning</em>.</span><a class="headerlink" href="#timeseries-no2-clean" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="interpretasi-time-series-no2">
+<h3><span class="section-number">3.7.2. </span>3.2 Interpretasi Time Series NO₂<a class="headerlink" href="#interpretasi-time-series-no2" title="Link to this heading">#</a></h3>
+<p>Berdasarkan visualisasi <em>time series</em>, nilai NO₂ di Kecamatan Kota Sumenep menunjukkan <strong>fluktuasi sepanjang periode pengamatan</strong>. Nilainya bergerak pada orde <span class="math notranslate nohighlight">\(10^{-5}\)</span> dan pada beberapa waktu terlihat mencapai nilai di atas <span class="math notranslate nohighlight">\(3 \times 10^{-5}\)</span>, sedangkan pada beberapa pengamatan lainnya nilainya berada di bawah nol.</p>
+<p>Perubahan nilai NO₂ terlihat cukup bervariasi dari waktu ke waktu. Terdapat beberapa periode dengan nilai yang relatif tinggi dan beberapa periode dengan penurunan nilai, tetapi secara keseluruhan <strong>tidak terlihat kecenderungan naik atau turun yang konsisten sepanjang periode pengamatan</strong>.</p>
+<p>Setelah proses <em>data cleaning</em>, deret waktu NO₂ telah tersusun secara kontinu tanpa <em>missing value</em>. Deret waktu yang telah lengkap ini selanjutnya dapat digunakan sebagai input pada proses ekstraksi fitur <em>time series</em> menggunakan TSFEL.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-time-series-so2">
+<h2><span class="section-number">3.8. </span>4. Analisis Time Series SO₂<a class="headerlink" href="#analisis-time-series-so2" title="Link to this heading">#</a></h2>
+<p>Visualisasi <em>time series</em> digunakan untuk melihat perubahan nilai <strong>Sulfur Dioksida (SO₂)</strong> terhadap waktu setelah melalui tahap <em>Data Preparation</em>.</p>
+<section id="visualisasi-time-series-so2">
+<h3><span class="section-number">3.8.1. </span>4.1 Visualisasi Time Series SO₂<a class="headerlink" href="#visualisasi-time-series-so2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">so2_clean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;SO2_Kota_Sumenep_clean.csv&quot;</span><span class="p">)</span>
+<span class="n">so2_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">so2_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">so2_clean</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span>
+    <span class="n">so2_clean</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">],</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Time Series Sulfur Dioksida (SO₂) Setelah Data Cleaning&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tanggal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;SO₂&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+    <span class="s2">&quot;timeseries_SO2_clean.png&quot;</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Hasil visualisasi deret waktu SO₂ ditunjukkan pada gambar berikut.</p>
+<figure class="align-default" id="timeseries-so2-clean">
+<a class="reference internal image-reference" href="_images/timeseries_SO2_clean.png"><img alt="_images/timeseries_SO2_clean.png" src="_images/timeseries_SO2_clean.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.3 </span><span class="caption-text">Time Series Sulfur Dioksida (SO₂) setelah proses <em>data cleaning</em>.</span><a class="headerlink" href="#timeseries-so2-clean" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="interpretasi-time-series-so2">
+<h3><span class="section-number">3.8.2. </span>4.2 Interpretasi Time Series SO₂<a class="headerlink" href="#interpretasi-time-series-so2" title="Link to this heading">#</a></h3>
+<p>Berdasarkan visualisasi <em>time series</em>, nilai SO₂ di Kecamatan Kota Sumenep menunjukkan <strong>fluktuasi yang cukup besar sepanjang periode pengamatan</strong>. Nilai yang ditampilkan bergerak pada kisaran sekitar <strong>-0,00035 hingga 0,00043</strong>, sehingga terdapat pengamatan dengan nilai positif maupun negatif.</p>
+<p>Beberapa peningkatan dan penurunan yang cukup tajam terlihat pada sejumlah periode pengamatan. Meskipun demikian, secara keseluruhan <strong>tidak terlihat kecenderungan naik atau turun yang konsisten sepanjang periode pengamatan</strong>.</p>
+<p>Setelah proses <em>data cleaning</em>, deret waktu SO₂ telah tersusun secara kontinu tanpa <em>missing value</em>. Variasi temporal yang terdapat pada data ini selanjutnya akan direpresentasikan melalui proses ekstraksi fitur <em>time series</em> menggunakan TSFEL.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ringkasan-analisis-time-series">
+<h2><span class="section-number">3.9. </span>5. Ringkasan Analisis Time Series<a class="headerlink" href="#ringkasan-analisis-time-series" title="Link to this heading">#</a></h2>
+<p>Berdasarkan eksplorasi <em>time series</em> terhadap ketiga polutan, yaitu CO, NO₂, dan SO₂, terlihat bahwa masing-masing polutan memiliki variasi nilai terhadap waktu selama periode <strong>31 Agustus 2025 hingga 30 Agustus 2026</strong>.</p>
+<p>Secara umum, hasil eksplorasi menunjukkan bahwa:</p>
+<ul class="simple">
+<li><p><strong>CO</strong> mengalami fluktuasi sepanjang periode pengamatan dengan nilai sekitar 0,020 hingga 0,035 dan tidak menunjukkan kecenderungan naik atau turun yang konsisten.</p></li>
+<li><p><strong>NO₂</strong> menunjukkan perubahan nilai yang cukup bervariasi pada orde <span class="math notranslate nohighlight">\(10^{-5}\)</span>, dengan beberapa nilai berada di bawah nol dan tidak menunjukkan kecenderungan naik atau turun yang konsisten.</p></li>
+<li><p><strong>SO₂</strong> menunjukkan fluktuasi yang relatif besar dengan nilai positif maupun negatif dan juga tidak menunjukkan kecenderungan naik atau turun yang konsisten sepanjang periode pengamatan.</p></li>
+</ul>
+<p>Setelah melalui tahap <em>Data Preparation</em>, ketiga deret waktu telah memiliki <strong>365 observasi tanpa missing value</strong>. Dengan demikian, data CO, NO₂, dan SO₂ telah siap digunakan pada tahap <strong>ekstraksi fitur time series menggunakan TSFEL</strong>.</p>
+<p>Analisis visual ini memberikan gambaran awal mengenai karakteristik temporal masing-masing polutan. Pada tahap selanjutnya, karakteristik tersebut akan direpresentasikan secara numerik melalui berbagai fitur statistik, temporal, dan spektral sehingga pola deret waktu dapat dianalisis lebih lanjut.</p>
 </section>
 </section>
 
@@ -473,10 +1073,42 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembersihan-data-data-cleaning">3.1. Pembersihan Data (<em>Data Cleaning</em>)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-values">3.1.1. Penanganan Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyesuaian-format-data">3.1. 1. Penyesuaian Format Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-penyesuaian-data-co">3.1.1. 1.1 Code Penyesuaian Data CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-no2">3.1.2. 2.2 Deteksi Outlier NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-so2">3.1.3. 2.3 Deteksi Outlier SO₂</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-missing-value-dan-outlier">3.2. 3. Penanganan Missing Value dan Outlier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-data-co">3.2.1. 3.1 Imputasi Data CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-data-no2">3.2.2. 3.2 Imputasi Data NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-data-so2">3.2.3. 3.3 Imputasi Data SO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-penanganan-missing-value">3.2.4. 3.4 Hasil Penanganan Missing Value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-hasil-data-cleaning">3.3. 4. Verifikasi Hasil Data Cleaning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-verifikasi">3.3.1. 4.1 Code Verifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-verifikasi">3.3.2. 4.2 Hasil Verifikasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-dataset-hasil-cleaning">3.4. 5. Penyimpanan Dataset Hasil Cleaning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-data-preparation">3.5. 6. Ringkasan Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-time-series-co">3.6. 2. Analisis Time Series CO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-co">3.6.1. 2.1 Visualisasi Time Series CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-time-series-co">3.6.2. 2.2 Interpretasi Time Series CO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-time-series-no2">3.7. 3. Analisis Time Series NO₂</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-no2">3.7.1. 3.1 Visualisasi Time Series NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-time-series-no2">3.7.2. 3.2 Interpretasi Time Series NO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-time-series-so2">3.8. 4. Analisis Time Series SO₂</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-so2">3.8.1. 4.1 Visualisasi Time Series SO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-time-series-so2">3.8.2. 4.2 Interpretasi Time Series SO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-analisis-time-series">3.9. 5. Ringkasan Analisis Time Series</a></li>
 </ul>
   </nav></div>
 

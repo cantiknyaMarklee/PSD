@@ -60,6 +60,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ekstraksi_fitur';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -153,6 +155,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -217,7 +223,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_preparation.html">3. Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_series.html">4. Analisis Time Series</a></li>
@@ -346,7 +352,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -362,6 +370,35 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-ekstraksi-fitur-time-series">6.1. 1. Konsep Dasar Ekstraksi Fitur Time Series</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-statistik">6.1.1. 1.1 Domain Statistik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-temporal">6.1.2. 1.2 Domain Temporal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-spektral">6.1.3. 1.3 Domain Spektral</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-yang-dianalisis">6.2. 2. Fitur yang Dianalisis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slope">6.2.1. 2.1 Slope</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-slope">6.2.1.1. 2.1.1 Deskripsi Slope</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual">6.2.1.2. 2.1.2 Contoh Perhitungan Manual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-menggunakan-tsfel">6.2.1.3. 2.1.3 Pembuktian Menggunakan TSFEL</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-centroid">6.2.2. 2.2 Spectral Centroid</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-spectral-centroid">6.2.2.1. 2.2.1 Deskripsi Spectral Centroid</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.2.2. 2.2.2 Contoh Perhitungan Manual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2.2.3. 2.2.3 Pembuktian Menggunakan TSFEL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi-fitur-tsfel">6.3. 3. Hasil Ekstraksi Fitur TSFEL</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -373,7 +410,275 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ekstraksi-fitur-tsfel">
 <h1><span class="section-number">6. </span>Ekstraksi Fitur TSFEL<a class="headerlink" href="#ekstraksi-fitur-tsfel" title="Link to this heading">#</a></h1>
-<p>Bab ini membahas konsep 68 fitur TSFEL (domain statistik, temporal, dan spektral), pembuktian perhitungan manual, serta hasil ekstraksi 204 fitur multi-polutan.</p>
+<p>Bab ini membahas konsep ekstraksi fitur TSFEL pada domain statistik, temporal, dan spektral, pembuktian perhitungan manual pada fitur yang menjadi bagian analisis, serta hasil ekstraksi fitur multi-polutan.</p>
+<p>Ekstraksi fitur merupakan proses mengubah data time series menjadi sekumpulan nilai numerik yang dapat merepresentasikan karakteristik penting dari suatu sinyal. Pada penelitian ini, ekstraksi fitur dilakukan terhadap data time series tiga polutan, yaitu Karbon Monoksida (CO), Nitrogen Dioksida (NO₂), dan Sulfur Dioksida (SO₂).</p>
+<p>Ekstraksi fitur dilakukan menggunakan <strong>Time Series Feature Extraction Library (TSFEL)</strong>. Fitur yang digunakan berasal dari tiga domain utama, yaitu <strong>statistical domain</strong>, <strong>temporal domain</strong>, dan <strong>spectral domain</strong>.</p>
+<section id="konsep-dasar-ekstraksi-fitur-time-series">
+<h2><span class="section-number">6.1. </span>1. Konsep Dasar Ekstraksi Fitur Time Series<a class="headerlink" href="#konsep-dasar-ekstraksi-fitur-time-series" title="Link to this heading">#</a></h2>
+<section id="domain-statistik">
+<h3><span class="section-number">6.1.1. </span>1.1 Domain Statistik<a class="headerlink" href="#domain-statistik" title="Link to this heading">#</a></h3>
+<p>Domain statistik menggambarkan karakteristik distribusi nilai pada suatu time series. Fitur pada domain ini digunakan untuk mengetahui sifat data berdasarkan ukuran statistik seperti rata-rata, median, variansi, standar deviasi, minimum, maksimum, kurtosis, dan karakteristik distribusi lainnya.</p>
+<p>Sebagai contoh, nilai rata-rata dari suatu time series dihitung menggunakan:</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
+\]</div>
+<p>dengan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> = nilai data ke-<span class="math notranslate nohighlight">\(i\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = jumlah data,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{x}\)</span> = nilai rata-rata.</p></li>
+</ul>
+</section>
+<section id="domain-temporal">
+<h3><span class="section-number">6.1.2. </span>1.2 Domain Temporal<a class="headerlink" href="#domain-temporal" title="Link to this heading">#</a></h3>
+<p>Domain temporal menggambarkan karakteristik sinyal berdasarkan perubahan nilai terhadap waktu. Fitur temporal dapat digunakan untuk mengukur pola perubahan, jarak, autokorelasi, zero crossing, serta karakteristik lain yang berkaitan dengan urutan waktu pada data.</p>
+<p>Salah satu contoh fitur temporal adalah <strong>autocorrelation</strong>, yaitu ukuran hubungan antara suatu time series dengan versi time series tersebut yang mengalami pergeseran waktu (<em>lag</em>).</p>
+</section>
+<section id="domain-spektral">
+<h3><span class="section-number">6.1.3. </span>1.3 Domain Spektral<a class="headerlink" href="#domain-spektral" title="Link to this heading">#</a></h3>
+<p>Domain spektral menggambarkan karakteristik sinyal berdasarkan komponen frekuensinya. Analisis pada domain ini umumnya menggunakan transformasi dari domain waktu ke domain frekuensi sehingga pola frekuensi yang terdapat pada data dapat dianalisis.</p>
+<p>Beberapa fitur yang termasuk dalam analisis spektral antara lain <strong>fundamental frequency</strong>, <strong>spectral centroid</strong>, <strong>spectral entropy</strong>, <strong>spectral roll-off</strong>, dan fitur lain yang menggambarkan distribusi energi pada frekuensi.</p>
+<p>Pada proses ekstraksi yang digunakan dalam penelitian ini, setiap polutan menghasilkan <strong>68 fitur TSFEL</strong>. Karena terdapat tiga polutan, yaitu CO, NO₂, dan SO₂, maka keseluruhan fitur yang digunakan pada analisis gabungan adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+68 \times 3 = 204 \text{ fitur}
+\]</div>
+</section>
+</section>
+<section id="fitur-yang-dianalisis">
+<h2><span class="section-number">6.2. </span>2. Fitur yang Dianalisis<a class="headerlink" href="#fitur-yang-dianalisis" title="Link to this heading">#</a></h2>
+<p>Berdasarkan pembagian fitur ekstraksi, fitur yang dianalisis pada bagian ini adalah:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">slope(signal)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spectral_centroid(signal,</span> <span class="pre">fs)</span></code></p></li>
+</ol>
+<p>Kedua fitur tersebut mewakili karakteristik time series yang berbeda. <code class="docutils literal notranslate"><span class="pre">slope</span></code> digunakan untuk menggambarkan kecenderungan perubahan nilai sinyal, sedangkan <code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code> digunakan untuk menggambarkan pusat distribusi spektrum frekuensi suatu sinyal.</p>
+<section id="slope">
+<h3><span class="section-number">6.2.1. </span>2.1 Slope<a class="headerlink" href="#slope" title="Link to this heading">#</a></h3>
+<section id="deskripsi-slope">
+<h4><span class="section-number">6.2.1.1. </span>2.1.1 Deskripsi Slope<a class="headerlink" href="#deskripsi-slope" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">Slope</span></code> merupakan fitur yang digunakan untuk mengukur kecenderungan perubahan nilai suatu sinyal terhadap waktu. Nilai slope menunjukkan arah dan besar perubahan data secara linear.</p>
+<p>Interpretasi nilai slope adalah:</p>
+<ul class="simple">
+<li><p>slope positif menunjukkan kecenderungan nilai sinyal meningkat,</p></li>
+<li><p>slope negatif menunjukkan kecenderungan nilai sinyal menurun,</p></li>
+<li><p>slope mendekati nol menunjukkan bahwa secara linear nilai sinyal relatif tidak mengalami kecenderungan naik atau turun yang kuat.</p></li>
+</ul>
+<p>Secara matematis, slope regresi linear dapat dihitung menggunakan:</p>
+<div class="math notranslate nohighlight">
+\[
+m =
+\frac{
+n\sum x_i y_i - (\sum x_i)(\sum y_i)
+}{
+n\sum x_i^2 - (\sum x_i)^2
+}
+\]</div>
+<p>dengan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m\)</span> = nilai slope,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> = indeks atau urutan waktu,</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span> = nilai sinyal pada indeks ke-<span class="math notranslate nohighlight">\(i\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = jumlah data.</p></li>
+</ul>
+</section>
+<section id="contoh-perhitungan-manual">
+<h4><span class="section-number">6.2.1.2. </span>2.1.2 Contoh Perhitungan Manual<a class="headerlink" href="#contoh-perhitungan-manual" title="Link to this heading">#</a></h4>
+<p>Sebagai contoh sederhana, digunakan lima nilai sinyal:</p>
+<div class="math notranslate nohighlight">
+\[
+y = [2,4,6,8,10]
+\]</div>
+<p>dengan indeks:</p>
+<div class="math notranslate nohighlight">
+\[
+x = [0,1,2,3,4]
+\]</div>
+<p>Jumlah data:</p>
+<div class="math notranslate nohighlight">
+\[
+n = 5
+\]</div>
+<p>Jumlah seluruh nilai <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum x_i = 0+1+2+3+4 = 10
+\]</div>
+<p>Jumlah seluruh nilai <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum y_i = 2+4+6+8+10 = 30
+\]</div>
+<p>Jumlah hasil perkalian <span class="math notranslate nohighlight">\(x_i\)</span> dan <span class="math notranslate nohighlight">\(y_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum x_i y_i
+=
+(0)(2)+(1)(4)+(2)(6)+(3)(8)+(4)(10)
+=80
+\]</div>
+<p>Jumlah kuadrat nilai <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum x_i^2
+=
+0^2+1^2+2^2+3^2+4^2
+=30
+\]</div>
+<p>Selanjutnya nilai tersebut dimasukkan ke dalam persamaan slope:</p>
+<div class="math notranslate nohighlight">
+\[
+m =
+\frac{
+(5)(80)-(10)(30)
+}{
+(5)(30)-(10)^2
+}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+m =
+\frac{400-300}{150-100}
+=
+\frac{100}{50}
+=2
+\]</div>
+<p>Dengan demikian, nilai slope yang diperoleh adalah <strong>2</strong>. Nilai positif menunjukkan bahwa sinyal pada contoh tersebut memiliki kecenderungan meningkat.</p>
+</section>
+<section id="pembuktian-menggunakan-tsfel">
+<h4><span class="section-number">6.2.1.3. </span>2.1.3 Pembuktian Menggunakan TSFEL<a class="headerlink" href="#pembuktian-menggunakan-tsfel" title="Link to this heading">#</a></h4>
+<p>Setelah nilai slope dihitung secara manual, hasil tersebut dapat dibandingkan dengan fungsi <code class="docutils literal notranslate"><span class="pre">slope(signal)</span></code> pada TSFEL.</p>
+<p>Kode yang digunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="kn">import</span> <span class="n">slope</span>
+
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="n">hasil_slope</span> <span class="o">=</span> <span class="n">slope</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hasil slope TSFEL:&quot;</span><span class="p">,</span> <span class="n">hasil_slope</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Untuk sinyal:</p>
+<div class="math notranslate nohighlight">
+\[
+[2,4,6,8,10]
+\]</div>
+<p>perhitungan manual menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Slope Manual} = 2
+\]</div>
+<p>Hasil fungsi <code class="docutils literal notranslate"><span class="pre">slope(signal)</span></code> pada TSFEL kemudian dapat dibandingkan dengan hasil perhitungan manual tersebut.</p>
+</section>
+</section>
+<section id="spectral-centroid">
+<h3><span class="section-number">6.2.2. </span>2.2 Spectral Centroid<a class="headerlink" href="#spectral-centroid" title="Link to this heading">#</a></h3>
+<section id="deskripsi-spectral-centroid">
+<h4><span class="section-number">6.2.2.1. </span>2.2.1 Deskripsi Spectral Centroid<a class="headerlink" href="#deskripsi-spectral-centroid" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">Spectral</span> <span class="pre">centroid</span></code> merupakan fitur pada domain spektral yang digunakan untuk menunjukkan pusat distribusi spektrum suatu sinyal. Fitur ini menghitung rata-rata tertimbang frekuensi berdasarkan besar spektrum pada masing-masing frekuensi.</p>
+<p>Secara matematis, spectral centroid dapat dinyatakan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[
+C =
+\frac{
+\sum_{k=0}^{N-1} f_k A_k
+}{
+\sum_{k=0}^{N-1} A_k
+}
+\]</div>
+<p>dengan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C\)</span> = spectral centroid,</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_k\)</span> = frekuensi pada bin ke-<span class="math notranslate nohighlight">\(k\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_k\)</span> = besar atau magnitudo spektrum pada frekuensi ke-<span class="math notranslate nohighlight">\(k\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> = jumlah komponen frekuensi.</p></li>
+</ul>
+<p>Semakin besar nilai spectral centroid, semakin besar kontribusi komponen frekuensi tinggi terhadap spektrum sinyal. Sebaliknya, nilai spectral centroid yang lebih rendah menunjukkan bahwa distribusi spektrum lebih banyak terkonsentrasi pada frekuensi yang lebih rendah.</p>
+</section>
+<section id="id1">
+<h4><span class="section-number">6.2.2.2. </span>2.2.2 Contoh Perhitungan Manual<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Sebagai contoh sederhana, diasumsikan hasil analisis spektrum memiliki frekuensi dan magnitudo sebagai berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Frekuensi (<span class="math notranslate nohighlight">\(f_k\)</span>)</p></th>
+<th class="head text-right"><p>Magnitudo (<span class="math notranslate nohighlight">\(A_k\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>3</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Spectral centroid dihitung menggunakan:</p>
+<div class="math notranslate nohighlight">
+\[
+C =
+\frac{
+(0)(1)+(1)(2)+(2)(3)+(3)(4)
+}{
+1+2+3+4
+}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+C =
+\frac{0+2+6+12}{10}
+=
+\frac{20}{10}
+=2
+\]</div>
+<p>Berdasarkan contoh tersebut, diperoleh nilai spectral centroid sebesar <strong>2</strong> dalam satuan frekuensi yang digunakan pada contoh.</p>
+</section>
+<section id="id2">
+<h4><span class="section-number">6.2.2.3. </span>2.2.3 Pembuktian Menggunakan TSFEL<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>Setelah konsep dan perhitungan manual spectral centroid dijelaskan, fitur ini dapat dihitung menggunakan fungsi <code class="docutils literal notranslate"><span class="pre">spectral_centroid(signal,</span> <span class="pre">fs)</span></code> pada TSFEL.</p>
+<p>Pada proses ekstraksi fitur digunakan parameter <code class="docutils literal notranslate"><span class="pre">fs=1</span></code>.</p>
+<p>Kode pembuktian menggunakan TSFEL adalah sebagai berikut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="kn">import</span> <span class="n">spectral_centroid</span>
+
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">hasil_spectral_centroid</span> <span class="o">=</span> <span class="n">spectral_centroid</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hasil spectral centroid TSFEL:&quot;</span><span class="p">,</span> <span class="n">hasil_spectral_centroid</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">spectral_centroid(signal,</span> <span class="pre">fs)</span></code> menghitung spectral centroid berdasarkan spektrum frekuensi dari sinyal masukan. Parameter <code class="docutils literal notranslate"><span class="pre">signal</span></code> berisi nilai time series, sedangkan <code class="docutils literal notranslate"><span class="pre">fs</span></code> merupakan frekuensi sampling yang digunakan dalam proses perhitungan.</p>
+<p>Hasil yang diperoleh dari TSFEL dapat digunakan sebagai pembuktian implementasi perhitungan spectral centroid pada data time series.</p>
+</section>
+</section>
+</section>
+<section id="hasil-ekstraksi-fitur-tsfel">
+<h2><span class="section-number">6.3. </span>3. Hasil Ekstraksi Fitur TSFEL<a class="headerlink" href="#hasil-ekstraksi-fitur-tsfel" title="Link to this heading">#</a></h2>
+<p>Ekstraksi fitur dilakukan terhadap tiga data time series polutan, yaitu CO, NO₂, dan SO₂. Masing-masing polutan menghasilkan <strong>68 fitur TSFEL</strong>.</p>
+<p>Hasil ekstraksi fitur disimpan dalam file:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CO_Kota_Sumenep_TSFEL_68.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO2_Kota_Sumenep-TSFEL-68-Fitur.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SO2_Kota_Sumenep_TSFEL_68.csv</span></code></p></li>
+</ul>
+<p>Karena masing-masing polutan menghasilkan 68 fitur, jumlah fitur yang digunakan pada analisis gabungan adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+68 + 68 + 68 = 204 \text{ fitur}
+\]</div>
+<p>Hasil ekstraksi tersebut selanjutnya digunakan sebagai data masukan pada tahap reduksi dimensi dan clustering.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -430,6 +735,44 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-ekstraksi-fitur-time-series">6.1. 1. Konsep Dasar Ekstraksi Fitur Time Series</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-statistik">6.1.1. 1.1 Domain Statistik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-temporal">6.1.2. 1.2 Domain Temporal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-spektral">6.1.3. 1.3 Domain Spektral</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-yang-dianalisis">6.2. 2. Fitur yang Dianalisis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slope">6.2.1. 2.1 Slope</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-slope">6.2.1.1. 2.1.1 Deskripsi Slope</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual">6.2.1.2. 2.1.2 Contoh Perhitungan Manual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-menggunakan-tsfel">6.2.1.3. 2.1.3 Pembuktian Menggunakan TSFEL</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-centroid">6.2.2. 2.2 Spectral Centroid</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-spectral-centroid">6.2.2.1. 2.2.1 Deskripsi Spectral Centroid</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.2.2. 2.2.2 Contoh Perhitungan Manual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2.2.3. 2.2.3 Pembuktian Menggunakan TSFEL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi-fitur-tsfel">6.3. 3. Hasil Ekstraksi Fitur TSFEL</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

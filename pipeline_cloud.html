@@ -221,7 +221,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Polutan di Kota Sumenep</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">1. Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">2. Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_preparation.html">3. Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_series.html">4. Analisis Time Series</a></li>
@@ -373,8 +373,18 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arsitektur-pipeline-data">5.1. 1. Arsitektur Pipeline Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-cloud-database-aiven">5.2. 2. Integrasi Cloud Database (Aiven)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-pipeline-data">5.1. 1. Alur Pipeline Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven">5.2. 2. Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-postgresql-aiven">5.2.1. 2.1 Membuat Koneksi PostgreSQL Aiven</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-co">5.2.2. 2.2 Upload Dataset Fitur CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-no2">5.2.3. 2.3 Upload Dataset Fitur NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-so2">5.2.4. 2.4 Upload Dataset Fitur SO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-data-pada-postgresql-aiven">5.3. 3. Verifikasi Data pada PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-verifikasi">5.3.1. 3.1 Hasil Verifikasi</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -388,42 +398,182 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pipeline-cloud-knime">
 <h1><span class="section-number">5. </span>Pipeline Cloud &amp; KNIME<a class="headerlink" href="#pipeline-cloud-knime" title="Link to this heading">#</a></h1>
-<p>Bab ini membahas perancangan arsitektur integrasi data berbasis cloud dan otomatisasi alur kerja analitik menggunakan <strong>KNIME Analytics Platform</strong> untuk pemantauan data polutan di Kota Sumenep.</p>
+<p>Tahap <strong>Pipeline Cloud &amp; KNIME</strong> menjelaskan alur integrasi antara hasil ekstraksi fitur, penyimpanan data pada cloud database, dan proses analisis menggunakan <strong>KNIME Analytics Platform</strong>.</p>
+<p>Pada penelitian ini, proses ekstraksi menghasilkan <strong>68 fitur time series</strong> untuk masing-masing polutan CO, NO₂, dan SO₂. Hasil ekstraksi tersebut kemudian disimpan pada <strong>PostgreSQL di Aiven Cloud</strong> sehingga data dapat diakses dari KNIME untuk proses analisis berikutnya.</p>
+<p>Penggunaan Aiven dan KNIME merupakan bagian dari workflow yang digunakan dalam pengerjaan proyek. Aiven digunakan sebagai media penyimpanan data hasil ekstraksi fitur, sedangkan KNIME digunakan untuk membangun workflow analisis secara visual.</p>
 <hr class="docutils" />
-<section id="arsitektur-pipeline-data">
-<h2><span class="section-number">5.1. </span>1. Arsitektur Pipeline Data<a class="headerlink" href="#arsitektur-pipeline-data" title="Link to this heading">#</a></h2>
-<p>Pipeline data dirancang untuk mengalirkan data deret waktu polutan dari sumber pengunduhan ke penyimpanan database terkelola di cloud, lalu diproses secara otomatis di KNIME:</p>
+<section id="alur-pipeline-data">
+<h2><span class="section-number">5.1. </span>1. Alur Pipeline Data<a class="headerlink" href="#alur-pipeline-data" title="Link to this heading">#</a></h2>
+<p>Pipeline yang digunakan terdiri dari beberapa tahapan yang saling terhubung:</p>
 <ol class="arabic simple">
-<li><p><strong>Ingestion Layer</strong>: Pengambilan data deret waktu satelit Sentinel-5P melalui API openEO / Google Earth Engine.</p></li>
-<li><p><strong>Storage Layer (Cloud Database)</strong>: Penyimpanan data time series bersih ke dalam database cloud terkelola (Aiven Cloud Database).</p></li>
-<li><p><strong>Analytics &amp; Transformation Layer</strong>: Pengolahan alur data, integrasi, dan eksekusi model menggunakan alur kerja visual KNIME.</p></li>
-<li><p><strong>Reporting Layer</strong>: Ekspor fitur dan visualisasi ringkasan untuk kebutuhan buku digital / dashboard.</p></li>
+<li><p>Data time series CO, NO₂, dan SO₂ yang telah melalui proses <em>data cleaning</em> digunakan sebagai input ekstraksi fitur.</p></li>
+<li><p>Dilakukan ekstraksi <strong>68 fitur time series</strong> pada masing-masing polutan menggunakan TSFEL.</p></li>
+<li><p>Hasil ekstraksi fitur disimpan dalam tiga dataset, yaitu dataset fitur CO, NO₂, dan SO₂.</p></li>
+<li><p>Dataset hasil ekstraksi diunggah ke <strong>PostgreSQL Aiven</strong> menggunakan kode Python dari Google Colab.</p></li>
+<li><p>Data yang telah tersimpan pada Aiven kemudian diakses melalui <strong>KNIME Analytics Platform</strong>.</p></li>
+<li><p>Pada KNIME, data setiap polutan diproses melalui tahapan pemilihan kolom fitur, normalisasi, reduksi dimensi PCA, K-Means Clustering, evaluasi Silhouette Coefficient, dan visualisasi hasil cluster.</p></li>
 </ol>
+<p>Secara sederhana, alur pipeline yang digunakan dapat digambarkan sebagai berikut:</p>
+<p><strong>Time Series Clean → Ekstraksi 68 Fitur TSFEL → PostgreSQL Aiven → KNIME → Normalisasi → PCA → K-Means → Silhouette Coefficient → Visualisasi Cluster</strong></p>
+<p>Pipeline tersebut diterapkan pada ketiga dataset polutan, yaitu <strong>CO, NO₂, dan SO₂</strong>.</p>
 </section>
 <hr class="docutils" />
-<section id="integrasi-cloud-database-aiven">
-<h2><span class="section-number">5.2. </span>2. Integrasi Cloud Database (Aiven)<a class="headerlink" href="#integrasi-cloud-database-aiven" title="Link to this heading">#</a></h2>
-<p>Penyimpanan terpusat menggunakan layanan <strong>Aiven Cloud Database</strong> memastikan data polutan tersimpan secara aman, terkelola, dan dapat diakses kapan saja oleh pipeline analitik tanpa membebani memori lokal.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
+<section id="upload-hasil-ekstraksi-fitur-ke-postgresql-aiven">
+<h2><span class="section-number">5.2. </span>2. Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven<a class="headerlink" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven" title="Link to this heading">#</a></h2>
+<p>Setelah proses ekstraksi fitur selesai, dataset hasil ekstraksi CO, NO₂, dan SO₂ diunggah ke <strong>PostgreSQL Aiven</strong> menggunakan Python dari Google Colab.</p>
+<p>Setiap dataset terdiri dari <strong>37 baris data mahasiswa</strong> dengan <strong>71 kolom utama</strong>, yaitu:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nama</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">daerah</span></code></p></li>
+<li><p>68 kolom hasil ekstraksi fitur <em>time series</em></p></li>
+</ul>
+<p>Sebelum proses upload, kolom bantu seperti <code class="docutils literal notranslate"><span class="pre">nama_key</span></code>, <code class="docutils literal notranslate"><span class="pre">daerah_key</span></code>, dan <code class="docutils literal notranslate"><span class="pre">key</span></code> dihapus sehingga hanya identitas utama dan 68 fitur yang disimpan ke database.</p>
+<section id="membuat-koneksi-postgresql-aiven">
+<h3><span class="section-number">5.2.1. </span>2.1 Membuat Koneksi PostgreSQL Aiven<a class="headerlink" href="#membuat-koneksi-postgresql-aiven" title="Link to this heading">#</a></h3>
+<p>Koneksi dari Python ke PostgreSQL dibuat menggunakan <code class="docutils literal notranslate"><span class="pre">SQLAlchemy</span></code> dan driver <code class="docutils literal notranslate"><span class="pre">psycopg2</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">quote_plus</span>
 
-<span class="c1"># Konfigurasi koneksi database Aiven</span>
-<span class="n">DB_HOST</span> <span class="o">=</span> <span class="s2">&quot;your-aiven-host.aivencloud.com&quot;</span>
-<span class="n">DB_PORT</span> <span class="o">=</span> <span class="s2">&quot;12345&quot;</span>
-<span class="n">DB_NAME</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span>
-<span class="n">DB_USER</span> <span class="o">=</span> <span class="s2">&quot;avnadmin&quot;</span>
-<span class="n">DB_PASSWORD</span> <span class="o">=</span> <span class="s2">&quot;your_password&quot;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">quote_plus</span><span class="p">(</span><span class="s2">&quot;PASSWORD_AIVEN&quot;</span><span class="p">)</span>
 
-<span class="c1"># Membuat URI koneksi PostgreSQL/MySQL</span>
-<span class="n">connection_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;postgresql://</span><span class="si">{</span><span class="n">DB_USER</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">DB_PASSWORD</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">DB_HOST</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">DB_PORT</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DB_NAME</span><span class="si">}</span><span class="s2">?sslmode=require&quot;</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">connection_url</span><span class="p">)</span>
-
-<span class="c1"># Mengunggah data bersih ke Cloud Database</span>
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Polutan-Sumenep-Clean.csv&quot;</span><span class="p">)</span>
-<span class="n">df_clean</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;polutan_sumenep&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data polutan berhasil disimpan ke Aiven Cloud!&quot;</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+    <span class="s2">&quot;postgresql+psycopg2://avnadmin:&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">@HOST_AIVEN:PORT_AIVEN/defaultdb&quot;</span>
+    <span class="s2">&quot;?sslmode=require&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
+<p>Informasi sensitif seperti <strong>password database tidak ditampilkan</strong> pada dokumentasi publik.</p>
+</section>
+<section id="upload-dataset-fitur-co">
+<h3><span class="section-number">5.2.2. </span>2.2 Upload Dataset Fitur CO<a class="headerlink" href="#upload-dataset-fitur-co" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">co_upload</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nama_key&quot;</span><span class="p">,</span> <span class="s2">&quot;daerah_key&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">],</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span>
+<span class="p">)</span>
+
+<span class="n">co_upload</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span>
+    <span class="s2">&quot;ekstraksi_fitur_co&quot;</span><span class="p">,</span>
+    <span class="n">engine</span><span class="p">,</span>
+    <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Berhasil upload:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">co_upload</span><span class="p">),</span> <span class="s2">&quot;baris CO&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Berhasil upload: 37 baris CO
+</pre></div>
+</div>
+<p>Data CO disimpan pada tabel:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_co</span></code></p>
+</section>
+<section id="upload-dataset-fitur-no2">
+<h3><span class="section-number">5.2.3. </span>2.3 Upload Dataset Fitur NO₂<a class="headerlink" href="#upload-dataset-fitur-no2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">no2_upload</span> <span class="o">=</span> <span class="n">no2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nama_key&quot;</span><span class="p">,</span> <span class="s2">&quot;daerah_key&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">],</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span>
+<span class="p">)</span>
+
+<span class="n">no2_upload</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span>
+    <span class="s2">&quot;ekstraksi_fitur_no2&quot;</span><span class="p">,</span>
+    <span class="n">engine</span><span class="p">,</span>
+    <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Berhasil upload:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">no2_upload</span><span class="p">),</span> <span class="s2">&quot;baris NO2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Berhasil upload: 37 baris NO2
+</pre></div>
+</div>
+<p>Data NO₂ disimpan pada tabel:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2</span></code></p>
+</section>
+<section id="upload-dataset-fitur-so2">
+<h3><span class="section-number">5.2.4. </span>2.4 Upload Dataset Fitur SO₂<a class="headerlink" href="#upload-dataset-fitur-so2" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">so2_upload</span> <span class="o">=</span> <span class="n">so2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nama_key&quot;</span><span class="p">,</span> <span class="s2">&quot;daerah_key&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">],</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span>
+<span class="p">)</span>
+
+<span class="n">so2_upload</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span>
+    <span class="s2">&quot;ekstraksi_fitur_so2&quot;</span><span class="p">,</span>
+    <span class="n">engine</span><span class="p">,</span>
+    <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Berhasil upload:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">so2_upload</span><span class="p">),</span> <span class="s2">&quot;baris SO2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Berhasil upload: 37 baris SO2
+</pre></div>
+</div>
+<p>Data SO₂ disimpan pada tabel:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_so2</span></code></p>
+<p>Dengan demikian, hasil ekstraksi fitur dari ketiga polutan telah tersimpan pada PostgreSQL Aiven dan dapat digunakan sebagai sumber data pada workflow KNIME.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="verifikasi-data-pada-postgresql-aiven">
+<h2><span class="section-number">5.3. </span>3. Verifikasi Data pada PostgreSQL Aiven<a class="headerlink" href="#verifikasi-data-pada-postgresql-aiven" title="Link to this heading">#</a></h2>
+<p>Setelah proses upload selesai, data diverifikasi melalui <strong>PG Studio</strong> pada Aiven untuk memastikan bahwa ketiga tabel telah tersimpan pada database PostgreSQL.</p>
+<p>Verifikasi dilakukan dengan menghitung jumlah baris pada masing-masing tabel menggunakan query SQL.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;CO&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">polutan</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ekstraksi_fitur_co</span>
+
+<span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;NO2&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ekstraksi_fitur_no2</span>
+
+<span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;SO2&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ekstraksi_fitur_so2</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="hasil-verifikasi">
+<h3><span class="section-number">5.3.1. </span>3.1 Hasil Verifikasi<a class="headerlink" href="#hasil-verifikasi" title="Link to this heading">#</a></h3>
+<p>Hasil query menunjukkan bahwa masing-masing tabel memiliki <strong>37 baris data</strong>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tabel</p></th>
+<th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Jumlah Baris</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_co</span></code></p></td>
+<td><p>CO</p></td>
+<td class="text-right"><p>37</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2</span></code></p></td>
+<td><p>NO₂</p></td>
+<td class="text-right"><p>37</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_so2</span></code></p></td>
+<td><p>SO₂</p></td>
+<td class="text-right"><p>37</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hasil verifikasi pada PG Studio ditunjukkan pada gambar berikut.</p>
+<figure class="align-default" id="verifikasi-aiven">
+<a class="reference internal image-reference" href="_images/verifikasi_aiven.png"><img alt="_images/verifikasi_aiven.png" src="_images/verifikasi_aiven.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Verifikasi jumlah data hasil ekstraksi fitur CO, NO₂, dan SO₂ pada PostgreSQL Aiven.</span><a class="headerlink" href="#verifikasi-aiven" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Hasil tersebut menunjukkan bahwa data hasil ekstraksi fitur untuk ketiga polutan telah tersedia pada PostgreSQL Aiven dan selanjutnya dapat diakses melalui KNIME untuk proses analisis.</p>
+</section>
 </section>
 </section>
 
@@ -493,8 +643,18 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arsitektur-pipeline-data">5.1. 1. Arsitektur Pipeline Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-cloud-database-aiven">5.2. 2. Integrasi Cloud Database (Aiven)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-pipeline-data">5.1. 1. Alur Pipeline Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven">5.2. 2. Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-postgresql-aiven">5.2.1. 2.1 Membuat Koneksi PostgreSQL Aiven</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-co">5.2.2. 2.2 Upload Dataset Fitur CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-no2">5.2.3. 2.3 Upload Dataset Fitur NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-so2">5.2.4. 2.4 Upload Dataset Fitur SO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-data-pada-postgresql-aiven">5.3. 3. Verifikasi Data pada PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-verifikasi">5.3.1. 3.1 Hasil Verifikasi</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
