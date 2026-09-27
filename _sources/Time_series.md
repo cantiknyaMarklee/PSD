@@ -8,7 +8,7 @@ Visualisasi deret waktu dilakukan secara terpisah untuk setiap polutan agar peru
 
 ---
 
-## 1. Memuat Data Time Series Hasil Cleaning
+## Memuat Data Time Series Hasil Cleaning
 
 Dataset yang digunakan terdiri dari:
 
@@ -16,7 +16,7 @@ Dataset yang digunakan terdiri dari:
 - `NO2_Kota_Sumenep_clean.csv`
 - `SO2_Kota_Sumenep_clean.csv`
 
-### 1.1 Code Memuat Data
+### Code Memuat Data
 
 ```python
 import pandas as pd

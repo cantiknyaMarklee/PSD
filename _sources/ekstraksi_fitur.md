@@ -6,9 +6,9 @@ Ekstraksi fitur merupakan proses mengubah data time series menjadi sekumpulan ni
 
 Ekstraksi fitur dilakukan menggunakan **Time Series Feature Extraction Library (TSFEL)**. Fitur yang digunakan berasal dari tiga domain utama, yaitu **statistical domain**, **temporal domain**, dan **spectral domain**.
 
-## 1. Konsep Dasar Ekstraksi Fitur Time Series
+## Konsep Dasar Ekstraksi Fitur Time Series
 
-### 1.1 Domain Statistik
+### Domain Statistik
 
 Domain statistik menggambarkan karakteristik distribusi nilai pada suatu time series. Fitur pada domain ini digunakan untuk mengetahui sifat data berdasarkan ukuran statistik seperti rata-rata, median, variansi, standar deviasi, minimum, maksimum, kurtosis, dan karakteristik distribusi lainnya.
 
@@ -24,13 +24,13 @@ dengan:
 - $n$ = jumlah data,
 - $\bar{x}$ = nilai rata-rata.
 
-### 1.2 Domain Temporal
+### Domain Temporal
 
 Domain temporal menggambarkan karakteristik sinyal berdasarkan perubahan nilai terhadap waktu. Fitur temporal dapat digunakan untuk mengukur pola perubahan, jarak, autokorelasi, zero crossing, serta karakteristik lain yang berkaitan dengan urutan waktu pada data.
 
 Salah satu contoh fitur temporal adalah **autocorrelation**, yaitu ukuran hubungan antara suatu time series dengan versi time series tersebut yang mengalami pergeseran waktu (*lag*).
 
-### 1.3 Domain Spektral
+### Domain Spektral
 
 Domain spektral menggambarkan karakteristik sinyal berdasarkan komponen frekuensinya. Analisis pada domain ini umumnya menggunakan transformasi dari domain waktu ke domain frekuensi sehingga pola frekuensi yang terdapat pada data dapat dianalisis.
 
@@ -42,7 +42,7 @@ $$
 68 \times 3 = 204 \text{ fitur}
 $$
 
-## 2. Fitur yang Dianalisis
+## Fitur yang Dianalisis
 
 Berdasarkan pembagian fitur ekstraksi, fitur yang dianalisis pada bagian ini adalah:
 
@@ -51,9 +51,9 @@ Berdasarkan pembagian fitur ekstraksi, fitur yang dianalisis pada bagian ini ada
 
 Kedua fitur tersebut mewakili karakteristik time series yang berbeda. `slope` digunakan untuk menggambarkan kecenderungan perubahan nilai sinyal, sedangkan `spectral_centroid` digunakan untuk menggambarkan pusat distribusi spektrum frekuensi suatu sinyal.
 
-### 2.1 Slope
+### Slope
 
-#### 2.1.1 Deskripsi Slope
+#### Deskripsi Slope
 
 `Slope` merupakan fitur yang digunakan untuk mengukur kecenderungan perubahan nilai suatu sinyal terhadap waktu. Nilai slope menunjukkan arah dan besar perubahan data secara linear.
 
@@ -81,7 +81,7 @@ dengan:
 - $y_i$ = nilai sinyal pada indeks ke-$i$,
 - $n$ = jumlah data.
 
-#### 2.1.2 Contoh Perhitungan Manual
+#### Contoh Perhitungan Manual
 
 Sebagai contoh sederhana, digunakan lima nilai sinyal:
 
@@ -152,7 +152,7 @@ $$
 
 Dengan demikian, nilai slope yang diperoleh adalah **2**. Nilai positif menunjukkan bahwa sinyal pada contoh tersebut memiliki kecenderungan meningkat.
 
-#### 2.1.3 Pembuktian Menggunakan TSFEL
+#### Pembuktian Menggunakan TSFEL
 
 Setelah nilai slope dihitung secara manual, hasil tersebut dapat dibandingkan dengan fungsi `slope(signal)` pada TSFEL.
 
@@ -183,9 +183,9 @@ $$
 
 Hasil fungsi `slope(signal)` pada TSFEL kemudian dapat dibandingkan dengan hasil perhitungan manual tersebut.
 
-### 2.2 Spectral Centroid
+### Spectral Centroid
 
-#### 2.2.1 Deskripsi Spectral Centroid
+#### Deskripsi Spectral Centroid
 
 `Spectral centroid` merupakan fitur pada domain spektral yang digunakan untuk menunjukkan pusat distribusi spektrum suatu sinyal. Fitur ini menghitung rata-rata tertimbang frekuensi berdasarkan besar spektrum pada masing-masing frekuensi.
 
@@ -209,7 +209,7 @@ dengan:
 
 Semakin besar nilai spectral centroid, semakin besar kontribusi komponen frekuensi tinggi terhadap spektrum sinyal. Sebaliknya, nilai spectral centroid yang lebih rendah menunjukkan bahwa distribusi spektrum lebih banyak terkonsentrasi pada frekuensi yang lebih rendah.
 
-#### 2.2.2 Contoh Perhitungan Manual
+#### Contoh Perhitungan Manual
 
 Sebagai contoh sederhana, diasumsikan hasil analisis spektrum memiliki frekuensi dan magnitudo sebagai berikut:
 
@@ -241,7 +241,7 @@ $$
 
 Berdasarkan contoh tersebut, diperoleh nilai spectral centroid sebesar **2** dalam satuan frekuensi yang digunakan pada contoh.
 
-#### 2.2.3 Pembuktian Menggunakan TSFEL
+#### Pembuktian Menggunakan TSFEL
 
 Setelah konsep dan perhitungan manual spectral centroid dijelaskan, fitur ini dapat dihitung menggunakan fungsi `spectral_centroid(signal, fs)` pada TSFEL.
 
@@ -265,7 +265,7 @@ Fungsi `spectral_centroid(signal, fs)` menghitung spectral centroid berdasarkan 
 
 Hasil yang diperoleh dari TSFEL dapat digunakan sebagai pembuktian implementasi perhitungan spectral centroid pada data time series.
 
-## 3. Hasil Ekstraksi Fitur TSFEL
+## Hasil Ekstraksi Fitur TSFEL
 
 Ekstraksi fitur dilakukan terhadap tiga data time series polutan, yaitu CO, NO₂, dan SO₂. Masing-masing polutan menghasilkan **68 fitur TSFEL**.
 

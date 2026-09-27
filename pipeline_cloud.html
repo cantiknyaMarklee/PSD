@@ -373,16 +373,16 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-pipeline-data">5.1. 1. Alur Pipeline Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven">5.2. 2. Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-postgresql-aiven">5.2.1. 2.1 Membuat Koneksi PostgreSQL Aiven</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-co">5.2.2. 2.2 Upload Dataset Fitur CO</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-no2">5.2.3. 2.3 Upload Dataset Fitur NO₂</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-so2">5.2.4. 2.4 Upload Dataset Fitur SO₂</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-pipeline-data">5.1. Alur Pipeline Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven">5.2. Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-postgresql-aiven">5.2.1. Membuat Koneksi PostgreSQL Aiven</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-co">5.2.2. Upload Dataset Fitur CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-no2">5.2.3. Upload Dataset Fitur NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-so2">5.2.4. Upload Dataset Fitur SO₂</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-data-pada-postgresql-aiven">5.3. 3. Verifikasi Data pada PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-verifikasi">5.3.1. 3.1 Hasil Verifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-data-pada-postgresql-aiven">5.3. Verifikasi Data pada PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-verifikasi">5.3.1. Hasil Verifikasi</a></li>
 </ul>
 </li>
 </ul>
@@ -403,7 +403,7 @@
 <p>Penggunaan Aiven dan KNIME merupakan bagian dari workflow yang digunakan dalam pengerjaan proyek. Aiven digunakan sebagai media penyimpanan data hasil ekstraksi fitur, sedangkan KNIME digunakan untuk membangun workflow analisis secara visual.</p>
 <hr class="docutils" />
 <section id="alur-pipeline-data">
-<h2><span class="section-number">5.1. </span>1. Alur Pipeline Data<a class="headerlink" href="#alur-pipeline-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>Alur Pipeline Data<a class="headerlink" href="#alur-pipeline-data" title="Link to this heading">#</a></h2>
 <p>Pipeline yang digunakan terdiri dari beberapa tahapan yang saling terhubung:</p>
 <ol class="arabic simple">
 <li><p>Data time series CO, NO₂, dan SO₂ yang telah melalui proses <em>data cleaning</em> digunakan sebagai input ekstraksi fitur.</p></li>
@@ -419,7 +419,7 @@
 </section>
 <hr class="docutils" />
 <section id="upload-hasil-ekstraksi-fitur-ke-postgresql-aiven">
-<h2><span class="section-number">5.2. </span>2. Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven<a class="headerlink" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span>Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven<a class="headerlink" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven" title="Link to this heading">#</a></h2>
 <p>Setelah proses ekstraksi fitur selesai, dataset hasil ekstraksi CO, NO₂, dan SO₂ diunggah ke <strong>PostgreSQL Aiven</strong> menggunakan Python dari Google Colab.</p>
 <p>Setiap dataset terdiri dari <strong>37 baris data mahasiswa</strong> dengan <strong>71 kolom utama</strong>, yaitu:</p>
 <ul class="simple">
@@ -430,7 +430,7 @@
 </ul>
 <p>Sebelum proses upload, kolom bantu seperti <code class="docutils literal notranslate"><span class="pre">nama_key</span></code>, <code class="docutils literal notranslate"><span class="pre">daerah_key</span></code>, dan <code class="docutils literal notranslate"><span class="pre">key</span></code> dihapus sehingga hanya identitas utama dan 68 fitur yang disimpan ke database.</p>
 <section id="membuat-koneksi-postgresql-aiven">
-<h3><span class="section-number">5.2.1. </span>2.1 Membuat Koneksi PostgreSQL Aiven<a class="headerlink" href="#membuat-koneksi-postgresql-aiven" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.2.1. </span>Membuat Koneksi PostgreSQL Aiven<a class="headerlink" href="#membuat-koneksi-postgresql-aiven" title="Link to this heading">#</a></h3>
 <p>Koneksi dari Python ke PostgreSQL dibuat menggunakan <code class="docutils literal notranslate"><span class="pre">SQLAlchemy</span></code> dan driver <code class="docutils literal notranslate"><span class="pre">psycopg2</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">quote_plus</span>
@@ -447,7 +447,7 @@
 <p>Informasi sensitif seperti <strong>password database tidak ditampilkan</strong> pada dokumentasi publik.</p>
 </section>
 <section id="upload-dataset-fitur-co">
-<h3><span class="section-number">5.2.2. </span>2.2 Upload Dataset Fitur CO<a class="headerlink" href="#upload-dataset-fitur-co" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.2.2. </span>Upload Dataset Fitur CO<a class="headerlink" href="#upload-dataset-fitur-co" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">co_upload</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nama_key&quot;</span><span class="p">,</span> <span class="s2">&quot;daerah_key&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">],</span>
     <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span>
@@ -471,7 +471,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_co</span></code></p>
 </section>
 <section id="upload-dataset-fitur-no2">
-<h3><span class="section-number">5.2.3. </span>2.3 Upload Dataset Fitur NO₂<a class="headerlink" href="#upload-dataset-fitur-no2" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.2.3. </span>Upload Dataset Fitur NO₂<a class="headerlink" href="#upload-dataset-fitur-no2" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">no2_upload</span> <span class="o">=</span> <span class="n">no2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nama_key&quot;</span><span class="p">,</span> <span class="s2">&quot;daerah_key&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">],</span>
     <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span>
@@ -495,7 +495,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2</span></code></p>
 </section>
 <section id="upload-dataset-fitur-so2">
-<h3><span class="section-number">5.2.4. </span>2.4 Upload Dataset Fitur SO₂<a class="headerlink" href="#upload-dataset-fitur-so2" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.2.4. </span>Upload Dataset Fitur SO₂<a class="headerlink" href="#upload-dataset-fitur-so2" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">so2_upload</span> <span class="o">=</span> <span class="n">so2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nama_key&quot;</span><span class="p">,</span> <span class="s2">&quot;daerah_key&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">],</span>
     <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span>
@@ -522,7 +522,7 @@
 </section>
 <hr class="docutils" />
 <section id="verifikasi-data-pada-postgresql-aiven">
-<h2><span class="section-number">5.3. </span>3. Verifikasi Data pada PostgreSQL Aiven<a class="headerlink" href="#verifikasi-data-pada-postgresql-aiven" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3. </span>Verifikasi Data pada PostgreSQL Aiven<a class="headerlink" href="#verifikasi-data-pada-postgresql-aiven" title="Link to this heading">#</a></h2>
 <p>Setelah proses upload selesai, data diverifikasi melalui <strong>PG Studio</strong> pada Aiven untuk memastikan bahwa ketiga tabel telah tersimpan pada database PostgreSQL.</p>
 <p>Verifikasi dilakukan dengan menghitung jumlah baris pada masing-masing tabel menggunakan query SQL.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;CO&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">polutan</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
@@ -540,7 +540,7 @@
 </pre></div>
 </div>
 <section id="hasil-verifikasi">
-<h3><span class="section-number">5.3.1. </span>3.1 Hasil Verifikasi<a class="headerlink" href="#hasil-verifikasi" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.3.1. </span>Hasil Verifikasi<a class="headerlink" href="#hasil-verifikasi" title="Link to this heading">#</a></h3>
 <p>Hasil query menunjukkan bahwa masing-masing tabel memiliki <strong>37 baris data</strong>.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -643,16 +643,16 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-pipeline-data">5.1. 1. Alur Pipeline Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven">5.2. 2. Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-postgresql-aiven">5.2.1. 2.1 Membuat Koneksi PostgreSQL Aiven</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-co">5.2.2. 2.2 Upload Dataset Fitur CO</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-no2">5.2.3. 2.3 Upload Dataset Fitur NO₂</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-so2">5.2.4. 2.4 Upload Dataset Fitur SO₂</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-pipeline-data">5.1. Alur Pipeline Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-hasil-ekstraksi-fitur-ke-postgresql-aiven">5.2. Upload Hasil Ekstraksi Fitur ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-koneksi-postgresql-aiven">5.2.1. Membuat Koneksi PostgreSQL Aiven</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-co">5.2.2. Upload Dataset Fitur CO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-no2">5.2.3. Upload Dataset Fitur NO₂</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-dataset-fitur-so2">5.2.4. Upload Dataset Fitur SO₂</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-data-pada-postgresql-aiven">5.3. 3. Verifikasi Data pada PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-verifikasi">5.3.1. 3.1 Hasil Verifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-data-pada-postgresql-aiven">5.3. Verifikasi Data pada PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-verifikasi">5.3.1. Hasil Verifikasi</a></li>
 </ul>
 </li>
 </ul>

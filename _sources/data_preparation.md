@@ -17,7 +17,7 @@ Proses persiapan dilakukan secara terpisah terhadap data CO, NO₂, dan SO₂ se
 
 ---
 
-## 1. Penyesuaian Format Data
+## Penyesuaian Format Data
 
 Sebelum dilakukan penanganan *missing value* dan *outlier*, format data diperiksa dan disesuaikan terlebih dahulu. Kolom `date` pada ketiga dataset diubah menjadi tipe `datetime` agar dapat digunakan sebagai indeks temporal.
 
@@ -25,7 +25,7 @@ Pada data CO terdapat kondisi khusus karena nilai pada kolom `CO` masih terbaca 
 
 Nilai `[None]` dikonversi menjadi `NaN`, sedangkan nilai yang berada di dalam list diambil sebagai nilai numerik.
 
-### 1.1 Code Penyesuaian Data CO
+### Code Penyesuaian Data CO
 
 ```python
 import pandas as pd
@@ -53,7 +53,7 @@ df_co = df_co.sort_values("date").reset_index(drop=True)
 
 ---
 
-## 2. Deteksi Outlier Menggunakan IQR
+## Deteksi Outlier Menggunakan IQR
 
 Selain *missing value*, data juga diperiksa untuk mendeteksi nilai yang berada di luar rentang umum data (*outlier*). Deteksi *outlier* dilakukan menggunakan metode **Interquartile Range (IQR)**.
 
@@ -75,7 +75,7 @@ $$
 
 Nilai polutan yang berada di bawah *lower bound* atau di atas *upper bound* ditandai sebagai *outlier*. Pada proses berikutnya, nilai tersebut diubah menjadi `NaN` agar dapat ditangani bersama *missing value* melalui proses imputasi.
 
-### 2.1 Deteksi Outlier CO
+### Deteksi Outlier CO
 
 ```python
 Q1 = df_co["CO"].quantile(0.25)
@@ -100,7 +100,7 @@ print("Outlier CO  :", outlier_co.sum())
 
 Hasil deteksi menunjukkan terdapat **3 outlier pada data CO**.
 
-### 2.2 Deteksi Outlier NO₂
+### Deteksi Outlier NO₂
 
 ```python
 Q1 = df_no2["NO2"].quantile(0.25)
@@ -120,7 +120,7 @@ print("Outlier NO2 :", outlier_no2.sum())
 
 Hasil deteksi menunjukkan terdapat **4 outlier pada data NO₂**.
 
-### 2.3 Deteksi Outlier SO₂
+### Deteksi Outlier SO₂
 
 ```python
 Q1 = df_so2["SO2"].quantile(0.25)
@@ -150,7 +150,7 @@ Nilai *outlier* tersebut tidak langsung menghapus baris pengamatan. Nilai *outli
 
 ---
 
-## 3. Penanganan Missing Value dan Outlier
+## Penanganan Missing Value dan Outlier
 
 Setelah *outlier* teridentifikasi menggunakan metode IQR, nilai *outlier* ditandai sebagai `NaN`. Nilai tersebut kemudian ditangani bersama *missing value* yang sudah terdapat pada data awal.
 
@@ -167,7 +167,7 @@ Secara umum, proses yang digunakan adalah:
 5. Melakukan *backward fill* (`bfill()`).
 6. Mengembalikan `date` menjadi kolom.
 
-### 3.1 Imputasi Data CO
+### Imputasi Data CO
 
 ```python
 df_co_clean = df_co.copy()
@@ -202,7 +202,7 @@ print(
 
 Hasil proses menunjukkan bahwa jumlah nilai yang perlu diimputasi pada CO adalah **170 nilai**. Setelah interpolasi dan proses pengisian dilakukan, jumlah *missing value* menjadi **0**.
 
-### 3.2 Imputasi Data NO₂
+### Imputasi Data NO₂
 
 ```python
 df_no2_clean = df_no2.copy()
@@ -236,7 +236,7 @@ print(
 
 Pada data NO₂ terdapat **194 nilai** yang perlu ditangani setelah *missing value* awal dan *outlier* diperhitungkan. Setelah proses imputasi, jumlah *missing value* menjadi **0**.
 
-### 3.3 Imputasi Data SO₂
+### Imputasi Data SO₂
 
 ```python
 df_so2_clean = df_so2.copy()
@@ -270,7 +270,7 @@ print(
 
 Pada data SO₂ terdapat **166 nilai** yang perlu ditangani sebelum imputasi. Setelah proses interpolasi, `ffill()`, dan `bfill()`, jumlah *missing value* menjadi **0**.
 
-### 3.4 Hasil Penanganan Missing Value
+### Hasil Penanganan Missing Value
 
 | Polutan | Sebelum Imputasi | Setelah Imputasi |
 |---|---:|---:|
@@ -282,7 +282,7 @@ Proses ini mempertahankan **365 observasi** pada masing-masing polutan. Dengan d
 
 ---
 
-## 4. Verifikasi Hasil Data Cleaning
+## Verifikasi Hasil Data Cleaning
 
 Setelah proses penyesuaian format, deteksi *outlier*, dan imputasi selesai dilakukan, tahap berikutnya adalah melakukan verifikasi terhadap dataset hasil pembersihan.
 
@@ -294,7 +294,7 @@ Verifikasi dilakukan untuk memastikan bahwa:
 - struktur tanggal tetap dipertahankan,
 - dataset siap digunakan pada tahap ekstraksi fitur.
 
-### 4.1 Code Verifikasi
+### Code Verifikasi
 
 ```python
 datasets_clean = {
@@ -313,7 +313,7 @@ for nama, df in datasets_clean.items():
     print()
 ```
 
-### 4.2 Hasil Verifikasi
+### Hasil Verifikasi
 
 Berdasarkan hasil pemeriksaan, ketiga dataset hasil *cleaning* memiliki **365 observasi** dan tidak lagi memiliki *missing value* pada kolom polutan.
 
@@ -325,7 +325,7 @@ Berdasarkan hasil pemeriksaan, ketiga dataset hasil *cleaning* memiliki **365 ob
 
 Dengan demikian, ketiga dataset telah memiliki deret waktu harian yang lengkap dan dapat digunakan pada tahap berikutnya.
 
-## 5. Penyimpanan Dataset Hasil Cleaning
+## Penyimpanan Dataset Hasil Cleaning
 
 Dataset yang telah melalui proses pembersihan kemudian disimpan dalam format CSV.
 
@@ -356,7 +356,7 @@ Ketiga file tersebut menjadi **dataset hasil Data Preparation** yang selanjutnya
 
 ---
 
-## 6. Ringkasan Data Preparation
+## Ringkasan Data Preparation
 
 Tahap Data Preparation menghasilkan tiga dataset deret waktu yang telah siap digunakan untuk analisis berikutnya. Proses yang dilakukan meliputi penyesuaian format data, konversi nilai CO menjadi numerik, deteksi *outlier* menggunakan IQR, penandaan *outlier* sebagai `NaN`, serta imputasi menggunakan interpolasi berbasis waktu yang dilanjutkan dengan `ffill()` dan `bfill()`.
 
@@ -372,11 +372,11 @@ Dataset hasil *cleaning* selanjutnya digunakan pada tahap **Analisis Time Series
 
 ---
 
-## 2. Analisis Time Series CO
+## Analisis Time Series CO
 
 Visualisasi *time series* digunakan untuk melihat perubahan nilai **Karbon Monoksida (CO)** terhadap waktu setelah melalui tahap *Data Preparation*.
 
-### 2.1 Visualisasi Time Series CO
+### Visualisasi Time Series CO
 
 ```python
 co_clean = pd.read_csv("CO_Kota_Sumenep_clean.csv")
@@ -415,7 +415,7 @@ name: timeseries-co-clean
 Time Series Karbon Monoksida (CO) setelah proses *data cleaning*.
 ```
 
-### 2.2 Interpretasi Time Series CO
+### Interpretasi Time Series CO
 
 Berdasarkan visualisasi *time series*, nilai CO di Kecamatan Kota Sumenep menunjukkan **fluktuasi sepanjang periode pengamatan**. Nilai CO secara umum berada pada kisaran sekitar **0,020 hingga 0,035**.
 
@@ -427,11 +427,11 @@ Secara visual, pola CO menunjukkan perubahan nilai dari waktu ke waktu dan tidak
 
 ---
 
-## 3. Analisis Time Series NO₂
+## Analisis Time Series NO₂
 
 Visualisasi *time series* digunakan untuk melihat perubahan nilai **Nitrogen Dioksida (NO₂)** terhadap waktu setelah melalui tahap *Data Preparation*.
 
-### 3.1 Visualisasi Time Series NO₂
+### Visualisasi Time Series NO₂
 
 ```python
 no2_clean = pd.read_csv("NO2_Kota_Sumenep_clean.csv")
@@ -470,7 +470,7 @@ name: timeseries-no2-clean
 Time Series Nitrogen Dioksida (NO₂) setelah proses *data cleaning*.
 ```
 
-### 3.2 Interpretasi Time Series NO₂
+### Interpretasi Time Series NO₂
 
 Berdasarkan visualisasi *time series*, nilai NO₂ di Kecamatan Kota Sumenep menunjukkan **fluktuasi sepanjang periode pengamatan**. Nilainya bergerak pada orde $10^{-5}$ dan pada beberapa waktu terlihat mencapai nilai di atas $3 \times 10^{-5}$, sedangkan pada beberapa pengamatan lainnya nilainya berada di bawah nol.
 
@@ -480,11 +480,11 @@ Setelah proses *data cleaning*, deret waktu NO₂ telah tersusun secara kontinu 
 
 ---
 
-## 4. Analisis Time Series SO₂
+## Analisis Time Series SO₂
 
 Visualisasi *time series* digunakan untuk melihat perubahan nilai **Sulfur Dioksida (SO₂)** terhadap waktu setelah melalui tahap *Data Preparation*.
 
-### 4.1 Visualisasi Time Series SO₂
+### Visualisasi Time Series SO₂
 
 ```python
 so2_clean = pd.read_csv("SO2_Kota_Sumenep_clean.csv")
@@ -523,7 +523,7 @@ name: timeseries-so2-clean
 Time Series Sulfur Dioksida (SO₂) setelah proses *data cleaning*.
 ```
 
-### 4.2 Interpretasi Time Series SO₂
+### Interpretasi Time Series SO₂
 
 Berdasarkan visualisasi *time series*, nilai SO₂ di Kecamatan Kota Sumenep menunjukkan **fluktuasi yang cukup besar sepanjang periode pengamatan**. Nilai yang ditampilkan bergerak pada kisaran sekitar **-0,00035 hingga 0,00043**, sehingga terdapat pengamatan dengan nilai positif maupun negatif.
 
@@ -533,7 +533,7 @@ Setelah proses *data cleaning*, deret waktu SO₂ telah tersusun secara kontinu 
 
 ---
 
-## 5. Ringkasan Analisis Time Series
+## Ringkasan Analisis Time Series
 
 Berdasarkan eksplorasi *time series* terhadap ketiga polutan, yaitu CO, NO₂, dan SO₂, terlihat bahwa masing-masing polutan memiliki variasi nilai terhadap waktu selama periode **31 Agustus 2025 hingga 30 Agustus 2026**.
 

@@ -6,19 +6,19 @@ Data ketiga polutan berbentuk deret waktu (*time series*) harian. Pemahaman terh
 
 ---
 
-## 1. Deskripsi Data
+## Deskripsi Data
 
 Data yang digunakan dalam proyek terdiri dari tiga jenis polutan:
 
-### 1.1 Karbon Monoksida (CO)
+### Karbon Monoksida (CO)
 
 Karbon Monoksida (CO) merupakan salah satu parameter polutan yang dianalisis dalam proyek. Data CO disusun sebagai deret waktu harian sehingga perubahan nilainya dapat diamati berdasarkan waktu pengamatan.
 
-### 1.2 Nitrogen Dioksida (NO₂)
+### Nitrogen Dioksida (NO₂)
 
 Nitrogen Dioksida (NO₂) merupakan parameter polutan kedua yang digunakan. Data NO₂ juga berbentuk deret waktu harian dan digunakan dalam tahapan analisis serta ekstraksi fitur.
 
-### 1.3 Sulfur Dioksida (SO₂)
+### Sulfur Dioksida (SO₂)
 
 Sulfur Dioksida (SO₂) merupakan parameter polutan ketiga. Sama seperti CO dan NO₂, data SO₂ disusun berdasarkan waktu pengamatan dan digunakan dalam tahapan pengolahan serta analisis berikutnya.
 
@@ -26,7 +26,7 @@ Ketiga data polutan selanjutnya dianalisis untuk memahami pola temporal sebelum 
 
 ---
 
-## 2. Sumber Data
+## Sumber Data
 
 Data polutan diperoleh dari **Sentinel-5P** melalui layanan **openEO pada Copernicus Data Space Ecosystem**.
 
@@ -54,7 +54,7 @@ Dengan demikian, data awal yang digunakan terdiri dari:
 
 ---
 
-## 3. Wilayah Studi dan Area of Interest (AOI)
+## Wilayah Studi dan Area of Interest (AOI)
 
 Wilayah yang digunakan dalam proyek adalah **Kecamatan Kota Sumenep, Kabupaten Sumenep, Jawa Timur**.
 
@@ -66,7 +66,7 @@ File GeoJSON tersebut digunakan sebagai **Area of Interest (AOI)** dalam proses 
 
 Untuk memahami lokasi dan cakupan wilayah penelitian, AOI divisualisasikan menggunakan library **Folium** dengan *basemap* **OpenStreetMap**.
 
-### 3.1 Code Visualisasi AOI
+### Code Visualisasi AOI
 
 ```python
 import json
@@ -108,7 +108,7 @@ folium.LayerControl().add_to(m)
 m
 ```
 
-### 3.2 Hasil Visualisasi AOI
+### Hasil Visualisasi AOI
 
 Peta berikut menunjukkan batas wilayah **Kecamatan Kota Sumenep** yang digunakan sebagai *Area of Interest* dalam pengambilan data ketiga polutan.
 
@@ -125,7 +125,7 @@ Peta bersifat interaktif sehingga dapat diperbesar, diperkecil, dan digeser untu
 
 ---
 
-## 4. Struktur Dataset
+## Struktur Dataset
 
 Setelah data CO, NO₂, dan SO₂ diperoleh, dilakukan pemeriksaan struktur dataset untuk mengetahui jumlah observasi, jumlah kolom, nama variabel, serta contoh data pada masing-masing polutan.
 
@@ -135,7 +135,7 @@ Pemeriksaan dilakukan menggunakan library `pandas` pada tiga file data mentah:
 - `NO2_Kota_Sumenep_raw.csv`
 - `SO2_Kota_Sumenep_raw.csv`
 
-### 4.1 Pemeriksaan Struktur Data
+### Pemeriksaan Struktur Data
 
 Code berikut digunakan untuk membaca dan melihat struktur awal ketiga dataset.
 
@@ -163,7 +163,7 @@ print("Nama kolom  :", so2.columns.tolist())
 display(so2.head())
 ```
 
-### 4.2 Hasil Pemeriksaan Struktur Data
+### Hasil Pemeriksaan Struktur Data
 
 Berdasarkan hasil pemeriksaan, ketiga dataset memiliki jumlah observasi yang sama, yaitu **365 baris** dan masing-masing terdiri dari **2 kolom**.
 
@@ -175,7 +175,7 @@ Berdasarkan hasil pemeriksaan, ketiga dataset memiliki jumlah observasi yang sam
 
 Kolom `date` menunjukkan waktu pengamatan, sedangkan kolom `CO`, `NO2`, dan `SO2` berisi nilai masing-masing polutan.
 
-### 4.3 Contoh Data CO
+### Contoh Data CO
 
 Lima observasi pertama data CO adalah:
 
@@ -187,7 +187,7 @@ Lima observasi pertama data CO adalah:
 | 3 | 2025-09-03 00:00:00+00:00 | [0.0257595013827085] |
 | 4 | 2025-09-04 00:00:00+00:00 | [0.0280019156634807] |
 
-### 4.4 Contoh Data NO₂
+### Contoh Data NO₂
 
 Lima observasi pertama data NO₂ adalah:
 
@@ -199,7 +199,7 @@ Lima observasi pertama data NO₂ adalah:
 | 3 | 2025-09-03 00:00:00+00:00 | -2.147225e-06 |
 | 4 | 2025-09-04 00:00:00+00:00 | 1.662965e-05 |
 
-### 4.5 Contoh Data SO₂
+### Contoh Data SO₂
 
 Lima observasi pertama data SO₂ adalah:
 
@@ -211,7 +211,7 @@ Lima observasi pertama data SO₂ adalah:
 | 3 | 2025-09-03 00:00:00+00:00 | -0.000181 |
 | 4 | 2025-09-04 00:00:00+00:00 | -0.000176 |
 
-### 4.6 Interpretasi Struktur Data
+### Interpretasi Struktur Data
 
 Hasil pemeriksaan menunjukkan bahwa ketiga dataset mempunyai **365 observasi harian**, sesuai dengan periode pengamatan selama satu tahun. Setiap dataset memiliki satu variabel waktu (`date`) dan satu variabel nilai polutan.
 
@@ -221,11 +221,11 @@ Sementara itu, data NO₂ dan SO₂ pada tampilan awal sudah menunjukkan nilai n
 
 ---
 
-## 5. Pemeriksaan Data Awal
+## Pemeriksaan Data Awal
 
 Pemeriksaan kondisi awal data dilakukan untuk mengetahui tipe data, keberadaan *missing value*, data duplikat, rentang waktu pengamatan, serta jumlah tanggal unik pada masing-masing dataset.
 
-### 5.1 Code Pemeriksaan Data
+### Code Pemeriksaan Data
 
 ```python
 # Mengubah kolom tanggal menjadi datetime
@@ -251,7 +251,7 @@ for nama, df in datasets.items():
     print()
 ```
 
-### 5.2 Hasil Pemeriksaan
+### Hasil Pemeriksaan
 
 Hasil pemeriksaan kondisi awal ketiga dataset adalah sebagai berikut:
 
@@ -265,7 +265,7 @@ Hasil pemeriksaan kondisi awal ketiga dataset adalah sebagai berikut:
 | Tanggal awal | 31 Agustus 2025 | 31 Agustus 2025 | 31 Agustus 2025 |
 | Tanggal akhir | 30 Agustus 2026 | 30 Agustus 2026 | 30 Agustus 2026 |
 
-### 5.3 Interpretasi Hasil Pemeriksaan
+### Interpretasi Hasil Pemeriksaan
 
 Ketiga dataset memiliki **365 tanggal unik** dengan periode pengamatan yang sama, yaitu mulai **31 Agustus 2025 hingga 30 Agustus 2026**. Tidak ditemukan *missing value* pada kolom `date` dan tidak ditemukan baris duplikat pada ketiga dataset.
 
@@ -277,13 +277,13 @@ Temuan tersebut menunjukkan bahwa data mentah masih memerlukan tahap persiapan s
 
 ---
 
-## 6. Statistik Deskriptif
+## Statistik Deskriptif
 
 Statistik deskriptif digunakan untuk memberikan gambaran awal mengenai karakteristik data melalui ukuran-ukuran statistik seperti rata-rata, standar deviasi, nilai minimum, kuartil, median, dan nilai maksimum.
 
 Pada tahap ini, statistik dihitung berdasarkan **data mentah** yang masih berada pada tahap Data Understanding. Oleh karena itu, statistik numerik hanya dapat diperoleh secara langsung pada data NO₂ dan SO₂, sedangkan data CO masih memerlukan penyesuaian format pada tahap Data Preparation.
 
-### 6.1 Konsep Dasar Statistik Deskriptif
+### Konsep Dasar Statistik Deskriptif
 
 Beberapa ukuran statistik yang digunakan adalah:
 
@@ -316,7 +316,7 @@ s = \sqrt{\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}}
 
 Standar deviasi yang lebih besar menunjukkan bahwa nilai data memiliki penyebaran yang lebih besar terhadap rata-ratanya.
 
-### 6.2 Code Statistik Deskriptif
+### Code Statistik Deskriptif
 
 Pemeriksaan statistik deskriptif data mentah dilakukan menggunakan fungsi `describe()` pada Pandas.
 
@@ -333,7 +333,7 @@ print("\n=== SO2 ===")
 print(so2["SO2"].describe())
 ```
 
-### 6.3 Hasil Statistik Deskriptif
+### Hasil Statistik Deskriptif
 
 Hasil statistik deskriptif data mentah adalah sebagai berikut:
 
@@ -350,7 +350,7 @@ Hasil statistik deskriptif data mentah adalah sebagai berikut:
 
 Jumlah `count` pada NO₂ dan SO₂ tidak mencapai 365 karena pada pemeriksaan sebelumnya ditemukan *missing value*. NO₂ memiliki **175 nilai yang tersedia** dan **190 missing value**, sedangkan SO₂ memiliki **207 nilai yang tersedia** dan **158 missing value**.
 
-### 6.4 Kondisi Statistik Data CO
+### Kondisi Statistik Data CO
 
 Pada data mentah CO, fungsi `describe()` menghasilkan:
 
@@ -365,7 +365,7 @@ Hasil tersebut berbeda dari NO₂ dan SO₂ karena kolom `CO` masih terbaca seba
 
 Oleh karena itu, nilai statistik numerik seperti *mean*, standar deviasi, minimum, kuartil, median, dan maksimum belum dihitung pada tahap ini. Penyesuaian format data CO akan dilakukan pada tahap **Data Preparation** sebelum analisis numerik berikutnya.
 
-### 6.5 Interpretasi Statistik Deskriptif
+### Interpretasi Statistik Deskriptif
 
 Pada data mentah NO₂, nilai rata-rata yang diperoleh adalah sekitar **0.000013**, dengan standar deviasi sekitar **0.000010**. Nilai NO₂ yang tersedia berada pada rentang sekitar **-0.000017 hingga 0.000038**.
 
@@ -375,13 +375,13 @@ Hasil statistik ini masih menggambarkan **kondisi data mentah**. Karena masih te
 
 ---
 
-## 7. Eksplorasi Time Series Setiap Polutan
+## Eksplorasi Time Series Setiap Polutan
 
 Data CO, NO₂, dan SO₂ merupakan data deret waktu (*time series*) karena setiap nilai polutan memiliki informasi waktu pengamatan. Visualisasi *time series* dilakukan untuk melihat perubahan nilai masing-masing polutan selama periode pengamatan.
 
 Eksplorasi dilakukan terhadap **data mentah** sebelum proses Data Preparation. Oleh karena itu, kondisi data seperti nilai yang belum tersedia (*missing value*) masih dipertahankan pada visualisasi.
 
-### 7.1 Konsep Dasar Time Series
+### Konsep Dasar Time Series
 
 *Time series* merupakan sekumpulan observasi yang tersusun berdasarkan urutan waktu. Secara umum, data *time series* dapat dinyatakan sebagai:
 
@@ -400,7 +400,7 @@ Pada proyek ini, waktu pengamatan menggunakan interval harian selama periode **3
 
 Visualisasi *time series* digunakan untuk mengamati perubahan nilai polutan berdasarkan waktu serta melihat kondisi awal ketersediaan data sebelum dilakukan tahap persiapan data.
 
-### 7.2 Persiapan Data CO untuk Visualisasi
+### Persiapan Data CO untuk Visualisasi
 
 Berdasarkan pemeriksaan sebelumnya, kolom `CO` pada data mentah masih bertipe `object` dengan bentuk nilai seperti `[0.0257152002304792]`. Oleh karena itu, dibuat salinan data khusus untuk keperluan visualisasi tanpa mengubah file data mentah.
 
@@ -428,7 +428,7 @@ co_plot["CO_numeric"] = co_plot["CO"].apply(ambil_nilai_co)
 
 Konversi tersebut hanya digunakan agar nilai CO dapat divisualisasikan secara numerik. Proses persiapan data secara lengkap akan dibahas pada tahap **Data Preparation**.
 
-### 7.3 Time Series Karbon Monoksida (CO)
+### Time Series Karbon Monoksida (CO)
 
 Code yang digunakan untuk membuat visualisasi CO adalah:
 
@@ -457,7 +457,7 @@ Time Series Karbon Monoksida (CO) di Kecamatan Kota Sumenep.
 
 Grafik menunjukkan perubahan nilai CO berdasarkan tanggal pengamatan. Pada visualisasi ini, nilai `[None]` yang terdapat pada data mentah direpresentasikan sebagai nilai kosong (`NaN`), sehingga bagian yang tidak memiliki nilai pengamatan dapat terlihat pada deret waktu.
 
-### 7.4 Time Series Nitrogen Dioksida (NO₂)
+### Time Series Nitrogen Dioksida (NO₂)
 
 Code yang digunakan untuk membuat visualisasi NO₂ adalah:
 
@@ -484,7 +484,7 @@ Time Series Nitrogen Dioksida (NO₂) di Kecamatan Kota Sumenep.
 
 Grafik NO₂ menunjukkan adanya bagian deret waktu yang terputus. Kondisi tersebut berkaitan dengan **190 missing value** yang ditemukan pada data mentah NO₂. Matplotlib tidak menghubungkan garis pada observasi yang bernilai `NaN`, sehingga periode yang tidak memiliki nilai pengamatan terlihat sebagai celah pada grafik.
 
-### 7.5 Time Series Sulfur Dioksida (SO₂)
+### Time Series Sulfur Dioksida (SO₂)
 
 Code yang digunakan untuk membuat visualisasi SO₂ adalah:
 
@@ -511,7 +511,7 @@ Time Series Sulfur Dioksida (SO₂) di Kecamatan Kota Sumenep.
 
 Grafik SO₂ juga memperlihatkan bagian deret waktu yang terputus. Hal ini sesuai dengan hasil pemeriksaan data awal yang menunjukkan adanya **158 missing value** pada data SO₂.
 
-### 7.6 Interpretasi Eksplorasi Time Series
+### Interpretasi Eksplorasi Time Series
 
 Visualisasi ketiga polutan menunjukkan bahwa CO, NO₂, dan SO₂ memiliki nilai yang berubah sepanjang waktu pengamatan. Selain memperlihatkan perubahan nilai polutan, visualisasi juga menunjukkan kondisi kelengkapan data mentah.
 
@@ -521,7 +521,7 @@ Oleh karena itu, hasil eksplorasi ini menjadi dasar untuk melakukan tahap **Data
 
 ---
 
-## 8. Ringkasan Data Understanding
+## Ringkasan Data Understanding
 
 Tahap **Data Understanding** dilakukan untuk memahami sumber, struktur, kondisi awal, serta karakteristik temporal data sebelum memasuki tahap persiapan dan analisis lebih lanjut.
 
