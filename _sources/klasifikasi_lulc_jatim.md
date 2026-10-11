@@ -252,51 +252,24 @@ Hasil ini bersifat **prototipe eksploratif**, bukan peta LULC final tervalidasi.
 Dokumentasi UTS ini ditempatkan pada **Jupyter Book PSD yang sudah ada** (`materi/klasifikasi_lulc_jatim.md`) bersama materi PSD sebelumnya. **Tautan publik Streamlit baru boleh dicantumkan setelah aplikasinya benar-benar dideploy dan berhasil dibuka.** Tidak diperlukan pembuatan website PSD terpisah.
 
 
-### 5.4 Peta Interaktif Sampel Tutupan Lahan Jawa Timur
+### 5.4 Peta Interaktif Hasil Klasifikasi Extra Trees Jawa Timur
 
-Peta berikut menampilkan 180 poligon kandidat sampel dari enam kelas
-tutupan lahan di Jawa Timur dan Madura: sawah, bangunan, mangrove,
-lahan hijau, laut, dan danau.
-
-Peta menggunakan Folium/Leaflet dengan basemap satelit Esri.
-Pengguna dapat memperbesar peta, mengaktifkan atau menonaktifkan
-layer kelas, dan melihat ID serta label setiap poligon.
-
-<iframe
-    src="_static/peta_lulc_interaktif.html"
-    width="100%"
-    height="600"
-    style="border: 1px solid #ddd; border-radius: 8px;"
-    loading="lazy"
-    title="Peta interaktif sampel tutupan lahan Jawa Timur">
-</iframe>
-
-**Catatan:** Peta ini menunjukkan poligon sampel yang digunakan
-untuk eksperimen klasifikasi, bukan hasil prediksi seluruh
-wilayah Provinsi Jawa Timur.
-
----
-
-<!-- MULAI PETA PREDIKSI UTS -->
-### 5.5 Peta Hasil Klasifikasi Model Extra Trees (180 Poligon)
-
-Peta berikut **menampilkan hasil prediksi model** untuk keenam kelas pada 180
-poligon sampel, bukan hanya label referensinya. Klik poligon untuk membandingkan
-prediksi dengan label kandidat. Pengguna dapat mengubah basemap, mengaktifkan
-layer kelas, serta membaca legenda warna.
+Peta berikut menampilkan **prediksi model Extra Trees pada 180 poligon sampel** enam kelas
+(sawah, bangunan, mangrove, lahan hijau, laut, dan danau). Warna menunjukkan **kelas
+hasil prediksi**, bukan label asli. Pengguna dapat memilih basemap satelit, mengaktifkan
+layer kelas, membaca legenda warna, serta mengeklik poligon untuk membandingkan
+prediksi dengan label kandidat sampel.
 
 <iframe src="_static/peta_hasil_prediksi_lulc.html"
   width="100%" height="650" loading="lazy"
   style="border:1px solid #ddd; border-radius:8px;"
-  title="Hasil prediksi Extra Trees pada 180 poligon"></iframe>
+  title="Peta hasil klasifikasi Extra Trees pada 180 poligon"></iframe>
 
-**Batasan penting:** Peta tersebut adalah prediksi model pada **180 poligon
-yang juga berada dalam dataset pemodelan**, bukan hasil pemetaan piksel seluruh
-Jawa Timur atau validasi independen. Akurasi **72,22%** berasal dari **36
-poligon uji**; bukan akurasi raster. Perbedaan kelas, terutama mangrove,
-masih membutuhkan pemeriksaan label dan evaluasi spasial lebih lanjut.
-
-<!-- AKHIR PETA PREDIKSI UTS -->
+**Catatan evaluasi:** Peta ini merupakan hasil prediksi pada **180 poligon yang juga
+termasuk dalam dataset pelatihan/pengujian**, bukan klasifikasi raster seluruh
+Jawa Timur. Akurasi **72,22%** hanya berasal dari **36 poligon data uji**;
+bukan akurasi keseluruhan peta atau raster. Raster area contoh Bangkalan tetap
+dibahas secara terpisah pada bagian 5.2 sebagai demonstrasi yang belum tervalidasi.
 
 ---
 

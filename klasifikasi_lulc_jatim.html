@@ -405,8 +405,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-interaktif">8.5.1. 5.1 Aplikasi interaktif</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrasi-klasifikasi-raster">8.5.2. 5.2 Demonstrasi klasifikasi raster</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publikasi-website-psd">8.5.3. 5.3 Publikasi website PSD</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-sampel-tutupan-lahan-jawa-timur">8.5.4. 5.4 Peta Interaktif Sampel Tutupan Lahan Jawa Timur</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi-model-extra-trees-180-poligon">8.5.5. 5.5 Peta Hasil Klasifikasi Model Extra Trees (180 Poligon)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-hasil-klasifikasi-extra-trees-jawa-timur">8.5.4. 5.4 Peta Interaktif Hasil Klasifikasi Extra Trees Jawa Timur</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-dan-rekomendasi">8.6. 6. Kesimpulan dan Rekomendasi</a></li>
@@ -842,44 +841,22 @@
 <h3><span class="section-number">8.5.3. </span>5.3 Publikasi website PSD<a class="headerlink" href="#publikasi-website-psd" title="Link to this heading">#</a></h3>
 <p>Dokumentasi UTS ini ditempatkan pada <strong>Jupyter Book PSD yang sudah ada</strong> (<code class="docutils literal notranslate"><span class="pre">materi/klasifikasi_lulc_jatim.md</span></code>) bersama materi PSD sebelumnya. <strong>Tautan publik Streamlit baru boleh dicantumkan setelah aplikasinya benar-benar dideploy dan berhasil dibuka.</strong> Tidak diperlukan pembuatan website PSD terpisah.</p>
 </section>
-<section id="peta-interaktif-sampel-tutupan-lahan-jawa-timur">
-<h3><span class="section-number">8.5.4. </span>5.4 Peta Interaktif Sampel Tutupan Lahan Jawa Timur<a class="headerlink" href="#peta-interaktif-sampel-tutupan-lahan-jawa-timur" title="Link to this heading">#</a></h3>
-<p>Peta berikut menampilkan 180 poligon kandidat sampel dari enam kelas
-tutupan lahan di Jawa Timur dan Madura: sawah, bangunan, mangrove,
-lahan hijau, laut, dan danau.</p>
-<p>Peta menggunakan Folium/Leaflet dengan basemap satelit Esri.
-Pengguna dapat memperbesar peta, mengaktifkan atau menonaktifkan
-layer kelas, dan melihat ID serta label setiap poligon.</p>
-<iframe
-    src="_static/peta_lulc_interaktif.html"
-    width="100%"
-    height="600"
-    style="border: 1px solid #ddd; border-radius: 8px;"
-    loading="lazy"
-    title="Peta interaktif sampel tutupan lahan Jawa Timur">
-</iframe>
-<p><strong>Catatan:</strong> Peta ini menunjukkan poligon sampel yang digunakan
-untuk eksperimen klasifikasi, bukan hasil prediksi seluruh
-wilayah Provinsi Jawa Timur.</p>
-<hr class="docutils" />
-<!-- MULAI PETA PREDIKSI UTS -->
-</section>
-<section id="peta-hasil-klasifikasi-model-extra-trees-180-poligon">
-<h3><span class="section-number">8.5.5. </span>5.5 Peta Hasil Klasifikasi Model Extra Trees (180 Poligon)<a class="headerlink" href="#peta-hasil-klasifikasi-model-extra-trees-180-poligon" title="Link to this heading">#</a></h3>
-<p>Peta berikut <strong>menampilkan hasil prediksi model</strong> untuk keenam kelas pada 180
-poligon sampel, bukan hanya label referensinya. Klik poligon untuk membandingkan
-prediksi dengan label kandidat. Pengguna dapat mengubah basemap, mengaktifkan
-layer kelas, serta membaca legenda warna.</p>
+<section id="peta-interaktif-hasil-klasifikasi-extra-trees-jawa-timur">
+<h3><span class="section-number">8.5.4. </span>5.4 Peta Interaktif Hasil Klasifikasi Extra Trees Jawa Timur<a class="headerlink" href="#peta-interaktif-hasil-klasifikasi-extra-trees-jawa-timur" title="Link to this heading">#</a></h3>
+<p>Peta berikut menampilkan <strong>prediksi model Extra Trees pada 180 poligon sampel</strong> enam kelas
+(sawah, bangunan, mangrove, lahan hijau, laut, dan danau). Warna menunjukkan <strong>kelas
+hasil prediksi</strong>, bukan label asli. Pengguna dapat memilih basemap satelit, mengaktifkan
+layer kelas, membaca legenda warna, serta mengeklik poligon untuk membandingkan
+prediksi dengan label kandidat sampel.</p>
 <iframe src="_static/peta_hasil_prediksi_lulc.html"
   width="100%" height="650" loading="lazy"
   style="border:1px solid #ddd; border-radius:8px;"
-  title="Hasil prediksi Extra Trees pada 180 poligon"></iframe>
-<p><strong>Batasan penting:</strong> Peta tersebut adalah prediksi model pada <strong>180 poligon
-yang juga berada dalam dataset pemodelan</strong>, bukan hasil pemetaan piksel seluruh
-Jawa Timur atau validasi independen. Akurasi <strong>72,22%</strong> berasal dari <strong>36
-poligon uji</strong>; bukan akurasi raster. Perbedaan kelas, terutama mangrove,
-masih membutuhkan pemeriksaan label dan evaluasi spasial lebih lanjut.</p>
-<!-- AKHIR PETA PREDIKSI UTS -->
+  title="Peta hasil klasifikasi Extra Trees pada 180 poligon"></iframe>
+<p><strong>Catatan evaluasi:</strong> Peta ini merupakan hasil prediksi pada <strong>180 poligon yang juga
+termasuk dalam dataset pelatihan/pengujian</strong>, bukan klasifikasi raster seluruh
+Jawa Timur. Akurasi <strong>72,22%</strong> hanya berasal dari <strong>36 poligon data uji</strong>;
+bukan akurasi keseluruhan peta atau raster. Raster area contoh Bangkalan tetap
+dibahas secara terpisah pada bagian 5.2 sebagai demonstrasi yang belum tervalidasi.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -1069,8 +1046,7 @@ dan belum memiliki evaluasi akurasi piksel independen.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-interaktif">8.5.1. 5.1 Aplikasi interaktif</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrasi-klasifikasi-raster">8.5.2. 5.2 Demonstrasi klasifikasi raster</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publikasi-website-psd">8.5.3. 5.3 Publikasi website PSD</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-sampel-tutupan-lahan-jawa-timur">8.5.4. 5.4 Peta Interaktif Sampel Tutupan Lahan Jawa Timur</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi-model-extra-trees-180-poligon">8.5.5. 5.5 Peta Hasil Klasifikasi Model Extra Trees (180 Poligon)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-hasil-klasifikasi-extra-trees-jawa-timur">8.5.4. 5.4 Peta Interaktif Hasil Klasifikasi Extra Trees Jawa Timur</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-dan-rekomendasi">8.6. 6. Kesimpulan dan Rekomendasi</a></li>
