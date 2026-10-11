@@ -251,6 +251,21 @@ Hasil ini bersifat **prototipe eksploratif**, bukan peta LULC final tervalidasi.
 
 Dokumentasi UTS ini ditempatkan pada **Jupyter Book PSD yang sudah ada** (`materi/klasifikasi_lulc_jatim.md`) bersama materi PSD sebelumnya. **Tautan publik Streamlit baru boleh dicantumkan setelah aplikasinya benar-benar dideploy dan berhasil dibuka.** Tidak diperlukan pembuatan website PSD terpisah.
 
+### Aplikasi GIS Interaktif (Streamlit)
+
+Sistem informasi geografis klasifikasi tutupan lahan Jawa Timur
+telah dipublikasikan melalui Streamlit Community Cloud.
+
+**[Buka Aplikasi GIS LULC Jawa Timur](https://4jmaoy2mecxopcmo5lzhod.streamlit.app)**
+
+Aplikasi menyediakan peta Folium dengan basemap Google Satellite
+Hybrid, visualisasi prediksi Extra Trees pada 180 poligon sampel,
+legenda enam kelas, perbandingan model, ekstraksi fitur, dan
+demonstrasi raster pada wilayah contoh.
+
+Basemap Google Hybrid menggunakan layanan tile, bukan WMS resmi.
+
+
 
 ### 5.4 Peta Interaktif Hasil Klasifikasi Extra Trees Jawa Timur
 
