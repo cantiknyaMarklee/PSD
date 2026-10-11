@@ -1,0 +1,33 @@
+{
+  "bounds": [
+    [
+      -7.072547857142856,
+      112.75483808571428
+    ],
+    [
+      -7.026547857142857,
+      112.80083808571428
+    ]
+  ],
+  "raster_source": "sentinel2_raster_contoh.tif",
+  "model_source": "model_lulc_sentinel2_asli.joblib",
+  "class_codes": {
+    "sawah": 1,
+    "bangunan": 2,
+    "mangrove": 3,
+    "lahan_hijau": 4,
+    "laut": 5,
+    "danau": 6
+  },
+  "colors": {
+    "sawah": "#EAB308",
+    "bangunan": "#EF4444",
+    "mangrove": "#0D9488",
+    "lahan_hijau": "#16A34A",
+    "laut": "#0284C7",
+    "danau": "#6366F1"
+  },
+  "valid_pixels": 65535,
+  "total_pixels": 65536,
+  "description": "Klasifikasi piksel area contoh, bukan peta seluruh Jawa Timur"
+}

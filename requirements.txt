@@ -1,0 +1,11 @@
+@'
+streamlit
+streamlit-folium
+folium
+pandas
+numpy
+altair
+scikit-learn
+joblib
+Pillow
+'@ | Set-Content -Encoding utf8 requirements.txt
