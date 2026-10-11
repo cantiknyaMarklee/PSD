@@ -6,8 +6,6 @@ import json
 
 import html
 
-
-
 import altair as alt
 
 import folium
@@ -22,8 +20,6 @@ import streamlit as st
 
 from streamlit_folium import st_folium
 
-
-
 BASE = Path(__file__).resolve().parent
 
 DATA_FILE = BASE / 'dataset_sentinel2_fitur_asli.csv'
@@ -35,8 +31,6 @@ RESULT_FILE = BASE / 'hasil_perbandingan_model_asli.csv'
 EVAL_FILE = BASE / 'evaluasi_model_asli.json'
 
 GEO_FILE = BASE / 'PSD_180_polygon_gabungan.geojson'
-
-
 
 BANDS = ['B02','B03','B04','B05','B06','B07','B08','B8A','B11','B12']
 
@@ -52,13 +46,9 @@ COLORS = {'sawah':'#EAB308','bangunan':'#EF4444','mangrove':'#0D9488',
 
           'lahan_hijau':'#16A34A','laut':'#0284C7','danau':'#6366F1'}
 
-
-
 st.set_page_config(page_title='SIG LULC Jawa Timur | Copernicus Sentinel-2',
 
                    page_icon='🛰️', layout='wide')
-
-
 
 @st.cache_data
 
@@ -88,8 +78,6 @@ def read_data():
 
     return df
 
-
-
 @st.cache_resource
 
 def read_model():
@@ -101,8 +89,6 @@ def read_model():
         raise ValueError('Format model tidak sesuai hasil training_model_asli.py')
 
     return obj
-
-
 
 @st.cache_data
 
@@ -116,8 +102,6 @@ def read_results():
 
     return results, evaluation, geo
 
-
-
 files = [DATA_FILE, MODEL_FILE, RESULT_FILE, EVAL_FILE, GEO_FILE]
 
 missing_files = [p.name for p in files if not p.exists()]
@@ -129,8 +113,6 @@ if missing_files:
              + ', '.join(missing_files))
 
     st.stop()
-
-
 
 try:
 
@@ -160,8 +142,6 @@ except Exception as e:
 
     st.stop()
 
-
-
 best_name = evaluation.get('model_terbaik', 'Extra Trees')
 
 best_result = results.loc[results['model'] == best_name]
@@ -179,8 +159,6 @@ accuracy = float(best_result['accuracy'])
 macro_f1 = float(best_result['f1_macro'])
 
 kappa = float(best_result['kappa'])
-
-
 
 with st.sidebar:
 
@@ -214,8 +192,6 @@ with st.sidebar:
 
     st.caption('Peta polygon sampel dan menu raster area contoh tersedia; belum menjadi peta seluruh Jawa Timur.')
 
-
-
 st.title('🛰️ Klasifikasi Tutupan Lahan Jawa Timur')
 
 st.caption('Analisis spasial penggunaan lahan dan kebijakan • Statistik Sentinel-2 L2A berbasis polygon')
@@ -238,8 +214,6 @@ st.info(f'Model terpilih: **{best_name}**, akurasi pengujian **{accuracy*100:.2f
 
         'Ini evaluasi awal pada polygon sampel, bukan akurasi peta seluruh provinsi.')
 
-
-
 if menu == '🗺️ Peta Interaktif LULC':
 
     st.subheader('Peta interaktif sampel tutupan lahan')
@@ -251,35 +225,37 @@ if menu == '🗺️ Peta Interaktif LULC':
     a,b,c = st.columns([2,2,2])
 
     with a:
-
-        basemap = st.selectbox('Basemap', ['Esri World Imagery (satelit)', 'OpenStreetMap', 'CartoDB Positron'])
-
+        basemap = st.selectbox(
+            'Basemap',
+            ['Google Satellite Hybrid', 'Esri World Imagery (satelit)',
+             'OpenStreetMap', 'CartoDB Positron'],
+        )
     with b:
-
-        map_mode = st.selectbox('Warna polygon', ['Label referensi', 'Prediksi model'])
-
+        map_mode = st.selectbox(
+            'Warna polygon', ['Label referensi', 'Prediksi model'], index=1
+        )
     with c:
 
         show_points = st.checkbox('Tampilkan titik pusat polygon', value=False)
 
     m = folium.Map(location=[-7.75,112.75], zoom_start=8, tiles=None, control_scale=True)
 
-    if basemap.startswith('Esri'):
-
+    if basemap == 'Google Satellite Hybrid':
+        # Google Hybrid via XYZ tile, not a WMS endpoint. Verify permitted use.
         folium.TileLayer(
-
+            tiles='https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
+            attr='Google Maps', name='Google Satellite Hybrid',
+            overlay=False, control=True,
+        ).add_to(m)
+    elif basemap.startswith('Esri'):
+        folium.TileLayer(
             tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-
             attr='Tiles © Esri and its data providers', name='Esri World Imagery',
-
-            overlay=False, control=True).add_to(m)
-
+            overlay=False, control=True,
+        ).add_to(m)
     elif basemap == 'OpenStreetMap':
-
         folium.TileLayer('OpenStreetMap', name='OpenStreetMap').add_to(m)
-
     else:
-
         folium.TileLayer('CartoDB positron', name='CartoDB Positron').add_to(m)
 
     by_id = df.set_index('id')
@@ -358,25 +334,36 @@ if menu == '🗺️ Peta Interaktif LULC':
 
         shown += 1
 
-
-
-
-
     # Legenda mengikuti COLORS asli aplikasi dan pilihan kelas aktif.
+
     legend_rows = ''.join(
+
         '<div style="display:flex;align-items:center;gap:7px;margin-top:5px;">'
+
         f'<span style="display:inline-block;width:13px;height:13px;'
+
         f'background:{COLORS[k]};border:1px solid #555;border-radius:3px;"></span>'
+
         f'<span>{html.escape(DISPLAY[k])}</span></div>'
+
         for k in active_classes
+
     )
+
     legend_html = (
+
         '<div style="position:fixed;bottom:25px;left:12px;z-index:9999;'
+
         'background:rgba(255,255,255,.96);color:#222;'
+
         'border:1px solid #aaa;border-radius:7px;padding:10px 12px;'
+
         'font:13px Arial,sans-serif;box-shadow:0 2px 8px #0003;">'
+
         '<b>Legenda Kelas LULC</b>' + legend_rows + '</div>'
+
     )
+
     m.get_root().html.add_child(folium.Element(legend_html))
 
     folium.LayerControl(collapsed=True).add_to(m)
@@ -385,14 +372,9 @@ if menu == '🗺️ Peta Interaktif LULC':
 
     st.caption(f'Menampilkan {shown} polygon dari dataset sampel. Label yang digunakan perlu verifikasi lapangan/citra.')
 
-
-
-
 elif menu == '🌈 Klasifikasi Raster Per Piksel':
 
     from folium.raster_layers import ImageOverlay
-
-
 
     st.subheader('Klasifikasi raster per piksel — area contoh')
 
@@ -408,7 +390,7 @@ elif menu == '🌈 Klasifikasi Raster Per Piksel':
 
     if not overlay_png.exists() or not overlay_meta.exists():
 
-        st.warning('Overlay belum dibuat. Jalankan \`python klasifikasi_raster.py\` di terminal VS Code.')
+        st.warning('Overlay belum dibuat. Jalankan *\\`*python klasifikasi_raster.py*\\`* di terminal VS Code.')
 
     else:
 
@@ -470,8 +452,6 @@ elif menu == '🌈 Klasifikasi Raster Per Piksel':
 
                    'digunakan untuk analisis kebijakan atau peta regional.')
 
-
-
 elif menu == '📊 Data Understanding & Sentinel-2':
 
     st.subheader('Data Understanding')
@@ -526,8 +506,6 @@ elif menu == '📊 Data Understanding & Sentinel-2':
 
                'produk yang digunakan ialah Sentinel-2 L2A.')
 
-
-
 elif menu == '📐 Ekstraksi Fitur & Indeks':
 
     st.subheader('Delapan indeks spektral')
@@ -564,8 +542,6 @@ elif menu == '📐 Ekstraksi Fitur & Indeks':
         tooltip=['Kelas','Indeks',alt.Tooltip('Rata-rata:Q',format='.3f')]).properties(height=350)
 
     st.altair_chart(chart,use_container_width=True)
-
-
 
 elif menu == '📜 SNI & Kebijakan Tata Ruang':
 
@@ -608,8 +584,6 @@ elif menu == '📜 SNI & Kebijakan Tata Ruang':
                'Penerapan kebijakan dan kesesuaian RTRW memerlukan layer zonasi resmi, '
 
                'bukan hanya prediksi LULC.')
-
-
 
 elif menu == '🤖 Perbandingan Model':
 
@@ -676,8 +650,6 @@ elif menu == '🤖 Perbandingan Model':
     st.caption('Evaluasi awal pada 36 polygon sampel, belum spatial-block cross-validation dan '
 
                'belum validasi label independen; hasil tidak boleh digeneralisasikan ke seluruh Jawa Timur.')
-
-
 
 elif menu == '🧪 Simulator Prediksi':
 
@@ -755,8 +727,6 @@ elif menu == '🧪 Simulator Prediksi':
 
             st.caption('Probabilitas model bukan tingkat kepastian hasil di lapangan.')
 
-
-
 elif menu == '📁 Eksplorasi Data':
 
     st.subheader('Dataset Copernicus Sentinel-2 L2A — 180 polygon')
@@ -772,8 +742,6 @@ elif menu == '📁 Eksplorasi Data':
                        file_name='dataset_sentinel2_fitur_asli.csv',mime='text/csv')
 
     st.caption('Satu baris adalah rata-rata band pada satu polygon, bukan satu piksel individual.')
-
-
 
 st.divider()
 
