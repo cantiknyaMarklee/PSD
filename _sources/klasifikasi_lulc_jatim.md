@@ -277,6 +277,29 @@ wilayah Provinsi Jawa Timur.
 
 ---
 
+<!-- MULAI PETA PREDIKSI UTS -->
+### 5.5 Peta Hasil Klasifikasi Model Extra Trees (180 Poligon)
+
+Peta berikut **menampilkan hasil prediksi model** untuk keenam kelas pada 180
+poligon sampel, bukan hanya label referensinya. Klik poligon untuk membandingkan
+prediksi dengan label kandidat. Pengguna dapat mengubah basemap, mengaktifkan
+layer kelas, serta membaca legenda warna.
+
+<iframe src="_static/peta_hasil_prediksi_lulc.html"
+  width="100%" height="650" loading="lazy"
+  style="border:1px solid #ddd; border-radius:8px;"
+  title="Hasil prediksi Extra Trees pada 180 poligon"></iframe>
+
+**Batasan penting:** Peta tersebut adalah prediksi model pada **180 poligon
+yang juga berada dalam dataset pemodelan**, bukan hasil pemetaan piksel seluruh
+Jawa Timur atau validasi independen. Akurasi **72,22%** berasal dari **36
+poligon uji**; bukan akurasi raster. Perbedaan kelas, terutama mangrove,
+masih membutuhkan pemeriksaan label dan evaluasi spasial lebih lanjut.
+
+<!-- AKHIR PETA PREDIKSI UTS -->
+
+---
+
 ## 6. Kesimpulan dan Rekomendasi
 
 1. Eksperimen berhasil membangun dataset **180 poligon enam kelas** dengan **10 band reflektansi Copernicus** dan **8 indeks spektral** (18 fitur).

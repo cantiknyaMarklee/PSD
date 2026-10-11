@@ -406,6 +406,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrasi-klasifikasi-raster">8.5.2. 5.2 Demonstrasi klasifikasi raster</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publikasi-website-psd">8.5.3. 5.3 Publikasi website PSD</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-sampel-tutupan-lahan-jawa-timur">8.5.4. 5.4 Peta Interaktif Sampel Tutupan Lahan Jawa Timur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi-model-extra-trees-180-poligon">8.5.5. 5.5 Peta Hasil Klasifikasi Model Extra Trees (180 Poligon)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-dan-rekomendasi">8.6. 6. Kesimpulan dan Rekomendasi</a></li>
@@ -860,6 +861,25 @@ layer kelas, dan melihat ID serta label setiap poligon.</p>
 <p><strong>Catatan:</strong> Peta ini menunjukkan poligon sampel yang digunakan
 untuk eksperimen klasifikasi, bukan hasil prediksi seluruh
 wilayah Provinsi Jawa Timur.</p>
+<hr class="docutils" />
+<!-- MULAI PETA PREDIKSI UTS -->
+</section>
+<section id="peta-hasil-klasifikasi-model-extra-trees-180-poligon">
+<h3><span class="section-number">8.5.5. </span>5.5 Peta Hasil Klasifikasi Model Extra Trees (180 Poligon)<a class="headerlink" href="#peta-hasil-klasifikasi-model-extra-trees-180-poligon" title="Link to this heading">#</a></h3>
+<p>Peta berikut <strong>menampilkan hasil prediksi model</strong> untuk keenam kelas pada 180
+poligon sampel, bukan hanya label referensinya. Klik poligon untuk membandingkan
+prediksi dengan label kandidat. Pengguna dapat mengubah basemap, mengaktifkan
+layer kelas, serta membaca legenda warna.</p>
+<iframe src="_static/peta_hasil_prediksi_lulc.html"
+  width="100%" height="650" loading="lazy"
+  style="border:1px solid #ddd; border-radius:8px;"
+  title="Hasil prediksi Extra Trees pada 180 poligon"></iframe>
+<p><strong>Batasan penting:</strong> Peta tersebut adalah prediksi model pada <strong>180 poligon
+yang juga berada dalam dataset pemodelan</strong>, bukan hasil pemetaan piksel seluruh
+Jawa Timur atau validasi independen. Akurasi <strong>72,22%</strong> berasal dari <strong>36
+poligon uji</strong>; bukan akurasi raster. Perbedaan kelas, terutama mangrove,
+masih membutuhkan pemeriksaan label dan evaluasi spasial lebih lanjut.</p>
+<!-- AKHIR PETA PREDIKSI UTS -->
 </section>
 </section>
 <hr class="docutils" />
@@ -1050,6 +1070,7 @@ dan belum memiliki evaluasi akurasi piksel independen.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrasi-klasifikasi-raster">8.5.2. 5.2 Demonstrasi klasifikasi raster</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publikasi-website-psd">8.5.3. 5.3 Publikasi website PSD</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-sampel-tutupan-lahan-jawa-timur">8.5.4. 5.4 Peta Interaktif Sampel Tutupan Lahan Jawa Timur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi-model-extra-trees-180-poligon">8.5.5. 5.5 Peta Hasil Klasifikasi Model Extra Trees (180 Poligon)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-dan-rekomendasi">8.6. 6. Kesimpulan dan Rekomendasi</a></li>
