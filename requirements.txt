@@ -1,4 +1,3 @@
-@'
 streamlit
 streamlit-folium
 folium
@@ -8,4 +7,3 @@ altair
 scikit-learn
 joblib
 Pillow
-'@ | Set-Content -Encoding utf8 requirements.txt
